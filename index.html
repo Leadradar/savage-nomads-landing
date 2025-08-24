@@ -20,40 +20,40 @@
     .nav a::after{content:"";position:absolute;left:0;right:100%;bottom:-6px;height:2px;background:linear-gradient(90deg,var(--azul), #f59e0b);transition:right .22s ease;border-radius:4px}
     .nav a:hover{color:var(--azul)} .nav a:hover::after{right:0}
     .cta{background:var(--azul);color:var(--ambar)!important;padding:10px 16px;border-radius:10px;font-weight:800}
-    .cta:hover{filter:brightness(1.1)}
+    .cta:hover{filter:brightness(1.08)}
 
     /* Hero */
     .hero{position:relative}
-    .hero img{width:100%;height:420px;object-fit:cover;display:block;filter:saturate(105%)}
+    .hero img{width:100%;height:420px;object-fit:cover;display:block}
     .hero .overlay{position:absolute;inset:0;background:linear-gradient(180deg,rgba(0,0,0,.35),rgba(0,0,0,.25),transparent)}
     .hero h1{position:absolute;left:50%;top:48%;transform:translate(-50%,-50%);color:var(--ambar);font-size:42px;line-height:1.2;text-align:center;margin:0;text-shadow:0 6px 24px rgba(0,0,0,.45)}
 
-    /* Secciones centradas */
-    section{padding:80px 0}
-    h2.sec{font-size:44px;font-weight:900;text-align:center;margin:0 0 18px;background:linear-gradient(90deg, var(--azul), #f59e0b);-webkit-background-clip:text;background-clip:text;color:transparent;letter-spacing:.4px;text-transform:uppercase}
+    /* Secciones centradas y consistentes */
+    section{padding:84px 0}
+    .section-inner{max-width:1100px;margin:0 auto;text-align:center}
+    h2.sec{font-size:44px;font-weight:900;margin:0 0 18px;background:linear-gradient(90deg, var(--azul), #f59e0b);-webkit-background-clip:text;background-clip:text;color:transparent;letter-spacing:.4px;text-transform:uppercase}
     h2.sec::after{content:"";display:block;width:92px;height:3px;margin:12px auto 0;background:linear-gradient(90deg, var(--azul), #f59e0b);border-radius:4px}
-    .lead{max-width:900px;margin:0 auto;color:#334155;line-height:1.75;font-size:19px;text-align:center}
-    .center{ text-align:center }
+    .lead{max-width:900px;margin:0 auto;color:#334155;line-height:1.75;font-size:19px}
 
-    /* Cards, grids */
+    /* Tarjetas */
     .features{display:grid;grid-template-columns:1fr;gap:14px;margin-top:20px}
     @media (min-width:900px){.features{grid-template-columns:repeat(3,1fr)}}
     .feat{background:var(--gris);border-radius:16px;padding:18px 16px;text-align:left}
     .feat b{display:block;margin-bottom:6px}
 
-    /* Imagenes anti estirado */
+    /* Imágenes */
     img{max-width:100%;height:auto;display:block}
     picture{display:block}
+    .shadow{border-radius:18px;overflow:hidden;box-shadow:0 16px 40px rgba(15,42,107,.12)}
     .badge{display:inline-block;background:#e0f2fe;color:#075985;font-weight:700;border-radius:999px;padding:6px 12px;box-shadow:0 6px 16px rgba(2,132,199,.15)}
 
-    /* MALDIVAS — centrado + galería simple (sin solapes) */
+    /* Galería Maldivas – dos columnas, fotos horizontales */
     #maldivas .gallery{display:grid;gap:18px;margin-top:22px}
     @media (min-width:900px){ #maldivas .gallery{grid-template-columns:1fr 1fr} }
-    #maldivas .gallery picture{border-radius:18px;overflow:hidden;box-shadow:0 16px 40px rgba(15,42,107,.12)}
-    #maldivas .gallery img{width:100%;height:480px;object-fit:cover}
-    @media (max-width:900px){ #maldivas .gallery img{height:auto} }
+    #maldivas .gallery img{width:100%;aspect-ratio: 16 / 10;object-fit:cover} /* recorte agradable de verticales */
+    @media (max-width:900px){ #maldivas .gallery img{aspect-ratio: 4 / 3} }
 
-    /* FORMULARIO */
+    /* Form */
     .form-wrap{max-width:1100px;margin:0 auto;padding:56px 24px}
     .form-title{font-size:32px;line-height:1.2;font-weight:800;text-align:center;margin:0 0 28px}
     .form-card{background:#fff;border-radius:16px;box-shadow:0 10px 30px rgba(0,0,0,.08);padding:24px}
@@ -72,7 +72,10 @@
     .qa > div > b{display:block;margin:8px 0;font-size:18px;color:var(--azul2);text-align:center}
     .qa > div > div{color:#475569;text-align:center}
 
-    /* Mobile */
+    footer{background:var(--gris);padding:28px 0;margin-top:40px}
+    footer .container{display:flex;justify-content:center;align-items:center;gap:16px;flex-wrap:wrap}
+
+    /* Mobile tweaks */
     @media (max-width: 600px){
       h1{font-size:28px !important}
       .hero img{height:300px !important}
@@ -102,15 +105,15 @@
   <section class="hero">
     <picture>
       <source srcset="hero.webp" type="image/webp">
-      <img src="hero.jpg" alt="Buceo y fauna marina en Maldivas" width="1600" height="420" fetchpriority="high">
+      <img src="hero.jpg?v=3" alt="Buceo y fauna marina en Maldivas" width="1600" height="420" fetchpriority="high">
     </picture>
     <div class="overlay"></div>
     <h1>Aventuras en grupo para espíritus salvajes</h1>
   </section>
 
   <!-- Qué ofrecemos -->
-  <section id="ofrecemos" class="center">
-    <div class="container">
+  <section id="ofrecemos">
+    <div class="section-inner">
       <h2 class="sec">Qué ofrecemos</h2>
       <p class="lead">Grupos reducidos, experiencias auténticas y un toque de confort. Además, incluimos <b>fotógrafo profesional</b>: a los 10 días recibes tu <b>book</b> personal.</p>
       <div class="features">
@@ -121,20 +124,18 @@
     </div>
   </section>
 
-  <!-- Maldivas: todo centrado y sin solapamientos -->
-  <section id="maldivas" class="center">
-    <div class="container">
+  <!-- Maldivas -->
+  <section id="maldivas">
+    <div class="section-inner">
       <span class="badge">Primer viaje: Maldivas 🌴</span>
       <h2 class="sec">Maldivas Aventureras</h2>
       <p class="lead">Islas locales, barco tradicional, snorkel, buceo con fauna y atardeceres de postal. No es el típico resort: es la <b>Maldivas auténtica</b>.</p>
       <div class="gallery">
-        <picture>
-          <source srcset="pareja.webp" type="image/webp">
-          <img src="pareja.jpg" alt="Momentos en pareja en Maldivas" onerror="this.onerror=null; this.src='subm.jpg';">
+        <picture class="shadow">
+          <img id="img-pareja" src="subm.jpg?v=3" alt="Pareja en Maldivas (cargando)" />
         </picture>
-        <picture>
-          <source srcset="subm.webp" type="image/webp">
-          <img src="subm.jpg" alt="Buceo en arrecife, Maldivas">
+        <picture class="shadow">
+          <img id="img-subm" src="subm.jpg?v=3" alt="Buceo en arrecife, Maldivas" />
         </picture>
       </div>
       <p class="lead" style="margin-top:16px">Ruta flexible, grupos reducidos y un <b>book fotográfico personal</b> con tus mejores momentos.</p>
@@ -143,59 +144,61 @@
   </section>
 
   <!-- Conecta -->
-  <section id="tribu" class="center">
-    <div class="container">
+  <section id="tribu">
+    <div class="section-inner">
       <h2 class="sec">Conecta con tu tribu</h2>
       <p class="lead">Viajar es más que ver paisajes: es compartirlos. Momentos reales con gente que vibra como tú.</p>
-      <div class="gallery" style="grid-template-columns:1fr;max-width:900px;margin:18px auto 0">
-        <picture>
-          <source srcset="grupo.webp" type="image/webp">
-          <img src="grupo.jpg" alt="Grupo de viajeros Savage Nomads">
+      <div style="max-width:900px;margin:18px auto 0">
+        <picture class="shadow">
+          <source srcset="grupo.webp?v=3" type="image/webp">
+          <img src="grupo.jpg?v=3" alt="Grupo de viajeros Savage Nomads" loading="lazy">
         </picture>
       </div>
       <p style="margin-top:12px"><a class="cta" href="#formulario">Apúntate</a></p>
     </div>
   </section>
 
-  <!-- Formulario (Formspree) -->
-  <section id="formulario" class="form-wrap">
-    <h2 class="form-title">Apúntate y sé de los primeros</h2>
-    <div class="form-card">
-      <form action="https://formspree.io/f/manbrrzl" method="POST">
-        <div class="form-grid">
-          <div>
-            <label class="label">Tu nombre</label>
-            <input class="input" type="text" name="nombre" placeholder="Tu nombre" required>
+  <!-- Formulario -->
+  <section id="formulario">
+    <div class="form-wrap">
+      <h2 class="form-title">Apúntate y sé de los primeros</h2>
+      <div class="form-card">
+        <form action="https://formspree.io/f/manbrrzl" method="POST">
+          <div class="form-grid">
+            <div>
+              <label class="label">Tu nombre</label>
+              <input class="input" type="text" name="nombre" placeholder="Tu nombre" required>
+            </div>
+            <div>
+              <label class="label">Tu email</label>
+              <input class="input" type="email" name="email" placeholder="Tu email" required>
+            </div>
+            <div>
+              <label class="label">Teléfono</label>
+              <input class="input" type="tel" name="telefono" placeholder="Teléfono">
+            </div>
+            <div class="full">
+              <label class="label">Destino</label>
+              <select class="input" name="destino">
+                <option value="">Selecciona destino</option>
+                <option>Maldivas</option>
+              </select>
+            </div>
+            <div class="full">
+              <label class="label">Mensaje</label>
+              <textarea class="input" name="mensaje" rows="4" placeholder="Cuéntanos qué buscas"></textarea>
+            </div>
           </div>
-          <div>
-            <label class="label">Tu email</label>
-            <input class="input" type="email" name="email" placeholder="Tu email" required>
-          </div>
-          <div>
-            <label class="label">Teléfono</label>
-            <input class="input" type="tel" name="telefono" placeholder="Teléfono">
-          </div>
-          <div class="full">
-            <label class="label">Destino</label>
-            <select class="input" name="destino">
-              <option value="">Selecciona destino</option>
-              <option>Maldivas</option>
-            </select>
-          </div>
-          <div class="full">
-            <label class="label">Mensaje</label>
-            <textarea class="input" name="mensaje" rows="4" placeholder="Cuéntanos qué buscas"></textarea>
-          </div>
-        </div>
-        <input type="hidden" name="_redirect" value="https://leadradar.github.io/savage-nomads-landing/gracias.html">
-        <div class="full" style="margin-top:10px"><button type="submit" class="btn">Quiero unirme →</button></div>
-      </form>
+          <input type="hidden" name="_redirect" value="https://leadradar.github.io/savage-nomads-landing/gracias.html">
+          <div class="full" style="margin-top:10px"><button type="submit" class="btn">Quiero unirme →</button></div>
+        </form>
+      </div>
     </div>
   </section>
 
   <!-- FAQ -->
-  <section id="faq" class="faq center">
-    <div class="container">
+  <section id="faq">
+    <div class="section-inner">
       <h2 class="sec">Preguntas frecuentes</h2>
       <div class="qa">
         <div>
@@ -218,8 +221,8 @@
     </div>
   </section>
 
-  <footer style="background:var(--gris);padding:28px 0;margin-top:40px">
-    <div class="container" style="display:flex;justify-content:center;align-items:center;gap:16px;flex-wrap:wrap">
+  <footer>
+    <div class="container">
       <div>© 2025 Savage Nomads</div>
       <div>Contacto: hola@savagenomads.com</div>
     </div>
@@ -234,6 +237,22 @@
         if(target){ e.preventDefault(); window.scrollTo({top: target.offsetTop-70, behavior:'smooth'}); }
       });
     });
+
+    // Carga robusta para pareja.jpg (prueba varias variantes de nombre y rompe caché)
+    (function(){
+      var candidates = ["pareja.jpg","pareja.jpeg","Pareja.jpg","PAREJA.jpg","pareja.JPG","pareja.JPEG"];
+      var img = document.getElementById("img-pareja");
+      var i = 0;
+      function tryNext(){
+        if(i >= candidates.length){ return; }
+        var url = candidates[i++] + "?v=" + Date.now();
+        var test = new Image();
+        test.onload = function(){ img.src = url; };
+        test.onerror = tryNext;
+        test.src = url;
+      }
+      tryNext();
+    })();
   </script>
 </body>
 </html>
