@@ -46,7 +46,7 @@
       --section-gap:56px;
       --section-gap-mobile:40px;
 
-      /* ====== Vars NUEVAS para shrink ====== */
+      /* ====== Vars para efecto shrink ====== */
       --nav-h:64px;
       --nav-h-shrink:48px;
       --brand-dot:10px;
@@ -61,11 +61,17 @@
     img{max-width:100%; display:block}
 
     /* Header */
-    header{position:sticky; top:0; z-index:50; backdrop-filter:saturate(140%) blur(6px); background:rgba(11,15,16,.72); border-bottom:1px solid rgba(255,255,255,.06);
+    header{
+      position:sticky; top:0; z-index:50;
+      backdrop-filter:saturate(140%) blur(6px);
+      background:rgba(11,15,16,.72);
+      border-bottom:1px solid rgba(255,255,255,.06);
       transition: background .2s ease, box-shadow .2s ease, border-color .2s ease;
     }
     .wrap{max-width:1100px; margin:0 auto; padding:0 16px}
-    .nav{display:flex; align-items:center; justify-content:space-between; height:var(--nav-h);
+    .nav{
+      display:flex; align-items:center; justify-content:space-between;
+      height:var(--nav-h);
       transition: height .2s ease;
     }
     .brand{display:flex; gap:10px; align-items:center; font-weight:800; letter-spacing:.2px; transition: transform .2s ease;}
@@ -77,7 +83,7 @@
     .btn-cta{background:var(--brand); color:#0b0f10; box-shadow:0 8px 22px rgba(0,0,0,.18)}
     .btn-cta:hover{transform:translateY(-1px)}
 
-    /* ====== Estado encogido (solo visual) ====== */
+    /* ====== Estado encogido ====== */
     header.shrink{ background: var(--shrink-bg); box-shadow: var(--shrink-shadow); border-bottom-color: rgba(255,255,255,.1); }
     header.shrink .nav{ height: var(--nav-h-shrink); }
     header.shrink .brand .dot{ width: var(--brand-dot-shrink); height: var(--brand-dot-shrink); }
@@ -356,7 +362,7 @@
     })();
   </script>
 
-  <!-- Header shrink on scroll (mínimo y sin romper nada) -->
+  <!-- Header shrink on scroll -->
   <script>
     (function(){
       const header = document.getElementById('site-header');
@@ -377,7 +383,7 @@
           ticking = true;
         }
       }, { passive: true });
-      apply(); // estado inicial por si recarga en scroll
+      apply(); // estado inicial por si recarga con scroll
     })();
   </script>
 
