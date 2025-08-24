@@ -66,29 +66,65 @@
     #tribu .card{background:var(--card); border:1px solid rgba(255,255,255,.06); border-radius:var(--radius); padding:18px; box-shadow:var(--shadow); height:100%;}
     @media (max-width:900px){.tribe-layout{ grid-template-columns:1fr; } .tribe-photo img{ aspect-ratio: 16 / 9; }}
 
-    /* ---------- Maldivas ---------- */
-    #maldivas .grid{display:grid; grid-template-columns:1.1fr .9fr; gap:16px; align-items:stretch;}
-    #maldivas .gallery-card,
-    #maldivas .card{background:var(--card); border:1px solid rgba(255,255,255,.06); border-radius:var(--radius); box-shadow:var(--shadow); min-height:clamp(340px, 34vw, 520px);}
-    #maldivas .gallery-card{padding:12px; display:flex; flex-direction:column; justify-content:center;}
-    #maldivas .gallery{display:flex; gap:12px; flex:1;}
-    #maldivas .gallery picture{flex:1; aspect-ratio:16/9; border-radius:var(--radius); overflow:hidden; box-shadow:var(--shadow);}
-    #maldivas .gallery picture > img{width:100%; height:100%; object-fit:cover;}
-    /* --- Texto de la card Maldivas --- */
-    #maldivas .card{
-      padding:24px;
-      display:flex;
-      flex-direction:column;
-      justify-content:center;
-      align-items:center;
-      text-align:center;
-      gap:14px;
-    }
-    #maldivas .card h3{margin-top:0; font-size:18px; color:var(--accent);}
-    #maldivas .card ul{list-style:none; padding:0; margin:0;}
-    #maldivas .card ul li{margin:6px 0; color:var(--muted);}
-    @media (max-width:900px){#maldivas .grid{ grid-template-columns:1fr; gap:14px; } #maldivas .gallery{ flex-direction:row; } #maldivas .gallery-card, #maldivas .card{ min-height:0; }}
-    @media (max-width:520px){#maldivas .gallery{ flex-direction:column; }}
+    /* ---------- Maldivas (fotos horizontales grandes y sin hueco) ---------- */
+#maldivas .grid{
+  display:grid;
+  grid-template-columns:1.2fr .8fr; /* da más ancho a las fotos para que no queden pequeñas */
+  gap:16px;
+  align-items:start; /* sin forzar alturas iguales, evitamos huecos raros */
+}
+
+/* Cards */
+#maldivas .gallery-card,
+#maldivas .card{
+  background:var(--card);
+  border:1px solid rgba(255,255,255,.06);
+  border-radius:var(--radius);
+  box-shadow:var(--shadow);
+}
+
+/* Galería: ocupa solo lo necesario (nada de min-height) */
+#maldivas .gallery-card{ padding:12px; }
+#maldivas .gallery{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:12px;
+}
+
+/* Cada foto con ratio 3:2 (más alta que 16:9 para que se vean potentes) */
+#maldivas .gallery picture{
+  display:block;
+  aspect-ratio:3/2;     /* 👈 horizontal y con más presencia que 16:9 */
+  border-radius:var(--radius);
+  overflow:hidden;
+  box-shadow:var(--shadow);
+  background:#000;
+}
+#maldivas .gallery picture > img{
+  width:100%; height:100%;
+  object-fit:cover; object-position:center;
+  display:block;
+}
+
+/* Texto bonito y centrado */
+#maldivas .card{
+  padding:24px;
+  display:flex; flex-direction:column;
+  justify-content:center; align-items:center;
+  text-align:center; gap:14px;
+}
+#maldivas .card h3{margin:0; font-size:18px; color:var(--accent);}
+#maldivas .card ul{list-style:none; padding:0; margin:0;}
+#maldivas .card li{margin:6px 0; color:var(--muted);}
+
+/* Responsive */
+@media (max-width:900px){
+  #maldivas .grid{ grid-template-columns:1fr; gap:14px; }
+  #maldivas .gallery{ grid-template-columns:1fr 1fr; }
+}
+@media (max-width:520px){
+  #maldivas .gallery{ grid-template-columns:1fr; }
+}
 
     /* ---------- Form ---------- */
     .form-wrap{max-width:760px; margin:0 auto; background:var(--card); border:1px solid rgba(255,255,255,.06); border-radius:var(--radius); padding:18px; box-shadow:var(--shadow);}
