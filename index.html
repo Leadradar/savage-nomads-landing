@@ -6,7 +6,6 @@
   <title>Savage Nomads — Aventuras en grupo</title>
   <meta name="description" content="Aventuras en grupo para espíritus salvajes. Primer viaje: Maldivas.">
   <link rel="icon" href="favicon.ico" />
-
   <style>
     :root{--azul:#0f2a6b;--azul2:#1e3a8a;--gris:#f1f5f9;--texto:#0f172a;--ambar:#fde047}
     *{box-sizing:border-box}
@@ -49,7 +48,19 @@
     /* Bloque viaje */
     .trip{display:grid;grid-template-columns:1fr;gap:18px;align-items:center}
     @media (min-width:900px){.trip{grid-template-columns:1.2fr 1fr}}
-    .trip img{width:100%;border-radius:16px}
+
+    /* --- Fix proporciones de imágenes y estiramientos --- */
+
+    /* --- Galería Maldivas: dos fotos lado a lado, responsive --- */
+    .gallery{display:grid;grid-template-columns:1fr;gap:12px}
+    @media (min-width:900px){ .gallery{grid-template-columns:1fr 1fr} }
+    .gallery img{aspect-ratio: 4 / 3; object-fit: cover; border-radius:16px; width:100%; display:block}
+
+    img{max-width:100%;height:auto;display:block}
+    .trip picture, .trip img{width:100%;display:block}
+    .trip img{aspect-ratio: 3 / 2; object-fit: cover; border-radius:16px}
+    @media (max-width: 600px){ .trip img{aspect-ratio: 4 / 3} }
+
     .badge{display:inline-block;background:#e0f2fe;color:#075985;font-weight:700;border-radius:999px;padding:6px 10px;margin-bottom:10px}
 
     /* FORMULARIO */
@@ -126,24 +137,26 @@
     </div>
   </section>
 
-  <!-- Maldivas -->
+  <!-- Maldivas (solo una imagen hasta subir la real de "pareja") -->
   <section id="maldivas">
     <div class="container">
       <span class="badge">Primer viaje: Maldivas 🌴</span>
       <div class="trip">
-        <picture>
-          <source srcset="pareja.webp" type="image/webp">
-          <img src="pareja.jpg" alt="Pareja en Maldivas en playa" width="1200" height="800" loading="lazy" decoding="async">
-        </picture>
         <div>
           <h2 class="sec" style="text-align:left;margin:0 0 10px">Maldivas Aventureras</h2>
           <p>Islas locales, barco tradicional, snorkel, buceo con fauna y atardeceres de postal. No es el típico resort: es la <b>Maldivas auténtica</b>.</p>
-          <picture style="display:block;margin-top:12px;border-radius:16px;overflow:hidden">
-            <source srcset="subm.webp" type="image/webp">
-            <img src="subm.jpg" alt="Submarinismo en Maldivas" width="1200" height="800" loading="lazy" decoding="async" style="width:100%;display:block">
-          </picture>
+          <div class="gallery" style="margin-top:14px">
+            <picture>
+              <source srcset="pareja.webp" type="image/webp">
+              <img src="pareja.jpg" alt="Pareja disfrutando en Maldivas">
+            </picture>
+            <picture>
+              <source srcset="subm.webp" type="image/webp">
+              <img src="subm.jpg" alt="Submarinismo en arrecife de Maldivas">
+            </picture>
+          </div>
         </div>
-      </div>
+</div>
     </div>
   </section>
 
@@ -155,7 +168,7 @@
       <div class="trip" style="margin-top:14px">
         <picture>
           <source srcset="grupo.webp" type="image/webp">
-          <img src="grupo.jpg" alt="Grupo de viajeros Savage Nomads" width="1200" height="800" loading="lazy" decoding="async">
+          <img src="grupo.jpg" alt="Grupo de viajeros Savage Nomads">
         </picture>
         <div>
           <h3 style="margin:0 0 8px;font-size:22px;color:#0f2a6b">Historias que se quedan</h3>
