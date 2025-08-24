@@ -29,7 +29,7 @@
   <link rel="icon" href="favicon.ico">
   <link rel="icon" type="image/svg+xml" href="favicon.svg">
 
-  <!-- Google Fonts: Poppins -->
+  <!-- Google Fonts -->
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;800&display=swap" rel="stylesheet">
@@ -39,14 +39,14 @@
   <style>
     /* ========= TEMA CLARO (por defecto) ========= */
     :root{
-      --bg:#F7FBFC;            /* fondo general muy claro azulado */
-      --surface:#FFFFFF;       /* strips claras */
-      --card:#FFFFFF;          /* tarjetas blancas */
-      --fg:#0E1416;            /* texto principal oscuro */
-      --muted:#50656C;         /* texto secundario */
-      --brand:#00C2A8;         /* turquesa marca */
-      --accent:#FFC94D;        /* amarillo cálido para H1 hero */
-      --border:#E6EEF1;        /* bordes suaves */
+      --bg:#F7FBFC;
+      --surface:#FFFFFF;
+      --card:#FFFFFF;
+      --fg:#0E1416;
+      --muted:#50656C;
+      --brand:#00C2A8;
+      --accent:#FFC94D;
+      --border:#E6EEF1;
 
       --radius:14px;
       --shadow:0 10px 26px rgba(16,24,40,.10);
@@ -58,8 +58,7 @@
       --navlink-size:15.5px;
       --navlink-gap:14px;
     }
-
-    /* ========= TEMA OSCURO (toggle) ========= */
+    /* ========= TEMA OSCURO ========= */
     :root.dark{
       --bg:#0E1416;
       --surface:#151C1F;
@@ -69,27 +68,21 @@
       --brand:#00C2A8;
       --accent:#ffd36b;
       --border:rgba(255,255,255,.10);
-
       --shadow:0 12px 26px rgba(0,0,0,.16);
       --shadow-strong:0 18px 42px rgba(0,0,0,.28);
     }
 
     *{box-sizing:border-box}
     html{scroll-behavior:smooth}
-    body{
-      margin:0;
-      font-family:'Poppins',system-ui,-apple-system,Segoe UI,Roboto,Inter,Ubuntu,Arial,sans-serif;
-      background:var(--bg); color:var(--fg); line-height:1.5;
-    }
+    body{margin:0; font-family:'Poppins',system-ui,-apple-system,Segoe UI,Roboto,Inter,Ubuntu,Arial,sans-serif; background:var(--bg); color:var(--fg); line-height:1.5;}
     a{color:inherit; text-decoration:none}
     img{max-width:100%; display:block}
 
-    /* Colores de texto globales */
-    h1, h2, h3 { color: var(--brand); }   /* títulos turquesa */
-    p, .lead { color: var(--fg); }        /* texto en oscuro (claro) o blanco (oscuro) */
-    :root.dark p, :root.dark .lead { color: #ffffff; }
+    /* Texto */
+    h1, h2, h3 { color: var(--brand); }
+    p, .lead { color: var(--fg); }
+    :root.dark p, :root.dark .lead { color:#fff; }
 
-    /* Strips alternas */
     section.strip{ background: var(--surface); }
 
     /* Header */
@@ -100,10 +93,7 @@
       border-bottom:1px solid var(--border);
       transition:background .25s, box-shadow .25s, border-color .25s;
     }
-    :root.dark header{
-      background:rgba(11,15,16,.72);
-      border-bottom:1px solid rgba(255,255,255,.06);
-    }
+    :root.dark header{ background:rgba(11,15,16,.72); border-bottom:1px solid rgba(255,255,255,.06); }
     .wrap{max-width:1100px; margin:0 auto; padding:0 16px}
     .nav{display:flex; align-items:center; justify-content:space-between; height:var(--nav-h);}
     .brand{display:flex; gap:10px; align-items:center; font-weight:800; letter-spacing:.2px}
@@ -114,26 +104,14 @@
     .btn{display:inline-block; padding:10px 16px; border-radius:999px; font-weight:700; border:none; cursor:pointer; transition:transform .2s, box-shadow .2s;}
     .btn-cta{background:var(--brand); color:#0b0f10; box-shadow:0 8px 22px rgba(0,0,0,.18)}
     .btn-cta:hover{transform:translateY(-4px); box-shadow:var(--shadow-strong);}
-    header.solid{
-      background:rgba(255,255,255,.92);
-      box-shadow:0 6px 18px rgba(16,24,40,.18);
-      border-bottom-color:var(--border);
-    }
-    :root.dark header.solid{
-      background:rgba(11,15,16,.92);
-      box-shadow:0 6px 18px rgba(0,0,0,.35);
-      border-bottom-color:rgba(255,255,255,.1);
-    }
+    header.solid{background:rgba(255,255,255,.92); box-shadow:0 6px 18px rgba(16,24,40,.18); border-bottom-color:var(--border);}
+    :root.dark header.solid{background:rgba(11,15,16,.92); box-shadow:0 6px 18px rgba(0,0,0,.35); border-bottom-color:rgba(255,255,255,.1);}
 
-    /* Botón de modo */
-    #theme-toggle{
-      position:fixed; right:14px; bottom:14px; z-index:60;
-      background:var(--surface); border:1px solid var(--border);
-      color:var(--fg); box-shadow:var(--shadow);
-    }
+    /* Toggle tema */
+    #theme-toggle{position:fixed; right:14px; bottom:14px; z-index:60; background:var(--surface); border:1px solid var(--border); color:var(--fg); box-shadow:var(--shadow);}
     :root.dark #theme-toggle{ background:#161c1f; border-color:rgba(255,255,255,.12); color:#fff; }
 
-    /* Hero con PARALLAX */
+    /* Hero */
     .hero{position:relative; overflow:hidden}
     .hero img{width:100%; height:clamp(420px, 60vh, 560px); object-fit:cover; object-position:center; will-change:transform; transform:translateY(0); transition:transform .08s linear;}
     .hero .overlay{position:absolute; inset:0; background:linear-gradient(180deg, rgba(0,0,0,.22), rgba(0,0,0,.14), rgba(0,0,0,.30));}
@@ -149,7 +127,7 @@
     section > .wrap > h2{text-align:center; margin:0 0 18px; line-height:1.2; letter-spacing:.2px; font-size:clamp(24px,4.6vw,34px);}
     .lead{text-align:center; max-width:60ch; margin:0 auto 24px}
 
-    /* Card base */
+    /* Card */
     .card{background:var(--card); border:1px solid var(--border); border-radius:var(--radius); padding:18px; box-shadow:var(--shadow);}
     :root.dark .card{ border:1px solid rgba(255,255,255,.06); }
     @media (min-width:901px){
@@ -158,7 +136,7 @@
       header .navlinks a.active{opacity:1; text-decoration:underline; text-underline-offset:4px;}
     }
 
-    /* Qué ofrecemos */
+    /* Ofrecemos */
     .features{display:grid; grid-template-columns:repeat(3,1fr); gap:14px}
     .feat h3{margin:0 0 6px; font-size:18px}
     .feat p{margin:0; color:var(--muted); font-size:15.5px}
@@ -174,7 +152,7 @@
     @media (max-width:900px){
       .tribe-layout{grid-template-columns:1fr;}
       .tribe-photo{margin:0;}
-      #tribu .tribe-layout{row-gap:clamp(28px,9vw,52px);} /* espacio extra móvil */
+      #tribu .tribe-layout{row-gap:clamp(28px,9vw,52px);}
       .tribe-photo img{aspect-ratio:16/9;}
     }
 
@@ -188,7 +166,7 @@
     .text-card h3{margin:0 0 6px; font-size:18px; font-weight:700;}
     ul.clean{list-style:none; padding:0; margin:0;}
     ul.clean li{position:relative; padding-left:18px; margin:6px 0; color:var(--muted);}
-    ul.clean li::before{content:"•"; color:var(--brand); position:absolute; left:0; top:0; line-height:1;} /* bullets turquesa */
+    ul.clean li::before{content:"•"; color:var(--brand); position:absolute; left:0; top:0; line-height:1;}
     @media (max-width:900px){.maldivas-layout{grid-template-columns:1fr; gap:14px;} .text-card{min-height:0;} .photos-grid{grid-template-columns:1fr 1fr;} }
     @media (max-width:520px){.photos-grid{grid-template-columns:1fr;}}
 
@@ -201,15 +179,12 @@
     .testi small{color:var(--muted);}
     @media (max-width:900px){.testis{grid-template-columns:1fr;}}
 
-    /* Badges confianza */
+    /* Badges */
     .badges{display:flex; justify-content:center; flex-wrap:wrap; gap:10px; margin-top:10px;}
     .badge{background:#F2F7F8; border:1px solid var(--border); padding:8px 12px; border-radius:999px; color:var(--muted); font-weight:600; font-size:14px;}
     :root.dark .badge{background:rgba(255,255,255,.05); border-color:rgba(255,255,255,.08);}
 
-    /* CTA intermedio */
-    .cta-mid{display:flex; align-items:center; justify-content:center; gap:12px; text-align:center;}
-
-    /* Mini itinerario */
+    /* Steps */
     .steps{display:grid; grid-template-columns:repeat(3,1fr); gap:14px;}
     .step{padding:16px; border-radius:var(--radius); background:var(--card); border:1px solid var(--border); box-shadow:var(--shadow);}
     .step h3{margin:0 0 6px;}
@@ -239,7 +214,7 @@
     :root.dark .faq details:hover{border-color:rgba(255,255,255,.14);}
     .faq p{color:var(--muted); margin:10px 0 0;}
 
-    /* Accesibilidad + efectos */
+    /* Reveal */
     @media (min-width:901px){
       .reveal{ opacity:0; transform: translateY(12px) scale(0.995); will-change: opacity, transform; }
       .reveal.in{ opacity:1; transform: none; transition: opacity .45s ease, transform .45s ease; }
@@ -249,12 +224,11 @@
       *{ animation-duration: .01ms !important; animation-iteration-count: 1 !important; transition-duration: .01ms !important; }
       .hero img{ transition:none !important; transform:none !important; }
     }
-
     .navlinks a{ transition: opacity .15s ease; }
     .navlinks a:hover{ opacity:1; text-decoration:underline; text-underline-offset:3px; }
     section[id]{ scroll-margin-top: 84px; }
 
-    /* SOLO MÓVIL: header en dos filas */
+    /* Móvil Header */
     @media (max-width: 900px) {
       .nav{flex-wrap:wrap; height:auto; padding:10px 0; gap:8px;}
       .brand{order:1;}
@@ -275,40 +249,21 @@
     }
 
     /* ===== Galería Masonry ===== */
-    .gallery-bar {
-      display:flex; justify-content:center; gap:10px; margin-bottom:16px; flex-wrap:wrap;
-    }
-    .gallery-bar .chip {
-      border:1px solid var(--border);
-      background:var(--surface);
-      padding:8px 12px; border-radius:999px; font-weight:700; cursor:pointer;
-    }
+    .gallery-bar { display:flex; justify-content:center; gap:10px; margin-bottom:16px; flex-wrap:wrap; }
+    .gallery-bar .chip { border:1px solid var(--border); background:var(--surface); padding:8px 12px; border-radius:999px; font-weight:700; cursor:pointer; }
     :root.dark .gallery-bar .chip { background:#161c1f; border-color:rgba(255,255,255,.12); color:#fff; }
     .gallery-bar .chip.active { outline:2px solid var(--brand); outline-offset:2px; }
-
     .gallery { column-width: 280px; column-gap: 14px; }
     @media (max-width:900px){ .gallery { column-width: 220px; } }
     @media (max-width:560px){ .gallery { column-width: 100%; } }
-
-    .gallery figure {
-      break-inside: avoid; margin:0 0 14px 0;
-      border-radius: var(--radius);
-      overflow: hidden; box-shadow: var(--shadow);
-      border:1px solid var(--border);
-      background:#000;
-    }
+    .gallery figure { break-inside: avoid; margin:0 0 14px 0; border-radius: var(--radius); overflow: hidden; box-shadow: var(--shadow); border:1px solid var(--border); background:#000; }
     .gallery figure img { width:100%; height:auto; display:block; }
-    .gallery figcaption{
-      padding:10px 12px; background:rgba(0,0,0,.55);
-      color:#fff; font-size:14px;
-    }
+    .gallery figcaption{ padding:10px 12px; background:rgba(0,0,0,.55); color:#fff; font-size:14px; }
     :root.dark .gallery figcaption{ background:rgba(0,0,0,.45); }
-
-    /* filtros por destino */
     .gallery[data-filter="maldivas"] figure[data-destino="grecia"]{ display:none; }
     .gallery[data-filter="grecia"]  figure[data-destino="maldivas"]{ display:none; }
 
-    /* ===== Efecto Blur de carga ===== */
+    /* ===== Efecto Blur de carga (todas las imágenes) ===== */
     .gallery figure img,
     .hero img,
     .photos-grid img,
@@ -324,9 +279,34 @@
       filter: blur(0);
       transform: scale(1);
     }
+
+    /* ===== FAB WhatsApp ===== */
+    .whatsapp-fab{
+      position:fixed; right:14px; bottom:86px; z-index:70;
+      width:58px; height:58px; border-radius:50%;
+      display:flex; align-items:center; justify-content:center;
+      background:#25D366; color:#fff;
+      box-shadow:0 14px 28px rgba(37,211,102,.35), 0 6px 12px rgba(16,24,40,.12);
+      border:none; cursor:pointer; transition: transform .2s ease, box-shadow .2s ease, opacity .2s ease;
+    }
+    .whatsapp-fab:hover{ transform:translateY(-2px); box-shadow:0 18px 36px rgba(37,211,102,.42), 0 8px 16px rgba(16,24,40,.16); }
+    .whatsapp-fab svg{ width:28px; height:28px; display:block; }
+    .whatsapp-pulse{
+      position:absolute; inset:0; border-radius:50%; pointer-events:none;
+      box-shadow:0 0 0 0 rgba(37,211,102,.6); animation: pulse 2.2s infinite;
+    }
+    @keyframes pulse{
+      0%{ box-shadow:0 0 0 0 rgba(37,211,102,.6); }
+      70%{ box-shadow:0 0 0 16px rgba(37,211,102,0); }
+      100%{ box-shadow:0 0 0 0 rgba(37,211,102,0); }
+    }
+    @media (prefers-reduced-motion: reduce){
+      .whatsapp-pulse{ display:none; }
+      .whatsapp-fab{ transition:none; }
+    }
   </style>
 
-  <!-- iOS: empezar arriba si no hay hash -->
+  <!-- iOS: arriba al cargar -->
   <script>
     (function () {
       try { if ('scrollRestoration' in history) { history.scrollRestoration = 'manual'; } } catch(e){}
@@ -366,6 +346,16 @@
   <!-- Botón modo -->
   <button id="theme-toggle" class="btn" aria-label="Cambiar modo">☀︎ / 🌙</button>
 
+  <!-- FAB WhatsApp -->
+  <a id="whatsapp-fab" class="whatsapp-fab" href="#" target="_blank" rel="noopener" aria-label="Escríbenos por WhatsApp">
+    <span class="whatsapp-pulse" aria-hidden="true"></span>
+    <!-- Ícono WhatsApp (SVG) -->
+    <svg viewBox="0 0 32 32" fill="none" aria-hidden="true">
+      <path d="M16.02 3C9.94 3 5 7.94 5 14.02c0 2.43.72 4.68 1.97 6.55L6 29l8.62-1.82c1.77 1.09 3.85 1.72 6.09 1.72 6.08 0 11.02-4.94 11.02-11.02C31.73 7.94 26.8 3 20.72 3h-4.7z" fill="#25D366"/>
+      <path d="M24.7 18.9c-.13-.22-.47-.35-.98-.61-.5-.26-2.97-1.47-3.43-1.64-.46-.17-.8-.26-1.13.26-.33.52-1.29 1.64-1.58 1.97-.29.33-.58.37-1.08.11-.5-.26-2.11-.77-4.01-2.47-1.48-1.32-2.48-2.95-2.77-3.45-.29-.5-.03-.77.22-1.02.22-.22.5-.58.74-.87.25-.29.33-.5.5-.84.17-.33.08-.64-.04-.9-.13-.26-1.13-2.73-1.55-3.74-.41-1-.84-.86-1.13-.88-.29-.02-.62-.02-.95-.02-.33 0-.87.12-1.33.64-.46.52-1.76 1.72-1.76 4.2 0 2.47 1.8 4.86 2.05 5.19.25.33 3.54 5.4 8.58 7.57 5.04 2.17 5.04 1.45 5.95 1.41.91-.04 2.97-1.21 3.39-2.38.42-1.17.42-2.17.29-2.39z" fill="#fff"/>
+    </svg>
+  </a>
+
   <!-- Hero -->
   <section class="hero reveal" aria-label="Portada">
     <img id="hero-img" src="hero.jpg" alt="Grupo viajando por playas de aguas turquesas">
@@ -389,8 +379,6 @@
         <div class="feat card"><h3>Extras con mimo</h3><p>Desde fotos pro hasta sorpresas en destino. Detalles que se notan.</p></div>
         <div class="feat card"><h3>Transparencia total</h3><p>Precio claro y lo que incluye, también. Sin letra pequeña.</p></div>
       </div>
-
-      <!-- Badges de confianza -->
       <div class="badges" aria-label="Ventajas">
         <span class="badge">Grupos de 8–14</span>
         <span class="badge">Pago seguro</span>
@@ -399,17 +387,15 @@
     </div>
   </section>
 
-  <!-- Conecta con tu tribu (strip claro) -->
+  <!-- Conecta con tu tribu -->
   <section id="tribu" class="reveal strip">
     <div class="wrap">
       <h2>Conecta con tu tribu</h2>
       <p class="lead">Gente afín, buen rollo y cero postureo: viajamos para vivirlo de verdad, no para coleccionar check-ins.</p>
-
       <div class="tribe-layout">
         <figure class="card tribe-photo">
           <img src="grupo.jpg?v=5" alt="Grupo de viajeros compartiendo experiencia" loading="lazy" decoding="async">
         </figure>
-
         <div class="tribe-grid">
           <article class="card"><h3 style="margin:0 0 6px">Afinidad real</h3><p>Grupos pequeños con perfiles compatibles. Charlas que fluyen y planes que apetece hacer juntos.</p></article>
           <article class="card"><h3 style="margin:0 0 6px">Momentos que suman</h3><p>De un snorkel épico a un té al atardecer. Ritmo humano para que pasen cosas sin forzarlas.</p></article>
@@ -438,7 +424,6 @@
           <p>Mercado, cafecito y rincones que no salen en Instagram. Ritmo humano, recuerdos reales.</p>
         </div>
       </div>
-
       <div class="cta-mid" style="margin-top:18px;">
         <a href="#form-savage" class="btn btn-cta">Ver próximas salidas</a>
       </div>
@@ -450,17 +435,13 @@
     <div class="wrap">
       <h2>Maldivas Aventureras</h2>
       <p class="lead">Playas de postal, vida marina y un ritmo pensado para exprimir cada día sin ir con la lengua fuera.</p>
-
       <div class="maldivas-layout">
-        <!-- Card de fotos -->
         <div class="card photos-card">
           <div class="photos-grid">
             <figure><img src="pareja.jpg?v=8" alt="Pareja disfrutando en Maldivas" loading="lazy" decoding="async"></figure>
             <figure><img src="subm.jpg?v=8" alt="Snorkel en arrecife de Maldivas" loading="lazy" decoding="async"></figure>
           </div>
         </div>
-
-        <!-- Card de texto -->
         <div class="card text-card">
           <h3>Qué vas a vivir</h3>
           <ul class="clean">
@@ -487,26 +468,22 @@
       <h2>Imagina el viaje con tu tribu</h2>
       <p class="lead">Aventura real, momentos compartidos y destinos que se sienten. Maldivas y Grecia, a nuestra manera.</p>
 
-      <!-- Filtros -->
       <div class="gallery-bar" role="tablist" aria-label="Filtrar por destino">
         <button class="chip active" data-filter="todos" role="tab" aria-selected="true">Todos</button>
         <button class="chip" data-filter="maldivas" role="tab" aria-selected="false">Maldivas</button>
         <button class="chip" data-filter="grecia" role="tab" aria-selected="false">Grecia</button>
       </div>
 
-      <!-- Masonry -->
       <div class="gallery card" id="gallery" data-filter="todos">
         <!-- MALDIVAS -->
         <figure data-destino="maldivas">
           <img src="img/maldivas-tribu-barca.jpg?v=1" alt="Tribu en lengua de arena, aguas turquesas y aventura" loading="lazy" decoding="async">
           <figcaption>Maldivas · Aventura en equipo</figcaption>
         </figure>
-
         <figure data-destino="maldivas">
           <img src="img/maldivas-snorkel-grupo.webp?v=1" alt="Grupo haciendo snorkel junto a arrecife de colores" loading="lazy" decoding="async">
           <figcaption>Maldivas · Arrecifes y risas</figcaption>
         </figure>
-
         <figure data-destino="maldivas">
           <img src="img/maldivas-playa-atardecer.avif?v=1" alt="Caminata en grupo por la orilla al atardecer" loading="lazy" decoding="async">
           <figcaption>Maldivas · Atardecer compartido</figcaption>
@@ -517,12 +494,10 @@
           <img src="img/grecia-mesa-compartir.jpg?v=1" alt="Cena en la playa con velas al anochecer" loading="lazy" decoding="async">
           <figcaption>Grecia · Mesa para compartir</figcaption>
         </figure>
-
         <figure data-destino="grecia">
           <img src="img/grecia-navegar-islas.jpg?v=1" alt="Velero al atardecer navegando entre islas" loading="lazy" decoding="async">
           <figcaption>Grecia · Navegar entre islas</figcaption>
         </figure>
-
         <figure data-destino="grecia">
           <img src="img/grecia-sendero-vistas.jpg?v=1" alt="Caminata al faro con vistas" loading="lazy" decoding="async">
           <figcaption>Grecia · Sendero con vistas</figcaption>
@@ -562,12 +537,11 @@
     </div>
   </section>
 
-  <!-- Preguntas frecuentes -->
+  <!-- FAQ -->
   <section id="faq" class="reveal">
     <div class="wrap">
       <h2>Preguntas frecuentes</h2>
       <p class="lead">Lo más típico que nos preguntan antes de reservar plaza.</p>
-
       <div class="faq">
         <details><summary>¿Cuántas personas viajan en cada grupo?</summary><p>Solemos movernos entre 8 y 14 personas. Suficiente para buen ambiente, sin perder cercanía.</p></details>
         <details><summary>¿El viaje es 100% cerrado o hay tiempo libre?</summary><p>Hay una ruta curada con imprescindibles, pero dejamos huecos para que respires, explores y decidas.</p></details>
@@ -587,9 +561,7 @@
         <form id="form-savage"
               action="https://formspree.io/f/manbrrzl"
               method="POST">
-          <!-- _redirect absoluto (el JS también fuerza) -->
           <input type="hidden" name="_redirect" value="https://leadradar.github.io/savage-nomads-landing/gracias.html">
-
           <div class="full"><label>Nombre</label><input name="nombre" type="text" placeholder="Tu nombre" autocomplete="name" required></div>
           <div><label>Email</label><input name="email" type="email" placeholder="tucorreo@email.com" autocomplete="email" inputmode="email" required></div>
           <div><label>Teléfono (opcional)</label><input name="phone" type="tel" placeholder="+34 6XX XXX XXX" autocomplete="tel" inputmode="tel" pattern="^[0-9+\\s()-]{7,}$"></div>
@@ -617,10 +589,10 @@
 
   <!-- Scripts -->
   <script>
-    // Año dinámico
+    // Año
     document.getElementById('y').textContent = new Date().getFullYear();
 
-    // Guardar/restaurar tema
+    // Tema
     (function(){
       const key='sn-theme';
       const root=document.documentElement;
@@ -633,7 +605,7 @@
       });
     })();
 
-    // Header: fondo/sombra al bajar (sin tirones)
+    // Header sólido al bajar
     (function(){
       const header = document.getElementById('site-header');
       if(!header) return;
@@ -649,7 +621,7 @@
       apply();
     })();
 
-    // Navegación de anclas con offset (solo desktop)
+    // Anclas con offset (desktop)
     (function(){
       if (!window.matchMedia('(min-width: 901px)').matches) return;
       const OFFSET = 84;
@@ -663,16 +635,14 @@
         a.addEventListener('click', e=>{
           const href = a.getAttribute('href');
           if (href && href.length > 1) {
-            e.preventDefault();
-            scrollToHash(href);
-            history.pushState(null, '', href);
+            e.preventDefault(); scrollToHash(href); history.pushState(null, '', href);
           }
         });
       });
       window.addEventListener('load', ()=>{ if (location.hash) scrollToHash(location.hash); });
     })();
 
-    // Scrollspy (solo desktop)
+    // Scrollspy (desktop)
     (function(){
       if (!window.matchMedia('(min-width: 901px)').matches) return;
       const links = [...document.querySelectorAll('header .navlinks a[href^="#"]')];
@@ -691,31 +661,25 @@
       document.querySelectorAll('section[id]').forEach(sec => spy.observe(sec));
     })();
 
-    // Reveal de secciones (desktop)
+    // Reveal
     (function(){
       const els = document.querySelectorAll('.reveal');
-      if (!window.matchMedia('(min-width: 901px)').matches) {
-        els.forEach(el => el.classList.add('in'));
-        return;
-      }
+      if (!window.matchMedia('(min-width: 901px)').matches) { els.forEach(el => el.classList.add('in')); return; }
       const io = new IntersectionObserver((entries, obs)=>{
         entries.forEach(entry=>{
-          if (entry.isIntersecting){
-            entry.target.classList.add('in');
-            obs.unobserve(entry.target);
-          }
+          if (entry.isIntersecting){ entry.target.classList.add('in'); obs.unobserve(entry.target); }
         });
       }, { rootMargin: "0px 0px -10% 0px", threshold: 0.08 });
       els.forEach(el => io.observe(el));
     })();
 
-    // PARALLAX del hero (desktop)
+    // Parallax hero (desktop)
     (function(){
       if (!window.matchMedia('(min-width: 901px)').matches) return;
       const img = document.getElementById('hero-img');
       if (!img) return;
       let ticking = false;
-      const maxShift = 40; // px máximos
+      const maxShift = 40;
       function onScroll(){
         if (ticking) return;
         ticking = true;
@@ -723,8 +687,7 @@
           const rect = img.parentElement.getBoundingClientRect();
           const vh = window.innerHeight || 1;
           const p = Math.max(0, Math.min(1, 1 - rect.top / vh));
-          const shift = (p * maxShift);
-          img.style.transform = `translateY(${shift}px)`;
+          img.style.transform = `translateY(${p * maxShift}px)`;
           ticking = false;
         });
       }
@@ -733,7 +696,7 @@
       onScroll();
     })();
 
-    // Redirección form (Formspree)
+    // Formspree + redirección
     (function () {
       const form = document.getElementById('form-savage');
       if (!form) return;
@@ -741,11 +704,7 @@
         e.preventDefault();
         const data = new FormData(form);
         try {
-          await fetch(form.action, {
-            method: 'POST',
-            body: data,
-            headers: { 'Accept': 'application/json' }
-          });
+          await fetch(form.action, { method: 'POST', body: data, headers: { 'Accept': 'application/json' }});
           window.location.href = 'gracias.html';
         } catch (err) {
           window.location.href = 'gracias.html';
@@ -753,36 +712,41 @@
       });
     })();
 
-    // Filtro de la galería (Todos / Maldivas / Grecia)
+    // Filtro Galería
     (function(){
       const bar = document.querySelector('.gallery-bar');
       const grid = document.getElementById('gallery');
       if(!bar || !grid) return;
-
       bar.addEventListener('click', (e)=>{
         const btn = e.target.closest('.chip');
         if(!btn) return;
         bar.querySelectorAll('.chip').forEach(c=>c.classList.remove('active'));
         btn.classList.add('active');
-
         const f = btn.getAttribute('data-filter') || 'todos';
         grid.setAttribute('data-filter', f);
       });
     })();
 
-    // ===== Blur: quitar cuando la imagen carga =====
+    // Blur: quitar cuando la imagen carga
     (function(){
-      function markLoaded(img){
-        img.classList.add('loaded');
-      }
+      function markLoaded(img){ img.classList.add('loaded'); }
       document.querySelectorAll('img').forEach(img=>{
-        if(img.complete){
-          markLoaded(img);
-        } else {
+        if(img.complete){ markLoaded(img); }
+        else{
           img.addEventListener('load', ()=> markLoaded(img), { once:true });
-          img.addEventListener('error', ()=> markLoaded(img), { once:true }); // fallback si falla
+          img.addEventListener('error', ()=> markLoaded(img), { once:true });
         }
       });
+    })();
+
+    // ====== WhatsApp FAB: configura tu número y mensaje ======
+    (function(){
+      // ⚠️ REEMPLAZA por tu número en formato internacional sin '+', p.ej. 34600000000
+      const WHATSAPP_NUMBER = '34664549465';
+      const DEFAULT_MSG = 'Hola! Vengo de la web de Savage Nomads. Me interesa unirme a un viaje en grupo 🙂';
+      const url = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(DEFAULT_MSG)}`;
+      const fab = document.getElementById('whatsapp-fab');
+      if(fab){ fab.href = url; }
     })();
   </script>
 </body>
