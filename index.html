@@ -165,7 +165,7 @@
     .text-card h3{margin:0 0 6px; font-size:18px; font-weight:700;}
     ul.clean{list-style:none; padding:0; margin:0;}
     ul.clean li{position:relative; padding-left:18px; margin:6px 0; color:var(--muted);}
-    ul.clean li::before{content:"•"; color:var(--brand); position:absolute; left:0; top:0; line-height:1;} /* bullets turquesa */
+    ul.clean li::before{content:"•"; color:var(--brand); position:absolute; left:0; top:0; line-height:1;}
     @media (max-width:900px){.maldivas-layout{grid-template-columns:1fr; gap:14px;} .text-card{min-height:0;} .photos-grid{grid-template-columns:1fr 1fr;} }
     @media (max-width:520px){.photos-grid{grid-template-columns:1fr;}}
 
@@ -421,61 +421,38 @@
         <button class="chip" data-filter="grecia" role="tab" aria-selected="false">Grecia</button>
       </div>
 
+      <!-- Importante: usamos exactamente los archivos que subiste -->
       <div class="gallery card" id="gallery" data-filter="todos">
         <!-- MALDIVAS -->
         <figure data-destino="maldivas">
-          <picture>
-            <source srcset="img/maldivas-tribu-barca.avif" type="image/avif">
-            <source srcset="img/maldivas-tribu-barca.webp" type="image/webp">
-            <img src="img/maldivas-tribu-barca.jpg" alt="Tribu en barca sobre aguas turquesas, risas y aventura" loading="lazy" decoding="async">
-          </picture>
+          <img src="img/maldivas-tribu-barca.jpg?v=1" alt="Tribu en lengua de arena, aguas turquesas y aventura" loading="lazy" decoding="async">
           <figcaption>Maldivas · Aventura en equipo</figcaption>
         </figure>
 
         <figure data-destino="maldivas">
-          <picture>
-            <source srcset="img/maldivas-snorkel-grupo.avif" type="image/avif">
-            <source srcset="img/maldivas-snorkel-grupo.webp" type="image/webp">
-            <img src="img/maldivas-snorkel-grupo.jpg" alt="Grupo haciendo snorkel junto a arrecife de colores" loading="lazy" decoding="async">
-          </picture>
+          <img src="img/maldivas-snorkel-grupo.webp?v=1" alt="Grupo haciendo snorkel junto a arrecife de colores" loading="lazy" decoding="async">
           <figcaption>Maldivas · Arrecifes y risas</figcaption>
         </figure>
 
         <figure data-destino="maldivas">
-          <picture>
-            <source srcset="img/maldivas-playa-atardecer.avif" type="image/avif">
-            <source srcset="img/maldivas-playa-atardecer.webp" type="image/webp">
-            <img src="img/maldivas-playa-atardecer.jpg" alt="Caminata en grupo por la orilla al atardecer" loading="lazy" decoding="async">
-          </picture>
+          <img src="img/maldivas-playa-atardecer.avif?v=1" alt="Caminata en grupo por la orilla al atardecer" loading="lazy" decoding="async">
           <figcaption>Maldivas · Atardecer compartido</figcaption>
         </figure>
 
         <!-- GRECIA -->
         <figure data-destino="grecia">
-          <picture>
-            <source srcset="img/grecia-caldeira-hiking.avif" type="image/avif">
-            <source srcset="img/grecia-caldeira-hiking.webp" type="image/webp">
-            <img src="img/grecia-caldeira-hiking.jpg" alt="Ruta de senderismo en grupo con vistas a la caldera" loading="lazy" decoding="async">
-          </picture>
-          <figcaption>Grecia · Sendero con vistas</figcaption>
-        </figure>
-
-        <figure data-destino="grecia">
-          <picture>
-            <source srcset="img/grecia-taverna-tribu.avif" type="image/avif">
-            <source srcset="img/grecia-taverna-tribu.webp" type="image/webp">
-            <img src="img/grecia-taverna-tribu.jpg" alt="Mesa larga en una taberna, brindis y comida local" loading="lazy" decoding="async">
-          </picture>
+          <img src="img/grecia-mesa-compartir.jpg?v=1" alt="Cena en la playa con velas al anochecer" loading="lazy" decoding="async">
           <figcaption>Grecia · Mesa para compartir</figcaption>
         </figure>
 
         <figure data-destino="grecia">
-          <picture>
-            <source srcset="img/grecia-vela-islas.avif" type="image/avif">
-            <source srcset="img/grecia-vela-islas.webp" type="image/webp">
-            <img src="img/grecia-vela-islas.jpg" alt="Día de vela entre islas, tripulación en cubierta" loading="lazy" decoding="async">
-          </picture>
+          <img src="img/grecia-navegar-islas.jpg?v=1" alt="Velero al atardecer navegando entre islas" loading="lazy" decoding="async">
           <figcaption>Grecia · Navegar entre islas</figcaption>
+        </figure>
+
+        <figure data-destino="grecia">
+          <img src="img/grecia-sendero-vistas.jpg?v=1" alt="Caminata al faro con vistas" loading="lazy" decoding="async">
+          <figcaption>Grecia · Sendero con vistas</figcaption>
         </figure>
       </div>
     </div>
