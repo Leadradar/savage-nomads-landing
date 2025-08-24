@@ -39,10 +39,10 @@
   <style>
     :root{
       --bg:#0b0f10;
-      --fg:#e9f1f3;
+      --fg:#ffffff;   /* blanco para texto normal */
       --muted:#a9b6ba;
-      --brand:#00C2A8;        /* turquesa de marca */
-      --accent:#ffd36b;
+      --brand:#00C2A8; /* turquesa */
+      --accent:#ffd36b; /* amarillo */
       --card:#11171a;
       --radius:14px;
       --shadow:0 10px 30px rgba(0,0,0,.12);
@@ -65,10 +65,9 @@
     a{color:inherit; text-decoration:none}
     img{max-width:100%; display:block}
 
-    /* COLORES para títulos y subtítulos (como pediste) */
-    h1, h2, h3 { color: var(--brand); }
-    .lead, .hero .sub { color: var(--brand); }
-    /* Mantengo el resto de párrafos en color de texto normal/muted */
+    /* Colores de texto globales */
+    h1, h2, h3 { color: var(--brand); }  /* títulos turquesa */
+    p, .lead { color: var(--fg); }       /* textos en blanco */
 
     /* Header (tamaño fijo, sin tirones) */
     header{
@@ -81,7 +80,7 @@
     .wrap{max-width:1100px; margin:0 auto; padding:0 16px}
     .nav{
       display:flex; align-items:center; justify-content:space-between;
-      height:var(--nav-h);
+      height:var(--nav-h); /* fijo siempre */
     }
     .brand{display:flex; gap:10px; align-items:center; font-weight:800; letter-spacing:.2px}
     .brand .dot{width:10px; height:10px; border-radius:50%; background:var(--brand);}
@@ -90,7 +89,7 @@
     .navlinks a:hover{opacity:1}
     .btn{display:inline-block; padding:10px 16px; border-radius:999px; font-weight:700; border:none; cursor:pointer; transition:transform .2s, box-shadow .2s;}
     .btn-cta{background:var(--brand); color:#0b0f10; box-shadow:0 8px 22px rgba(0,0,0,.18)}
-    .btn-cta:hover{transform:translateY(-4px); box-shadow:var(--shadow-strong);} /* hover del botón: lo dejamos alto como te gusta */
+    .btn-cta:hover{transform:translateY(-4px); box-shadow:var(--shadow-strong);} /* hover botón */
 
     /* Fondo opaco al scrollear (ligero) */
     header.solid{background:rgba(11,15,16,.92); box-shadow:0 6px 18px rgba(0,0,0,.35); border-bottom-color:rgba(255,255,255,.1)}
@@ -114,18 +113,19 @@
       text-align:center; pointer-events:none;
     }
     .hero h1{
-      margin:0;
-      font-weight:800;
+      margin:0; font-weight:800;
       font-size:clamp(30px, 5.5vw, 52px);
       line-height:1.1;
       text-shadow:0 8px 28px rgba(0,0,0,.65);
       max-width:20ch;
+      color: var(--accent); /* amarillo en el hero */
     }
     .hero .sub{
-      margin:0; opacity:.96; max-width:48ch;
+      margin:0; opacity:.98; max-width:48ch;
       font-weight:400;
       font-size:clamp(16px,2.4vw,20px);
-      text-shadow:0 6px 22px rgba(0,0,0,.65);
+      color:#000; /* negro en el hero */
+      text-shadow:0 6px 18px rgba(255,255,255,.65); /* halo blanco para legibilidad */
     }
 
     /* Secciones */
@@ -137,7 +137,7 @@
     /* Card base */
     .card{background:var(--card); border:1px solid rgba(255,255,255,.06); border-radius:var(--radius); padding:18px; box-shadow:var(--shadow);}
 
-    /* HOVER: todas las cards flotan (desktop) */
+    /* WOW: hover elegante en TODAS las cards (contenido, fotos, etc.) */
     @media (min-width:901px){
       .card{ transition:transform .22s ease, box-shadow .22s ease; }
       .card:hover{ transform:translateY(-4px); box-shadow:var(--shadow-strong); }
@@ -183,7 +183,7 @@
     label{font-size:13px; color:var(--muted)}
     input, select, textarea{width:100%; padding:11px 12px; border-radius:10px; border:1px solid rgba(255,255,255,.1); background:#0f1417; color:#e9f1f3;}
     textarea{min-height:120px; resize:vertical}
-    button[type="submit"]{justify-self:center; margin-top:6px} /* <-- FIX del typo que rompía la FAQ */
+    button[type="submit"]{justify-self:center; margin-top:6px}
 
     /* FAQ */
     .faq{max-width:840px; margin:0 auto;}
@@ -236,7 +236,7 @@
     .navlinks a:hover{ opacity:1; text-decoration:underline; text-underline-offset:3px; }
     section[id]{ scroll-margin-top: 84px; }
 
-    /* ===== SOLO MÓVIL/TABLET (igual que antes) ===== */
+    /* ===== SOLO MÓVIL/TABLET ===== */
     @media (max-width: 900px) {
       .nav{flex-wrap:wrap; height:auto; padding:10px 0; gap:8px;}
       .brand{order:1;}
@@ -546,13 +546,13 @@
       els.forEach(el => io.observe(el));
     })();
 
-    // 4) PARALLAX del hero (desktop, más visible)
+    // 4) PARALLAX del hero (desktop)
     (function(){
       if (!window.matchMedia('(min-width: 901px)').matches) return;
       const img = document.getElementById('hero-img');
       if (!img) return;
       let ticking = false;
-      const maxShift = 40; // aumento para que se note más
+      const maxShift = 40; // px máximos de desplazamiento
       function onScroll(){
         if (ticking) return;
         ticking = true;
