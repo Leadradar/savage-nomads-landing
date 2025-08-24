@@ -1,258 +1,298 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="es">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Savage Nomads — Aventuras en grupo</title>
-  <meta name="description" content="Aventuras en grupo para espíritus salvajes. Primer viaje: Maldivas." />
-  <link rel="icon" href="favicon.ico" />
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Savage Nomads — Viajes en grupo curados</title>
+  <meta name="description" content="Viajes en grupo seleccionados, con itinerarios cuidados y buena compañía. Únete a Savage Nomads.">
+
+  <link rel="preload" as="image" href="hero.jpg">
   <style>
-    :root{--azul:#0f2a6b;--azul2:#1e3a8a;--gris:#f1f5f9;--texto:#0f172a;--ambar:#fde047}
-    *{box-sizing:border-box}
-    body{margin:0;font-family:system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial;color:var(--texto);background:#fff}
-    .container{max-width:1200px;margin:0 auto;padding:0 24px}
-
-    /* Header */
-    header{position:sticky;top:0;background:#ffffffcc;backdrop-filter:saturate(180%) blur(8px);border-bottom:1px solid #e5e7eb;z-index:50}
-    .nav{display:flex;align-items:center;justify-content:space-between;gap:16px;height:64px}
-    .brand{font-weight:900;font-size:22px;letter-spacing:.3px;color:var(--azul)}
-    .nav a{text-decoration:none;color:#334155;font-weight:600;margin-left:18px;position:relative;transition:color .18s ease}
-    .nav a::after{content:"";position:absolute;left:0;right:100%;bottom:-6px;height:2px;background:linear-gradient(90deg,var(--azul), #f59e0b);transition:right .22s ease;border-radius:4px}
-    .nav a:hover{color:var(--azul)} .nav a:hover::after{right:0}
-    .cta{background:var(--azul);color:var(--ambar)!important;padding:10px 16px;border-radius:10px;font-weight:800}
-    .cta:hover{filter:brightness(1.08)}
-
-    /* Hero */
-    .hero{position:relative}
-    .hero img{width:100%;height:420px;object-fit:cover;display:block}
-    .hero .overlay{position:absolute;inset:0;background:linear-gradient(180deg,rgba(0,0,0,.35),rgba(0,0,0,.25),transparent)}
-    .hero h1{position:absolute;left:50%;top:48%;transform:translate(-50%,-50%);color:var(--ambar);font-size:42px;line-height:1.2;text-align:center;margin:0;text-shadow:0 6px 24px rgba(0,0,0,.45)}
-
-    /* Secciones centradas y consistentes */
-    section{padding:84px 0}
-    .section-inner{max-width:1100px;margin:0 auto;text-align:center}
-    h2.sec{font-size:44px;font-weight:900;margin:0 0 18px;background:linear-gradient(90deg, var(--azul), #f59e0b);-webkit-background-clip:text;background-clip:text;color:transparent;letter-spacing:.4px;text-transform:uppercase}
-    h2.sec::after{content:"";display:block;width:92px;height:3px;margin:12px auto 0;background:linear-gradient(90deg, var(--azul), #f59e0b);border-radius:4px}
-    .lead{max-width:900px;margin:0 auto;color:#334155;line-height:1.75;font-size:19px}
-
-    /* Tarjetas */
-    .features{display:grid;grid-template-columns:1fr;gap:14px;margin-top:20px}
-    @media (min-width:900px){.features{grid-template-columns:repeat(3,1fr)}}
-    .feat{background:var(--gris);border-radius:16px;padding:18px 16px;text-align:left}
-    .feat b{display:block;margin-bottom:6px}
-
-    /* Imágenes */
-    img{max-width:100%;height:auto;display:block}
-    picture{display:block}
-    .shadow{border-radius:18px;overflow:hidden;box-shadow:0 16px 40px rgba(15,42,107,.12)}
-    .badge{display:inline-block;background:#e0f2fe;color:#075985;font-weight:700;border-radius:999px;padding:6px 12px;box-shadow:0 6px 16px rgba(2,132,199,.15)}
-
-    /* Galería Maldivas – dos columnas, fotos horizontales */
-    #maldivas .gallery{display:grid;gap:18px;margin-top:22px}
-    @media (min-width:900px){ #maldivas .gallery{grid-template-columns:1fr 1fr} }
-    #maldivas .gallery img{width:100%;aspect-ratio: 16 / 10;object-fit:cover} /* recorte agradable de verticales */
-    @media (max-width:900px){ #maldivas .gallery img{aspect-ratio: 4 / 3} }
-
-    /* Form */
-    .form-wrap{max-width:1100px;margin:0 auto;padding:56px 24px}
-    .form-title{font-size:32px;line-height:1.2;font-weight:800;text-align:center;margin:0 0 28px}
-    .form-card{background:#fff;border-radius:16px;box-shadow:0 10px 30px rgba(0,0,0,.08);padding:24px}
-    .form-grid{display:grid;grid-template-columns:1fr;gap:16px}
-    .form-grid .full{grid-column:1 / -1}
-    @media (min-width: 900px){.form-card{padding:28px 32px}.form-grid{grid-template-columns:repeat(3,1fr);gap:18px}}
-    .label{display:block;font-size:14px;color:#425466;margin:0 0 6px}
-    .input{width:100%;height:44px;padding:10px 12px;border:1px solid #dfe3e6;border-radius:10px;outline:0;transition:border-color .15s, box-shadow .15s ease}
-    .input:focus{border-color:#2563eb;box-shadow:0 0 0 3px rgba(37,99,235,.18)}
-    .btn{width:100%;height:48px;border:0;border-radius:10px;background:var(--azul);color:var(--ambar);font-weight:700;cursor:pointer}
-    .btn:hover{filter:brightness(1.05)}
-
-    /* FAQ */
-    .faq{background:#f8fafc}
-    .qa{max-width:900px;margin:0 auto;display:grid;gap:16px;padding:0 24px}
-    .qa > div > b{display:block;margin:8px 0;font-size:18px;color:var(--azul2);text-align:center}
-    .qa > div > div{color:#475569;text-align:center}
-
-    footer{background:var(--gris);padding:28px 0;margin-top:40px}
-    footer .container{display:flex;justify-content:center;align-items:center;gap:16px;flex-wrap:wrap}
-
-    /* Mobile tweaks */
-    @media (max-width: 600px){
-      h1{font-size:28px !important}
-      .hero img{height:300px !important}
-      .nav{flex-direction:column; height:auto; padding:10px 0}
-      .nav a{margin:8px 0}
-      .form-card{padding:20px !important}
-      .form-title{font-size:24px !important}
+    :root{
+      --bg:#0b0f10;
+      --fg:#e9f1f3;
+      --muted:#a9b6ba;
+      --brand:#00C2A8;   /* turquesa Savage Nomads */
+      --accent:#ffd36b;  /* ámbar para pequeños acentos */
+      --card:#11171a;
+      --section-gap:56px;        /* ↓ Espaciado elegante entre secciones */
+      --section-gap-mobile:40px; /* ↓ un poco menos en móvil */
+      --radius:14px;
+      --shadow:0 10px 30px rgba(0,0,0,.12);
     }
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{
+      margin:0; font-family:system-ui,-apple-system,Segoe UI,Roboto,Inter,Ubuntu,Arial,sans-serif;
+      background:var(--bg); color:var(--fg); line-height:1.5;
+    }
+    a{color:inherit; text-decoration:none}
+    img{max-width:100%; display:block}
+
+    /* ---------- Header fijo con CTA visible todo el rato ---------- */
+    header{
+      position:sticky; top:0; z-index:50;
+      backdrop-filter:saturate(140%) blur(6px);
+      background:rgba(11,15,16,.72);
+      border-bottom:1px solid rgba(255,255,255,.06);
+    }
+    .wrap{max-width:1100px; margin:0 auto; padding:0 16px}
+    .nav{
+      display:flex; align-items:center; justify-content:space-between; height:64px;
+    }
+    .brand{display:flex; gap:10px; align-items:center; font-weight:800; letter-spacing:.2px}
+    .brand .dot{width:10px; height:10px; border-radius:50%; background:var(--brand)}
+    .btn{
+      display:inline-block; padding:10px 16px; border-radius:999px; font-weight:700; border:none; cursor:pointer;
+      transition:transform .08s ease, box-shadow .1s ease, opacity .2s;
+    }
+    .btn-cta{background:var(--brand); color:#0b0f10; box-shadow:0 8px 22px rgba(0,0,0,.18)}
+    .btn-cta:hover{transform:translateY(-1px)}
+    .btn-cta:active{transform:translateY(0)}
+
+    /* ---------- Hero ---------- */
+    .hero{position:relative}
+    .hero img{
+      width:100%;
+      height:clamp(380px, 58vh, 520px);
+      object-fit:cover; filter:none !important;
+    }
+    .hero .overlay{position:absolute; inset:0;
+      background:linear-gradient(180deg, rgba(0,0,0,.28), rgba(0,0,0,.18), transparent 55%)}
+    .hero h1{
+      position:absolute; left:50%; top:50%; transform:translate(-50%,-50%);
+      margin:0; text-align:center; color:var(--accent);
+      font-size:clamp(28px, 5.2vw, 44px); line-height:1.15; text-shadow:0 6px 24px rgba(0,0,0,.45);
+      max-width:18ch;
+    }
+    .hero .sub{
+      position:absolute; left:50%; top:calc(50% + 86px); transform:translateX(-50%);
+      color:var(--fg); opacity:.92; text-align:center; max-width:46ch;
+      padding:0 12px; font-size:clamp(15px,2.3vw,18px);
+      text-shadow:0 4px 16px rgba(0,0,0,.45);
+    }
+    .hero .cta-wrap{
+      position:absolute; left:50%; bottom:18px; transform:translateX(-50%);
+    }
+
+    /* ---------- Secciones ---------- */
+    section{padding: clamp(var(--section-gap-mobile), 5vw, var(--section-gap)) 0}
+    section > .wrap > h2{
+      text-align:center; margin:0 0 18px; line-height:1.2; letter-spacing:.2px;
+      font-size:clamp(24px,4.6vw,34px);
+    }
+    .lead{color:var(--muted); text-align:center; max-width:60ch; margin:0 auto 24px}
+
+    /* ---------- Qué ofrecemos ---------- */
+    .features{display:grid; grid-template-columns:repeat(3,1fr); gap:14px}
+    .feat{
+      background:var(--card); border:1px solid rgba(255,255,255,.06); border-radius:var(--radius);
+      padding:18px; box-shadow:var(--shadow);
+    }
+    .feat h3{margin:0 0 6px; font-size:18px}
+    .feat p{margin:0; color:var(--muted); font-size:15.5px}
+
+    @media (max-width:900px){
+      .features{grid-template-columns:1fr 1fr}
+    }
+    @media (max-width:640px){
+      .features{grid-template-columns:1fr}
+    }
+
+    /* ---------- Destino destacado (Maldivas) ---------- */
+    #maldivas .grid{
+      display:grid; grid-template-columns:1.1fr .9fr; gap:16px; align-items:start;
+    }
+    #maldivas .card{
+      background:var(--card); border:1px solid rgba(255,255,255,.06);
+      border-radius:var(--radius); padding:18px; box-shadow:var(--shadow);
+    }
+    #maldivas .gallery{
+      display:grid; grid-template-columns:1fr 1fr; gap:12px;
+    }
+    #maldivas .gallery img{
+      width:100%;
+      aspect-ratio:4/5; object-fit:cover; object-position:center top;
+      border-radius:var(--radius); background:#000;
+    }
+    @media (max-width:900px){
+      #maldivas .grid{grid-template-columns:1fr; gap:14px}
+      #maldivas .gallery{grid-template-columns:1fr 1fr}
+      #maldivas .gallery img{aspect-ratio:1/1}
+    }
+    @media (max-width:520px){
+      #maldivas .gallery{grid-template-columns:1fr}
+    }
+
+    /* ---------- Formulario ---------- */
+    .form-wrap{
+      max-width:760px; margin:0 auto;
+      background:var(--card); border:1px solid rgba(255,255,255,.06);
+      border-radius:var(--radius); padding:18px; box-shadow:var(--shadow);
+    }
+    form{display:grid; grid-template-columns:1fr 1fr; gap:12px}
+    form .full{grid-column:1 / -1}
+    label{font-size:13px; color:var(--muted)}
+    input, select, textarea{
+      width:100%; padding:11px 12px; border-radius:10px; border:1px solid rgba(255,255,255,.1);
+      background:#0f1417; color:var(--fg); outline:none;
+    }
+    textarea{min-height:120px; resize:vertical}
+    button[type="submit"]{justify-self:center; margin-top:6px}
+
+    @media (max-width:640px){
+      form{grid-template-columns:1fr}
+    }
+
+    /* ---------- Footer ---------- */
+    footer{padding:28px 0; color:var(--muted); text-align:center; border-top:1px solid rgba(255,255,255,.06)}
   </style>
 </head>
 <body>
-  <!-- Header -->
+
+  <!-- Header fijo con CTA visible -->
   <header>
-    <div class="container nav">
-      <div class="brand">Savage Nomads</div>
-      <nav>
-        <a href="#ofrecemos">Qué ofrecemos</a>
-        <a href="#maldivas">Primer viaje: Maldivas</a>
-        <a href="#faq">FAQ</a>
-        <a href="#tribu">Conecta</a>
-        <a href="#formulario" class="cta">Apúntate</a>
-      </nav>
+    <div class="wrap nav">
+      <a href="#" class="brand">
+        <span class="dot"></span> <span>Savage Nomads</span>
+      </a>
+      <a href="#form-savage" class="btn btn-cta">Apúntate</a>
     </div>
   </header>
 
   <!-- Hero -->
-  <section class="hero">
-    <picture>
-      <source srcset="hero.webp" type="image/webp">
-      <img src="hero.jpg?v=3" alt="Buceo y fauna marina en Maldivas" width="1600" height="420" fetchpriority="high">
-    </picture>
+  <section class="hero" aria-label="Portada">
+    <img src="hero.jpg" alt="Grupo viajando por playas de aguas turquesas">
     <div class="overlay"></div>
-    <h1>Aventuras en grupo para espíritus salvajes</h1>
+    <h1>Viajes en grupo, curados de verdad</h1>
+    <p class="sub">Rutas pensadas, gente afin y cero dolores de cabeza. Tú ven —del resto nos ocupamos nosotros.</p>
+    <div class="cta-wrap">
+      <a href="#form-savage" class="btn btn-cta">Apúntate</a>
+    </div>
   </section>
 
   <!-- Qué ofrecemos -->
   <section id="ofrecemos">
-    <div class="section-inner">
-      <h2 class="sec">Qué ofrecemos</h2>
-      <p class="lead">Grupos reducidos, experiencias auténticas y un toque de confort. Además, incluimos <b>fotógrafo profesional</b>: a los 10 días recibes tu <b>book</b> personal.</p>
+    <div class="wrap">
+      <h2>Qué ofrecemos</h2>
+      <p class="lead">Selección honesta, logística afinada y detalles que marcan la diferencia. Sin humo.</p>
+
       <div class="features">
-        <div class="feat"><b>Grupos reducidos</b>Ambiente cercano y flexible.</div>
-        <div class="feat"><b>Aventura real</b>Snorkel, buceo y excursiones en lugares increíbles.</div>
-        <div class="feat"><b>Confort sensato</b>Hoteles y barcos seleccionados con mimo.</div>
+        <div class="feat">
+          <h3>Grupos pequeños</h3>
+          <p>Ambiente cercano y auténtico. Viajar con personas afines multiplica la experiencia.</p>
+        </div>
+        <div class="feat">
+          <h3>Ruta curada</h3>
+          <p>Itinerarios probados para optimizar tiempo, ritmo y momentos memorables.</p>
+        </div>
+        <div class="feat">
+          <h3>Comodidad bien pensada</h3>
+          <p>Alojamientos y traslados seleccionados para descansar y disfrutar sin complicaciones.</p>
+        </div>
+        <div class="feat">
+          <h3>Coordinación real</h3>
+          <p>Equipo en el terreno. Resolvemos y anticipamos, para que tú solo vivas el viaje.</p>
+        </div>
+        <div class="feat">
+          <h3>Extras con mimo</h3>
+          <p>Desde fotos pro hasta sorpresas en destino. Detalles que se notan.</p>
+        </div>
+        <div class="feat">
+          <h3>Transparencia total</h3>
+          <p>Precio claro y lo que incluye, también. Sin letra pequeña.</p>
+        </div>
       </div>
     </div>
   </section>
 
-  <!-- Maldivas -->
+  <!-- Maldivas destacado -->
   <section id="maldivas">
-    <div class="section-inner">
-      <span class="badge">Primer viaje: Maldivas 🌴</span>
-      <h2 class="sec">Maldivas Aventureras</h2>
-      <p class="lead">Islas locales, barco tradicional, snorkel, buceo con fauna y atardeceres de postal. No es el típico resort: es la <b>Maldivas auténtica</b>.</p>
-      <div class="gallery">
-        <picture class="shadow">
-          <img id="img-pareja" src="subm.jpg?v=3" alt="Pareja en Maldivas (cargando)" />
-        </picture>
-        <picture class="shadow">
-          <img id="img-subm" src="subm.jpg?v=3" alt="Buceo en arrecife, Maldivas" />
-        </picture>
-      </div>
-      <p class="lead" style="margin-top:16px">Ruta flexible, grupos reducidos y un <b>book fotográfico personal</b> con tus mejores momentos.</p>
-      <p style="margin-top:12px"><a class="cta" href="#formulario">Apúntate</a></p>
-    </div>
-  </section>
+    <div class="wrap">
+      <h2>Maldivas Aventureras</h2>
+      <p class="lead">Playas de postal, vida marina y un ritmo pensado para exprimir cada día sin ir con la lengua fuera.</p>
 
-  <!-- Conecta -->
-  <section id="tribu">
-    <div class="section-inner">
-      <h2 class="sec">Conecta con tu tribu</h2>
-      <p class="lead">Viajar es más que ver paisajes: es compartirlos. Momentos reales con gente que vibra como tú.</p>
-      <div style="max-width:900px;margin:18px auto 0">
-        <picture class="shadow">
-          <source srcset="grupo.webp?v=3" type="image/webp">
-          <img src="grupo.jpg?v=3" alt="Grupo de viajeros Savage Nomads" loading="lazy">
-        </picture>
+      <div class="grid">
+        <div class="gallery">
+          <picture><img src="pareja.jpg?v=3" alt="Pareja disfrutando en Maldivas"></picture>
+          <picture><img src="subm.jpg?v=3" alt="Snorkel en arrecife de Maldivas"></picture>
+        </div>
+        <div class="card">
+          <h3 style="margin-top:0">Qué vas a vivir</h3>
+          <ul>
+            <li>Islas locales y arena blanca real</li>
+            <li>Snorkel con arrecifes de colores</li>
+            <li>Amaneceres tranquilos, atardeceres potentes</li>
+            <li>Comercios y comida local sin turistada</li>
+          </ul>
+          <h3>Incluye</h3>
+          <ul>
+            <li>Coordinación en destino</li>
+            <li>Itinerario optimizado día a día</li>
+            <li>Selección de alojamientos y traslados</li>
+            <li>Asesoría previa al viaje</li>
+          </ul>
+          <!-- (Sin botón: ya tenemos el CTA arriba y fijo) -->
+        </div>
       </div>
-      <p style="margin-top:12px"><a class="cta" href="#formulario">Apúntate</a></p>
     </div>
   </section>
 
   <!-- Formulario -->
-  <section id="formulario">
-    <div class="form-wrap">
-      <h2 class="form-title">Apúntate y sé de los primeros</h2>
-      <div class="form-card">
-        <form action="https://formspree.io/f/manbrrzl" method="POST">
-          <div class="form-grid">
-            <div>
-              <label class="label">Tu nombre</label>
-              <input class="input" type="text" name="nombre" placeholder="Tu nombre" required>
-            </div>
-            <div>
-              <label class="label">Tu email</label>
-              <input class="input" type="email" name="email" placeholder="Tu email" required>
-            </div>
-            <div>
-              <label class="label">Teléfono</label>
-              <input class="input" type="tel" name="telefono" placeholder="Teléfono">
-            </div>
-            <div class="full">
-              <label class="label">Destino</label>
-              <select class="input" name="destino">
-                <option value="">Selecciona destino</option>
-                <option>Maldivas</option>
-              </select>
-            </div>
-            <div class="full">
-              <label class="label">Mensaje</label>
-              <textarea class="input" name="mensaje" rows="4" placeholder="Cuéntanos qué buscas"></textarea>
-            </div>
+  <section id="apuntate">
+    <div class="wrap">
+      <h2>¿Te apuntas?</h2>
+      <p class="lead">Déjanos tus datos y te escribimos con fechas, plazas y próximos destinos.</p>
+
+      <div class="form-wrap">
+        <form id="form-savage" action="https://formspree.io/f/manbrrzl" method="POST">
+          <div class="full">
+            <label>Nombre</label>
+            <input name="nombre" type="text" placeholder="Tu nombre" required>
           </div>
-          <input type="hidden" name="_redirect" value="https://leadradar.github.io/savage-nomads-landing/gracias.html">
-          <div class="full" style="margin-top:10px"><button type="submit" class="btn">Quiero unirme →</button></div>
+          <div>
+            <label>Email</label>
+            <input name="email" type="email" placeholder="tucorreo@email.com" required>
+          </div>
+          <div>
+            <label>Teléfono (opcional)</label>
+            <input name="phone" type="tel" placeholder="+34 6XX XXX XXX">
+          </div>
+          <div class="full">
+            <label>Destino de interés</label>
+            <select name="destino">
+              <option value="Maldivas">Maldivas</option>
+              <option value="Bali">Bali</option>
+              <option value="Tailandia">Tailandia</option>
+              <option value="Otro">Otro</option>
+            </select>
+          </div>
+          <div class="full">
+            <label>Mensaje</label>
+            <textarea name="mensaje" placeholder="Cuéntanos un poco qué buscas"></textarea>
+          </div>
+
+          <!-- Redirect robusto en GitHub Pages -->
+          <input type="hidden" name="_redirect" value="gracias.html">
+
+          <div class="full" style="text-align:center">
+            <button type="submit" class="btn btn-cta">Enviar</button>
+          </div>
         </form>
       </div>
     </div>
   </section>
 
-  <!-- FAQ -->
-  <section id="faq">
-    <div class="section-inner">
-      <h2 class="sec">Preguntas frecuentes</h2>
-      <div class="qa">
-        <div>
-          <b>¿Es un viaje en grupo grande?</b>
-          <div>No, trabajamos con grupos reducidos para mantener una experiencia cercana.</div>
-        </div>
-        <div>
-          <b>¿El book fotográfico es individual o del grupo?</b>
-          <div>Cada viajero recibe un book personal con sus mejores momentos.</div>
-        </div>
-        <div>
-          <b>¿Cómo se formaliza la reserva?</b>
-          <div>Se realiza a través de una agencia de viajes autorizada con contrato oficial.</div>
-        </div>
-        <div>
-          <b>¿Qué pasa si no puedo en esas fechas?</b>
-          <div>Te avisaremos de futuros viajes y destinos.</div>
-        </div>
-      </div>
-    </div>
-  </section>
-
   <footer>
-    <div class="container">
-      <div>© 2025 Savage Nomads</div>
-      <div>Contacto: hola@savagenomads.com</div>
+    <div class="wrap">
+      <small>© <span id="y"></span> Savage Nomads • Hecho con cariño y ganas de viajar</small>
     </div>
   </footer>
 
   <script>
-    // Smooth scroll
-    document.querySelectorAll('a[href^="#"]').forEach(function(anchor){
-      anchor.addEventListener('click', function(e){
-        var targetId = this.getAttribute('href').substring(1);
-        var target = document.getElementById(targetId);
-        if(target){ e.preventDefault(); window.scrollTo({top: target.offsetTop-70, behavior:'smooth'}); }
-      });
-    });
-
-    // Carga robusta para pareja.jpg (prueba varias variantes de nombre y rompe caché)
-    (function(){
-      var candidates = ["pareja.jpg","pareja.jpeg","Pareja.jpg","PAREJA.jpg","pareja.JPG","pareja.JPEG"];
-      var img = document.getElementById("img-pareja");
-      var i = 0;
-      function tryNext(){
-        if(i >= candidates.length){ return; }
-        var url = candidates[i++] + "?v=" + Date.now();
-        var test = new Image();
-        test.onload = function(){ img.src = url; };
-        test.onerror = tryNext;
-        test.src = url;
-      }
-      tryNext();
-    })();
+    // Año del footer
+    document.getElementById('y').textContent = new Date().getFullYear();
   </script>
 </body>
 </html>
+
