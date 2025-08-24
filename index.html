@@ -10,7 +10,7 @@
     :root{--azul:#0f2a6b;--azul2:#1e3a8a;--gris:#f1f5f9;--texto:#0f172a;--ambar:#fde047}
     *{box-sizing:border-box}
     body{margin:0;font-family:system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial;color:var(--texto);background:#fff}
-    .container{max-width:1100px;margin:0 auto;padding:0 24px}
+    .container{max-width:1200px;margin:0 auto;padding:0 24px}
 
     /* Header */
     header{position:sticky;top:0;background:#ffffffcc;backdrop-filter:saturate(180%) blur(8px);border-bottom:1px solid #e5e7eb;z-index:50}
@@ -23,21 +23,18 @@
     .cta{background:var(--azul);color:var(--ambar)!important;padding:10px 16px;border-radius:10px;font-weight:800;
          transition:transform .18s ease, box-shadow .18s ease, filter .18s ease; position:relative; overflow:hidden}
     .cta:hover{filter:brightness(1.1);transform:translateY(-1px) scale(1.04);box-shadow:0 10px 24px rgba(15,42,107,.25)}
-    .ripple{position:absolute;border-radius:50%;transform:scale(0);animation:ripple .6s ease-out;background:rgba(253,224,71,.35);pointer-events:none}
-    @keyframes ripple{to{ transform:scale(4); opacity:0; }}
 
     /* Hero */
     .hero{position:relative}
-    .hero img{width:100%;height:420px;object-fit:cover;display:block;filter:saturate(105%);transform:translateY(0);will-change:transform}
-    .hero .overlay{position:absolute;inset:0;background:linear-gradient(180deg,rgba(0,0,0,.35),rgba(0,0,0,.25),transparent);pointer-events:none}
-    .hero h1{position:absolute;left:50%;top:48%;transform:translate(-50%,-50%);
-             color:var(--ambar);font-size:42px;line-height:1.2;text-align:center;margin:0;text-shadow:0 6px 24px rgba(0,0,0,.45)}
+    .hero img{width:100%;height:420px;object-fit:cover;display:block;filter:saturate(105%)}
+    .hero .overlay{position:absolute;inset:0;background:linear-gradient(180deg,rgba(0,0,0,.35),rgba(0,0,0,.25),transparent)}
+    .hero h1{position:absolute;left:50%;top:48%;transform:translate(-50%,-50%);color:var(--ambar);font-size:42px;line-height:1.2;text-align:center;margin:0;text-shadow:0 6px 24px rgba(0,0,0,.45)}
 
     /* Secciones */
-    section{padding:64px 0}
-    h2.sec{font-size:34px;font-weight:900;text-align:center;margin:0 0 22px;background:linear-gradient(90deg, var(--azul), #f59e0b);-webkit-background-clip:text;background-clip:text;color:transparent;letter-spacing:.3px;text-transform:uppercase}
-    h2.sec::after{content:"";display:block;width:72px;height:3px;margin:10px auto 0;background:linear-gradient(90deg, var(--azul), #f59e0b);border-radius:4px}
-    p.center{text-align:center;max-width:760px;margin:0 auto 28px;color:#475569}
+    section{padding:72px 0}
+    h2.sec{font-size:42px;font-weight:900;text-align:left;margin:0 0 18px;background:linear-gradient(90deg, var(--azul), #f59e0b);-webkit-background-clip:text;background-clip:text;color:transparent;letter-spacing:.4px;text-transform:uppercase}
+    h2.sec::after{content:"";display:block;width:80px;height:3px;margin:12px 0 0;background:linear-gradient(90deg, var(--azul), #f59e0b);border-radius:4px}
+    p.center, .lead{max-width:900px;color:#334155;line-height:1.75;font-size:18px}
 
     /* Ofrecemos */
     .features{display:grid;grid-template-columns:1fr;gap:14px}
@@ -45,41 +42,10 @@
     .feat{background:var(--gris);border-radius:16px;padding:18px 16px}
     .feat b{display:block;margin-bottom:6px}
 
-    /* Bloque viaje */
-    .trip{display:grid;grid-template-columns:1fr;gap:18px;align-items:center}
-    @media (min-width:900px){.trip{grid-template-columns:1.2fr 1fr}}
-
-    /* --- Fix proporciones de imágenes y estiramientos --- */
-
-    /* --- Galería Maldivas: dos fotos lado a lado, responsive --- */
-    .gallery{display:grid;grid-template-columns:1fr;gap:12px}
-    @media (min-width:900px){ .gallery{grid-template-columns:1fr 1fr} }
-    .gallery img{aspect-ratio: 4 / 3; object-fit: cover; border-radius:16px; width:100%; display:block}
-
+    /* --- Imagenes anti estirado --- */
     img{max-width:100%;height:auto;display:block}
-    .trip picture, .trip img{width:100%;display:block}
-    .trip img{aspect-ratio: 3 / 2; object-fit: cover; border-radius:16px}
-    @media (max-width: 600px){ .trip img{aspect-ratio: 4 / 3} }
-
-    
-    
-    /* --- Maldivas galería grande y escalonada --- */
-    #maldivas{padding:100px 0}
-    #maldivas .badge{font-size:15px;padding:8px 14px}
-    #maldivas h2.sec{font-size:42px;margin-bottom:16px}
-    #maldivas p{font-size:19px;line-height:1.7;color:#364152;max-width:800px}
-    .gallery{display:grid;gap:18px;margin-top:22px}
-    @media (min-width:900px){ .gallery{grid-template-columns:1fr 1fr} }
-    .gallery picture{border-radius:20px;overflow:hidden;box-shadow:0 18px 40px rgba(15,42,107,.14)}
-    .gallery img{width:100%;height:480px;object-fit:cover;display:block}
-    @media (max-width:900px){ .gallery img{height:auto} }
-    /* escalonado en desktop */
-    @media (min-width:900px){
-      .gallery picture:nth-child(1){margin-top:40px}
-    }
-
-
-    .badge{display:inline-block; box-shadow:0 6px 16px rgba(2,132,199,.15);background:#e0f2fe;color:#075985;font-weight:700;border-radius:999px;padding:6px 10px;margin-bottom:10px}
+    picture{display:block}
+    .badge{display:inline-block;background:#e0f2fe;color:#075985;font-weight:700;border-radius:999px;padding:6px 12px}
 
     /* FORMULARIO */
     .form-wrap{max-width:1100px;margin:0 auto;padding:56px 24px}
@@ -91,63 +57,40 @@
     .label{display:block;font-size:14px;color:#425466;margin:0 0 6px}
     .input{width:100%;height:44px;padding:10px 12px;border:1px solid #dfe3e6;border-radius:10px;outline:0;transition:border-color .15s, box-shadow .15s ease}
     .input:focus{border-color:#2563eb;box-shadow:0 0 0 3px rgba(37,99,235,.18)}
-    .checkbox{display:flex;align-items:center;gap:10px;color:#334155;font-size:14px}
-    .checkbox input{width:18px;height:18px}
-    .btn{width:100%;height:48px;border:0;border-radius:10px;background:var(--azul);color:var(--ambar);font-weight:700;cursor:pointer;transition:filter .15s, transform .18s ease, box-shadow .18s ease; position:relative; overflow:hidden}
+    .btn{width:100%;height:48px;border:0;border-radius:10px;background:var(--azul);color:var(--ambar);font-weight:700;cursor:pointer;transition:filter .15s, transform .18s ease, box-shadow .18s ease}
     .btn:hover{filter:brightness(1.05);transform:translateY(-1px);box-shadow:0 8px 20px rgba(15,42,107,.18)}
 
     /* FAQ */
-    .faq{background:#f8fafc;text-align:center}
-    .qa{max-width:900px;margin:0 auto;display:grid;gap:16px;padding:0 24px;text-align:center}
+    .faq{background:#f8fafc}
+    .qa{max-width:900px;margin:0 auto;display:grid;gap:16px;padding:0 24px}
     .qa > div > b{display:block;margin:8px 0;font-size:18px;color:var(--azul2)}
     .qa > div > div{color:#475569}
-    .qa > div > div b{font-weight:600;color:inherit}
 
-    
-    /* === IMPROVE: sección Maldivas más grande y equilibrada === */
-    .container{max-width:1200px;margin:0 auto;padding:0 24px}
-    #maldivas{padding:110px 0 90px}
-    #maldivas h2.sec{font-size:48px; letter-spacing:.6px}
-    #maldivas p{font-size:20px; line-height:1.75; color:#334155; max-width:900px}
-    .gallery{display:grid; gap:22px; margin-top:26px}
-    @media (min-width:980px){ .gallery{grid-template-columns:1fr 1fr} }
-    .gallery picture{border-radius:22px; overflow:hidden; box-shadow:0 24px 60px rgba(15,42,107,.16)}
-    .gallery img{width:100%; height:520px; object-fit:cover; display:block}
-    @media (max-width:980px){ .gallery img{height:auto} }
-    @media (min-width:980px){ .gallery picture:nth-child(1){margin-top:54px} }
-
-
-    
-    /* === Maldivas: galería a la izquierda + texto a la derecha === */
-    #maldivas{padding:110px 0 100px}
-    #maldivas .wrap{display:grid;gap:28px;align-items:center}
-    @media (min-width:1024px){ #maldivas .wrap{grid-template-columns:1.15fr 1fr} }
-    /* Galería lateral con efecto solapado */
-    .lgallery{position:relative;min-height:560px}
-    .lgallery .card{position:absolute;left:0;right:0;border-radius:22px;overflow:hidden;box-shadow:0 24px 60px rgba(15,42,107,.16)}
-    .lgallery .card img{width:100%;height:100%;object-fit:cover;display:block}
-    .lgallery .card.card1{top:0;height:420px;transform:rotate(-1.2deg)}
-    .lgallery .card.card2{bottom:0;right:-6%;left:6%;height:360px;transform:rotate(1.3deg)}
+    /* === Maldivas: galería a la izquierda + texto a la derecha, sin solaparse la columna === */
+    #maldivas{padding:100px 0 90px}
+    #maldivas .grid{display:grid;gap:32px;align-items:center}
+    @media (min-width:1024px){ #maldivas .grid{grid-template-columns:1.2fr 1fr} }
+    .stack{position:relative}
+    .stack .card{border-radius:22px;overflow:hidden;box-shadow:0 24px 60px rgba(15,42,107,.14)}
+    .stack .card img{width:100%;height:500px;object-fit:cover;display:block}
+    .stack .top{position:relative;z-index:2;transform:translate(40px, -40px)}
+    .stack .bottom{position:relative;z-index:1}
     @media (max-width:1024px){
-      .lgallery{min-height:auto}
-      .lgallery .card{position:relative;transform:none;left:auto;right:auto;height:auto;margin-bottom:16px}
+      .stack .top{transform:none;margin-top:16px}
+      .stack .card img{height:auto}
     }
-    #maldivas .content .badge{font-size:15px;padding:8px 14px;box-shadow:0 6px 16px rgba(2,132,199,.15)}
-    #maldivas .content h2.sec{font-size:46px;letter-spacing:.6px;text-align:left;margin:6px 0 8px}
-    #maldivas .content p{font-size:19px;line-height:1.75;color:#334155;max-width:580px}
+    #maldivas .content .badge{box-shadow:0 6px 16px rgba(2,132,199,.15)}
+    #maldivas .content h2.sec{font-size:46px;margin-top:6px}
+    #maldivas .content .lead{font-size:19px}
 
-
-    /* Mobile-first */
+    /* Mobile */
     @media (max-width: 600px){
-      h1{font-size:28px !important; line-height:1.2}
-      h2.sec{font-size:24px !important}
+      h1{font-size:28px !important}
       .hero img{height:300px !important}
       .nav{flex-direction:column; height:auto; padding:10px 0}
       .nav a{margin:8px 0}
       .form-card{padding:20px !important}
       .form-title{font-size:24px !important}
-      .btn,.cta{font-size:16px !important; padding:10px 14px !important}
-      footer .container{flex-direction:column; text-align:center}
     }
   </style>
 </head>
@@ -180,7 +123,7 @@
   <section id="ofrecemos">
     <div class="container">
       <h2 class="sec">Qué ofrecemos</h2>
-      <p class="center">Grupos reducidos, experiencias auténticas y un toque de confort. Además, incluimos <b>fotógrafo profesional</b>: a los 10 días recibes tu <b>book</b> personal.</p>
+      <p class="lead">Grupos reducidos, experiencias auténticas y un toque de confort. Además, incluimos <b>fotógrafo profesional</b>: a los 10 días recibes tu <b>book</b> personal.</p>
       <div class="features">
         <div class="feat"><b>Grupos reducidos</b>Ambiente cercano y flexible.</div>
         <div class="feat"><b>Aventura real</b>Snorkel, buceo y excursiones en lugares increíbles.</div>
@@ -189,16 +132,15 @@
     </div>
   </section>
 
-  <!-- Maldivas (solo una imagen hasta subir la real de "pareja") -->
-  
+  <!-- Maldivas con columnas -->
   <section id="maldivas">
-    <div class="container wrap">
-      <div class="lgallery">
-        <picture class="card card1">
+    <div class="container grid">
+      <div class="stack">
+        <picture class="card bottom">
           <source srcset="pareja.webp" type="image/webp">
-          <img src="pareja.jpg" alt="Momentos en pareja en Maldivas">
+          <img src="pareja.jpg" alt="Momentos en pareja en Maldivas" onerror="this.closest('.card').style.display='none'">
         </picture>
-        <picture class="card card2">
+        <picture class="card top">
           <source srcset="subm.webp" type="image/webp">
           <img src="subm.jpg" alt="Buceo en arrecife, Maldivas">
         </picture>
@@ -206,27 +148,26 @@
       <div class="content">
         <span class="badge">Primer viaje: Maldivas 🌴</span>
         <h2 class="sec">Maldivas Aventureras</h2>
-        <p>Islas locales, barco tradicional, snorkel, buceo con fauna y atardeceres de postal. No es el típico resort: es la <b>Maldivas auténtica</b>.</p>
-        <p>Ruta flexible, grupos reducidos y un <b>book fotográfico personal</b> con tus mejores momentos.</p>
+        <p class="lead">Islas locales, barco tradicional, snorkel, buceo con fauna y atardeceres de postal. No es el típico resort: es la <b>Maldivas auténtica</b>.</p>
+        <p class="lead">Ruta flexible, grupos reducidos y un <b>book fotográfico personal</b> con tus mejores momentos.</p>
         <p style="margin-top:12px"><a class="cta" href="#formulario">Apúntate</a></p>
       </div>
     </div>
   </section>
 
-
   <!-- Conecta -->
   <section id="tribu">
     <div class="container">
       <h2 class="sec">Conecta con tu tribu</h2>
-      <p class="center">Viajar es más que ver paisajes: es compartirlos. Momentos reales con gente que vibra como tú.</p>
-      <div class="trip" style="margin-top:22px">
+      <p class="lead">Viajar es más que ver paisajes: es compartirlos. Momentos reales con gente que vibra como tú.</p>
+      <div class="features" style="grid-template-columns:1.2fr 1fr;gap:18px">
         <picture>
           <source srcset="grupo.webp" type="image/webp">
-          <img src="grupo.jpg" alt="Grupo de viajeros Savage Nomads">
+          <img src="grupo.jpg" alt="Grupo de viajeros Savage Nomads" style="border-radius:18px;box-shadow:0 16px 40px rgba(15,42,107,.12)">
         </picture>
         <div>
-          <h3 style="margin:0 0 8px;font-size:22px;color:#0f2a6b">Historias que se quedan</h3>
-          <p>Planes que fluyen, risas a destiempo y la foto que siempre recordarás. Aquí vienen las amistades que te llevas de vuelta.</p>
+          <h3 style="margin:0 0 8px;font-size:24px;color:#0f2a6b">Historias que se quedan</h3>
+          <p class="lead">Planes que fluyen, risas a destiempo y la foto que siempre recordarás. Aquí vienen las amistades que te llevas de vuelta.</p>
           <p style="margin-top:14px"><a class="cta" href="#formulario">Apúntate</a></p>
         </div>
       </div>
@@ -294,15 +235,6 @@
     </div>
   </section>
 
-  <!-- Cierre -->
-  <section>
-    <div class="container" style="text-align:center">
-      <h2 class="sec">Savage Nomads: viajar, conectar y recordar</h2>
-      <p class="center">Únete a una comunidad de viajeros que buscan autenticidad y confort. Te llevamos, te cuidamos y te retratamos.</p>
-      <p><a class="cta" href="#formulario">Apúntate</a></p>
-    </div>
-  </section>
-
   <footer style="background:var(--gris);padding:28px 0;margin-top:40px">
     <div class="container" style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px">
       <div>© 2025 Savage Nomads</div>
@@ -311,54 +243,14 @@
   </footer>
 
   <script>
-    // Ripple para CTA y botones
-    function createRipple(e){
-      var target = e.currentTarget;
-      var rect = target.getBoundingClientRect();
-      var size = Math.max(rect.width, rect.height);
-      var circle = document.createElement('span');
-      circle.className = 'ripple';
-      circle.style.width = circle.style.height = size + 'px';
-      circle.style.left = (e.clientX - rect.left - size/2) + 'px';
-      circle.style.top  = (e.clientY - rect.top  - size/2) + 'px';
-      target.appendChild(circle);
-      setTimeout(function(){ circle.remove(); }, 650);
-    }
-    document.querySelectorAll('.cta,.btn').forEach(function(el){ el.addEventListener('click', createRipple) });
-
-    // Sticky header efecto sombra
-    (function(){
-      const header=document.querySelector('header');
-      function onScroll(){
-        if(window.scrollY>20){ header.style.background='#fff'; header.style.boxShadow='0 2px 10px rgba(0,0,0,.08)'; }
-        else { header.style.background='#ffffffcc'; header.style.boxShadow='none'; }
-      }
-      document.addEventListener('scroll', onScroll, {passive:true}); onScroll();
-    })();
-
     // Smooth scroll
     document.querySelectorAll('a[href^="#"]').forEach(function(anchor){
       anchor.addEventListener('click', function(e){
         var targetId = this.getAttribute('href').substring(1);
         var target = document.getElementById(targetId);
-        if(target){
-          e.preventDefault();
-          window.scrollTo({top: target.offsetTop-70, behavior:'smooth'});
-        }
+        if(target){ e.preventDefault(); window.scrollTo({top: target.offsetTop-70, behavior:'smooth'}); }
       });
     });
-
-    // Hero parallax
-    (function(){
-      const img = document.getElementById('hero-img');
-      if(!img) return;
-      function parallax(){
-        const y = window.scrollY || window.pageYOffset;
-        img.style.transform = 'translateY(' + (y * 0.2) + 'px)';
-      }
-      document.addEventListener('scroll', parallax, {passive:true});
-      parallax();
-    })();
   </script>
 </body>
 </html>
