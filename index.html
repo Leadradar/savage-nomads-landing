@@ -117,6 +117,26 @@
     @media (min-width:980px){ .gallery picture:nth-child(1){margin-top:54px} }
 
 
+    
+    /* === Maldivas: galería a la izquierda + texto a la derecha === */
+    #maldivas{padding:110px 0 100px}
+    #maldivas .wrap{display:grid;gap:28px;align-items:center}
+    @media (min-width:1024px){ #maldivas .wrap{grid-template-columns:1.15fr 1fr} }
+    /* Galería lateral con efecto solapado */
+    .lgallery{position:relative;min-height:560px}
+    .lgallery .card{position:absolute;left:0;right:0;border-radius:22px;overflow:hidden;box-shadow:0 24px 60px rgba(15,42,107,.16)}
+    .lgallery .card img{width:100%;height:100%;object-fit:cover;display:block}
+    .lgallery .card.card1{top:0;height:420px;transform:rotate(-1.2deg)}
+    .lgallery .card.card2{bottom:0;right:-6%;left:6%;height:360px;transform:rotate(1.3deg)}
+    @media (max-width:1024px){
+      .lgallery{min-height:auto}
+      .lgallery .card{position:relative;transform:none;left:auto;right:auto;height:auto;margin-bottom:16px}
+    }
+    #maldivas .content .badge{font-size:15px;padding:8px 14px;box-shadow:0 6px 16px rgba(2,132,199,.15)}
+    #maldivas .content h2.sec{font-size:46px;letter-spacing:.6px;text-align:left;margin:6px 0 8px}
+    #maldivas .content p{font-size:19px;line-height:1.75;color:#334155;max-width:580px}
+
+
     /* Mobile-first */
     @media (max-width: 600px){
       h1{font-size:28px !important; line-height:1.2}
@@ -170,27 +190,29 @@
   </section>
 
   <!-- Maldivas (solo una imagen hasta subir la real de "pareja") -->
+  
   <section id="maldivas">
-    <div class="container">
-      <span class="badge">Primer viaje: Maldivas 🌴</span>
-      <div class="trip">
-        <div>
-          <h2 class="sec" style="text-align:left;margin:0 0 14px">Maldivas Aventureras</h2>
-          <p>Islas locales, barco tradicional, snorkel, buceo con fauna y atardeceres de postal. No es el típico resort: es la <b>Maldivas auténtica</b>.</p>
-          <div class="gallery" style="margin-top:14px">
-            <picture>
-              <source srcset="pareja.webp" type="image/webp">
-              <img src="pareja.jpg" alt="Pareja disfrutando en Maldivas">
-            </picture>
-            <picture>
-              <source srcset="subm.webp" type="image/webp">
-              <img src="subm.jpg" alt="Submarinismo en arrecife de Maldivas">
-            </picture>
-          </div>
-        </div>
-</div>
+    <div class="container wrap">
+      <div class="lgallery">
+        <picture class="card card1">
+          <source srcset="pareja.webp" type="image/webp">
+          <img src="pareja.jpg" alt="Momentos en pareja en Maldivas">
+        </picture>
+        <picture class="card card2">
+          <source srcset="subm.webp" type="image/webp">
+          <img src="subm.jpg" alt="Buceo en arrecife, Maldivas">
+        </picture>
+      </div>
+      <div class="content">
+        <span class="badge">Primer viaje: Maldivas 🌴</span>
+        <h2 class="sec">Maldivas Aventureras</h2>
+        <p>Islas locales, barco tradicional, snorkel, buceo con fauna y atardeceres de postal. No es el típico resort: es la <b>Maldivas auténtica</b>.</p>
+        <p>Ruta flexible, grupos reducidos y un <b>book fotográfico personal</b> con tus mejores momentos.</p>
+        <p style="margin-top:12px"><a class="cta" href="#formulario">Apúntate</a></p>
+      </div>
     </div>
   </section>
+
 
   <!-- Conecta -->
   <section id="tribu">
