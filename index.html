@@ -78,10 +78,7 @@
       transition:background .25s, box-shadow .25s, border-color .25s;
     }
     .wrap{max-width:1100px; margin:0 auto; padding:0 16px}
-    .nav{
-      display:flex; align-items:center; justify-content:space-between;
-      height:var(--nav-h); /* fijo siempre */
-    }
+    .nav{display:flex; align-items:center; justify-content:space-between; height:var(--nav-h);}
     .brand{display:flex; gap:10px; align-items:center; font-weight:800; letter-spacing:.2px}
     .brand .dot{width:10px; height:10px; border-radius:50%; background:var(--brand);}
     .navlinks{display:flex; align-items:center; gap:var(--navlink-gap); font-size:var(--navlink-size);}
@@ -91,42 +88,15 @@
     .btn-cta{background:var(--brand); color:#0b0f10; box-shadow:0 8px 22px rgba(0,0,0,.18)}
     .btn-cta:hover{transform:translateY(-4px); box-shadow:var(--shadow-strong);} /* hover botón */
 
-    /* Fondo opaco al scrollear (ligero) */
     header.solid{background:rgba(11,15,16,.92); box-shadow:0 6px 18px rgba(0,0,0,.35); border-bottom-color:rgba(255,255,255,.1)}
 
     /* Hero con PARALLAX y overlay reforzado */
     .hero{position:relative; overflow:hidden}
-    .hero img{
-      width:100%; height:clamp(420px, 60vh, 560px);
-      object-fit:cover; object-position:center;
-      will-change:transform;
-      transform:translateY(0);
-      transition:transform .08s linear;
-    }
-    .hero .overlay{
-      position:absolute; inset:0;
-      background:linear-gradient(180deg, rgba(0,0,0,.45), rgba(0,0,0,.28), rgba(0,0,0,.6));
-    }
-    .hero-content{
-      position:absolute; inset:0; display:flex; flex-direction:column;
-      align-items:center; justify-content:center; gap:12px; padding:0 16px;
-      text-align:center; pointer-events:none;
-    }
-    .hero h1{
-      margin:0; font-weight:800;
-      font-size:clamp(30px, 5.5vw, 52px);
-      line-height:1.1;
-      text-shadow:0 8px 28px rgba(0,0,0,.65);
-      max-width:20ch;
-      color: var(--accent); /* amarillo en el hero */
-    }
-    .hero .sub{
-      margin:0; opacity:.98; max-width:48ch;
-      font-weight:400;
-      font-size:clamp(16px,2.4vw,20px);
-      color:#000; /* negro en el hero */
-      text-shadow:0 6px 18px rgba(255,255,255,.65); /* halo blanco para legibilidad */
-    }
+    .hero img{width:100%; height:clamp(420px,60vh,560px); object-fit:cover; object-position:center; will-change:transform; transform:translateY(0); transition:transform .08s linear;}
+    .hero .overlay{position:absolute; inset:0; background:linear-gradient(180deg, rgba(0,0,0,.45), rgba(0,0,0,.28), rgba(0,0,0,.6));}
+    .hero-content{position:absolute; inset:0; display:flex; flex-direction:column; align-items:center; justify-content:center; gap:12px; padding:0 16px; text-align:center; pointer-events:none;}
+    .hero h1{margin:0; font-weight:800; font-size:clamp(30px,5.5vw,52px); line-height:1.1; text-shadow:0 8px 28px rgba(0,0,0,.65); max-width:20ch; color:var(--accent);} /* amarillo */
+    .hero .sub{margin:0; opacity:.98; max-width:48ch; font-weight:400; font-size:clamp(16px,2.4vw,20px); color:#000; text-shadow:0 6px 18px rgba(255,255,255,.65);} /* negro + halo */
 
     /* Secciones */
     section{padding: clamp(var(--section-gap-mobile), 5vw, var(--section-gap)) 0}
@@ -137,7 +107,7 @@
     /* Card base */
     .card{background:var(--card); border:1px solid rgba(255,255,255,.06); border-radius:var(--radius); padding:18px; box-shadow:var(--shadow);}
 
-    /* WOW: hover elegante en TODAS las cards (contenido, fotos, etc.) */
+    /* WOW: hover elegante en TODAS las cards */
     @media (min-width:901px){
       .card{ transition:transform .22s ease, box-shadow .22s ease; }
       .card:hover{ transform:translateY(-4px); box-shadow:var(--shadow-strong); }
@@ -157,8 +127,9 @@
     .tribe-grid{display:grid; grid-template-columns:1fr; gap:14px;}
     #tribu .card{height:100%;}
     @media (max-width:900px){
-      .tribe-layout{grid-template-columns:1fr; gap:18px;}
-      .tribe-photo{margin-bottom: clamp(16px, 6vw, 28px);}
+      .tribe-layout{grid-template-columns:1fr;}               /* pasa a 1 columna */
+      .tribe-photo{margin:0;}                                 /* quitamos márgenes manuales */
+      #tribu .tribe-layout{row-gap:clamp(28px,9vw,52px);}     /* >>> aire extra entre foto y cards <<< */
       .tribe-photo img{aspect-ratio:16/9;}
     }
 
@@ -236,7 +207,7 @@
     .navlinks a:hover{ opacity:1; text-decoration:underline; text-underline-offset:3px; }
     section[id]{ scroll-margin-top: 84px; }
 
-    /* ===== SOLO MÓVIL/TABLET ===== */
+    /* ===== SOLO MÓVIL/TABLET: cabecera en dos filas (como estaba) ===== */
     @media (max-width: 900px) {
       .nav{flex-wrap:wrap; height:auto; padding:10px 0; gap:8px;}
       .brand{order:1;}
