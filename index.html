@@ -4,7 +4,7 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Savage Nomads — Aventuras en grupo</title>
-  <meta name="description" content="Aventuras en grupo para espíritus salvajes. Primer viaje: Maldivas.">
+  <meta name="description" content="Aventuras en grupo para espíritus salvajes. Primer viaje: Maldivas." />
   <link rel="icon" href="favicon.ico" />
   <style>
     :root{--azul:#0f2a6b;--azul2:#1e3a8a;--gris:#f1f5f9;--texto:#0f172a;--ambar:#fde047}
@@ -19,10 +19,8 @@
     .nav a{text-decoration:none;color:#334155;font-weight:600;margin-left:18px;position:relative;transition:color .18s ease}
     .nav a::after{content:"";position:absolute;left:0;right:100%;bottom:-6px;height:2px;background:linear-gradient(90deg,var(--azul), #f59e0b);transition:right .22s ease;border-radius:4px}
     .nav a:hover{color:var(--azul)} .nav a:hover::after{right:0}
-    .nav a.active::after{right:0}
-    .cta{background:var(--azul);color:var(--ambar)!important;padding:10px 16px;border-radius:10px;font-weight:800;
-         transition:transform .18s ease, box-shadow .18s ease, filter .18s ease}
-    .cta:hover{filter:brightness(1.1);transform:translateY(-1px);box-shadow:0 10px 24px rgba(15,42,107,.25)}
+    .cta{background:var(--azul);color:var(--ambar)!important;padding:10px 16px;border-radius:10px;font-weight:800}
+    .cta:hover{filter:brightness(1.1)}
 
     /* Hero */
     .hero{position:relative}
@@ -30,16 +28,17 @@
     .hero .overlay{position:absolute;inset:0;background:linear-gradient(180deg,rgba(0,0,0,.35),rgba(0,0,0,.25),transparent)}
     .hero h1{position:absolute;left:50%;top:48%;transform:translate(-50%,-50%);color:var(--ambar);font-size:42px;line-height:1.2;text-align:center;margin:0;text-shadow:0 6px 24px rgba(0,0,0,.45)}
 
-    /* Secciones */
+    /* Secciones centradas */
     section{padding:80px 0}
-    h2.sec{font-size:44px;font-weight:900;text-align:left !important;margin:0 0 18px;background:linear-gradient(90deg, var(--azul), #f59e0b);-webkit-background-clip:text;background-clip:text;color:transparent;letter-spacing:.4px;text-transform:uppercase}
-    h2.sec::after{content:"";display:block;width:92px;height:3px;margin:12px 0 0;background:linear-gradient(90deg, var(--azul), #f59e0b);border-radius:4px}
-    .lead{max-width:900px;color:#334155;line-height:1.75;font-size:19px}
+    h2.sec{font-size:44px;font-weight:900;text-align:center;margin:0 0 18px;background:linear-gradient(90deg, var(--azul), #f59e0b);-webkit-background-clip:text;background-clip:text;color:transparent;letter-spacing:.4px;text-transform:uppercase}
+    h2.sec::after{content:"";display:block;width:92px;height:3px;margin:12px auto 0;background:linear-gradient(90deg, var(--azul), #f59e0b);border-radius:4px}
+    .lead{max-width:900px;margin:0 auto;color:#334155;line-height:1.75;font-size:19px;text-align:center}
+    .center{ text-align:center }
 
     /* Cards, grids */
-    .features{display:grid;grid-template-columns:1fr;gap:14px}
+    .features{display:grid;grid-template-columns:1fr;gap:14px;margin-top:20px}
     @media (min-width:900px){.features{grid-template-columns:repeat(3,1fr)}}
-    .feat{background:var(--gris);border-radius:16px;padding:18px 16px}
+    .feat{background:var(--gris);border-radius:16px;padding:18px 16px;text-align:left}
     .feat b{display:block;margin-bottom:6px}
 
     /* Imagenes anti estirado */
@@ -47,17 +46,12 @@
     picture{display:block}
     .badge{display:inline-block;background:#e0f2fe;color:#075985;font-weight:700;border-radius:999px;padding:6px 12px;box-shadow:0 6px 16px rgba(2,132,199,.15)}
 
-    /* MALDIVAS — 2 columnas sin solapamientos */
-    #maldivas{padding:100px 0 90px}
-    #maldivas .wrap{display:grid;gap:40px;align-items:center}
-    @media (min-width:1024px){ #maldivas .wrap{grid-template-columns:1.2fr 1fr} }
-    .lgallery{display:grid;gap:18px}
-    @media (min-width:700px){ .lgallery{grid-template-columns:1fr 1fr} }
-    .lgallery .card{border-radius:20px;overflow:hidden;box-shadow:0 18px 40px rgba(15,42,107,.14);background:#0f2a6b}
-    .lgallery .card img{width:100%;height:420px;object-fit:cover}
-    @media (max-width:1024px){ .lgallery .card img{height:auto} }
-    /* toque de mosaico suave: segunda imagen baja un poco en desktop */
-    @media (min-width:1024px){ .lgallery .card:nth-child(2){margin-top:26px} }
+    /* MALDIVAS — centrado + galería simple (sin solapes) */
+    #maldivas .gallery{display:grid;gap:18px;margin-top:22px}
+    @media (min-width:900px){ #maldivas .gallery{grid-template-columns:1fr 1fr} }
+    #maldivas .gallery picture{border-radius:18px;overflow:hidden;box-shadow:0 16px 40px rgba(15,42,107,.12)}
+    #maldivas .gallery img{width:100%;height:480px;object-fit:cover}
+    @media (max-width:900px){ #maldivas .gallery img{height:auto} }
 
     /* FORMULARIO */
     .form-wrap{max-width:1100px;margin:0 auto;padding:56px 24px}
@@ -69,14 +63,14 @@
     .label{display:block;font-size:14px;color:#425466;margin:0 0 6px}
     .input{width:100%;height:44px;padding:10px 12px;border:1px solid #dfe3e6;border-radius:10px;outline:0;transition:border-color .15s, box-shadow .15s ease}
     .input:focus{border-color:#2563eb;box-shadow:0 0 0 3px rgba(37,99,235,.18)}
-    .btn{width:100%;height:48px;border:0;border-radius:10px;background:var(--azul);color:var(--ambar);font-weight:700;cursor:pointer;transition:filter .15s, transform .18s ease, box-shadow .18s ease}
-    .btn:hover{filter:brightness(1.05);transform:translateY(-1px);box-shadow:0 8px 20px rgba(15,42,107,.18)}
+    .btn{width:100%;height:48px;border:0;border-radius:10px;background:var(--azul);color:var(--ambar);font-weight:700;cursor:pointer}
+    .btn:hover{filter:brightness(1.05)}
 
     /* FAQ */
     .faq{background:#f8fafc}
     .qa{max-width:900px;margin:0 auto;display:grid;gap:16px;padding:0 24px}
-    .qa > div > b{display:block;margin:8px 0;font-size:18px;color:var(--azul2)}
-    .qa > div > div{color:#475569}
+    .qa > div > b{display:block;margin:8px 0;font-size:18px;color:var(--azul2);text-align:center}
+    .qa > div > div{color:#475569;text-align:center}
 
     /* Mobile */
     @media (max-width: 600px){
@@ -108,14 +102,14 @@
   <section class="hero">
     <picture>
       <source srcset="hero.webp" type="image/webp">
-      <img id="hero-img" src="hero.jpg" alt="Buceo y fauna marina en Maldivas" width="1600" height="420" fetchpriority="high">
+      <img src="hero.jpg" alt="Buceo y fauna marina en Maldivas" width="1600" height="420" fetchpriority="high">
     </picture>
     <div class="overlay"></div>
     <h1>Aventuras en grupo para espíritus salvajes</h1>
   </section>
 
   <!-- Qué ofrecemos -->
-  <section id="ofrecemos">
+  <section id="ofrecemos" class="center">
     <div class="container">
       <h2 class="sec">Qué ofrecemos</h2>
       <p class="lead">Grupos reducidos, experiencias auténticas y un toque de confort. Además, incluimos <b>fotógrafo profesional</b>: a los 10 días recibes tu <b>book</b> personal.</p>
@@ -127,49 +121,39 @@
     </div>
   </section>
 
-  <!-- Maldivas (galería izquierda + contenido derecha, sin solapamientos) -->
-  <section id="maldivas">
-    <div class="container wrap">
-      <div class="lgallery">
-        <div class="card">
-          <picture>
-            <source srcset="pareja.webp" type="image/webp">
-            <img src="pareja.jpg" alt="Momentos en pareja en Maldivas" onerror="this.onerror=null; this.src='subm.jpg';">
-          </picture>
-        </div>
-        <div class="card">
-          <picture>
-            <source srcset="subm.webp" type="image/webp">
-            <img src="subm.jpg" alt="Buceo en arrecife, Maldivas">
-          </picture>
-        </div>
+  <!-- Maldivas: todo centrado y sin solapamientos -->
+  <section id="maldivas" class="center">
+    <div class="container">
+      <span class="badge">Primer viaje: Maldivas 🌴</span>
+      <h2 class="sec">Maldivas Aventureras</h2>
+      <p class="lead">Islas locales, barco tradicional, snorkel, buceo con fauna y atardeceres de postal. No es el típico resort: es la <b>Maldivas auténtica</b>.</p>
+      <div class="gallery">
+        <picture>
+          <source srcset="pareja.webp" type="image/webp">
+          <img src="pareja.jpg" alt="Momentos en pareja en Maldivas" onerror="this.onerror=null; this.src='subm.jpg';">
+        </picture>
+        <picture>
+          <source srcset="subm.webp" type="image/webp">
+          <img src="subm.jpg" alt="Buceo en arrecife, Maldivas">
+        </picture>
       </div>
-      <div class="content">
-        <span class="badge">Primer viaje: Maldivas 🌴</span>
-        <h2 class="sec">Maldivas Aventureras</h2>
-        <p class="lead">Islas locales, barco tradicional, snorkel, buceo con fauna y atardeceres de postal. No es el típico resort: es la <b>Maldivas auténtica</b>.</p>
-        <p class="lead">Ruta flexible, grupos reducidos y un <b>book fotográfico personal</b> con tus mejores momentos.</p>
-        <p style="margin-top:12px"><a class="cta" href="#formulario">Apúntate</a></p>
-      </div>
+      <p class="lead" style="margin-top:16px">Ruta flexible, grupos reducidos y un <b>book fotográfico personal</b> con tus mejores momentos.</p>
+      <p style="margin-top:12px"><a class="cta" href="#formulario">Apúntate</a></p>
     </div>
   </section>
 
   <!-- Conecta -->
-  <section id="tribu">
+  <section id="tribu" class="center">
     <div class="container">
       <h2 class="sec">Conecta con tu tribu</h2>
       <p class="lead">Viajar es más que ver paisajes: es compartirlos. Momentos reales con gente que vibra como tú.</p>
-      <div style="display:grid;grid-template-columns:1.2fr 1fr;gap:22px;align-items:center;margin-top:18px">
+      <div class="gallery" style="grid-template-columns:1fr;max-width:900px;margin:18px auto 0">
         <picture>
           <source srcset="grupo.webp" type="image/webp">
-          <img src="grupo.jpg" alt="Grupo de viajeros Savage Nomads" style="border-radius:18px;box-shadow:0 16px 40px rgba(15,42,107,.12)">
+          <img src="grupo.jpg" alt="Grupo de viajeros Savage Nomads">
         </picture>
-        <div>
-          <h3 style="margin:0 0 8px;font-size:24px;color:#0f2a6b">Historias que se quedan</h3>
-          <p class="lead">Planes que fluyen, risas a destiempo y la foto que siempre recordarás. Aquí vienen las amistades que te llevas de vuelta.</p>
-          <p style="margin-top:14px"><a class="cta" href="#formulario">Apúntate</a></p>
-        </div>
       </div>
+      <p style="margin-top:12px"><a class="cta" href="#formulario">Apúntate</a></p>
     </div>
   </section>
 
@@ -210,7 +194,7 @@
   </section>
 
   <!-- FAQ -->
-  <section id="faq" class="faq">
+  <section id="faq" class="faq center">
     <div class="container">
       <h2 class="sec">Preguntas frecuentes</h2>
       <div class="qa">
@@ -235,7 +219,7 @@
   </section>
 
   <footer style="background:var(--gris);padding:28px 0;margin-top:40px">
-    <div class="container" style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px">
+    <div class="container" style="display:flex;justify-content:center;align-items:center;gap:16px;flex-wrap:wrap">
       <div>© 2025 Savage Nomads</div>
       <div>Contacto: hola@savagenomads.com</div>
     </div>
