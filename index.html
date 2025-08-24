@@ -129,56 +129,63 @@
       .tribe-photo img{ aspect-ratio: 16 / 9; }
     }
 
-    /* ---------- Maldivas (fotos horizontales pareadas con card) ---------- */
-    #maldivas .grid{
-      display:grid;
-      grid-template-columns:1.1fr .9fr;
-      gap:16px;
-      align-items:stretch;         /* clave: estirar ambas columnas */
-    }
-    /* La columna de FOTOS también es una card, para igualar altura con la de texto */
-    #maldivas .gallery-card{
-      background:var(--card);
-      border:1px solid rgba(255,255,255,.06);
-      border-radius:var(--radius);
-      padding:12px;
-      box-shadow:var(--shadow);
-      display:flex;
-      flex-direction:column;
-      height:100%;                 /* iguala altura con la card de texto */
-    }
-    #maldivas .gallery{
-      display:grid;
-      grid-template-columns:1fr 1fr;
-      gap:12px;
-      /* el grid ocupa todo y las imágenes reparten bien el espacio */
-    }
-    #maldivas .gallery img{
-      width:100%;
-      height:100%;
-      aspect-ratio: 3 / 2;         /* horizontal en desktop */
-      object-fit:cover;
-      object-position:center;
-      border-radius:var(--radius);
-      background:#000;
-      box-shadow:var(--shadow);
-    }
-    #maldivas .card{
-      background:var(--card);
-      border:1px solid rgba(255,255,255,.06);
-      border-radius:var(--radius);
-      padding:18px;
-      box-shadow:var(--shadow);
-      height:100%;                 /* pareado con columna de fotos */
-    }
-    @media (max-width:900px){
-      #maldivas .grid{grid-template-columns:1fr; gap:14px}
-      #maldivas .gallery{grid-template-columns:1fr 1fr}
-      #maldivas .gallery img{aspect-ratio:16 / 9} /* panorámico en móvil */
-    }
-    @media (max-width:520px){
-      #maldivas .gallery{grid-template-columns:1fr}
-    }
+    /* --- MALDIVAS: columnas pareadas y fotos horizontales --- */
+#maldivas .grid{
+  display:grid;
+  grid-template-columns:1.1fr .9fr;
+  gap:16px;
+  align-items:stretch; /* ambas columnas misma altura */
+}
+
+/* Galería metida en card y con altura igual a la de texto */
+#maldivas .gallery-card,
+#maldivas .card{
+  background:var(--card);
+  border:1px solid rgba(255,255,255,.06);
+  border-radius:var(--radius);
+  box-shadow:var(--shadow);
+  /* 👇 igualamos alturas; ajusta el 460 si quieres más/menos alto */
+  min-height:clamp(320px, 36vw, 460px);
+}
+
+/* padding distinto porque la galería ya tiene grid interno */
+#maldivas .gallery-card{ padding:12px; display:flex; }
+#maldivas .card{ padding:18px; }
+
+/* La galería ocupa TODA la altura de su card */
+#maldivas .gallery{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:12px;
+  height:100%;           /* 👈 clave */
+  align-items:stretch;   /* estira cada celda */
+}
+
+/* Fotos horizontales llenando su celda */
+#maldivas .gallery img{
+  width:100%;
+  height:100%;           /* 👈 llena vertical para emparejar con la card de texto */
+  object-fit:cover;
+  object-position:center;
+  border-radius:var(--radius);
+  background:#000;
+}
+
+/* Responsivo */
+@media (max-width:900px){
+  #maldivas .grid{ grid-template-columns:1fr; gap:14px; }
+  /* En móvil quitamos min-height para que no quede excesivo */
+  #maldivas .gallery-card,
+  #maldivas .card{ min-height:0; }
+  /* Y dejamos las fotos en 16:9 bonito */
+  #maldivas .gallery img{
+    height:auto;
+    aspect-ratio:16/9;
+  }
+}
+@media (max-width:520px){
+  #maldivas .gallery{ grid-template-columns:1fr; }
+}
 
     /* ---------- Formulario ---------- */
     .form-wrap{
