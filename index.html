@@ -6,7 +6,7 @@
   <title>Savage Nomads — Viajes en grupo pensados de verdad</title>
   <meta name="description" content="Viajes en grupo seleccionados, con itinerarios cuidados y buena compañía. Únete a Savage Nomads.">
 
-  <!-- Favicon (pon aquí tus ficheros reales: favicon.png / favicon.ico / svg) -->
+  <!-- Favicon (pon aquí tus ficheros reales en la raíz) -->
   <link rel="icon" type="image/png" href="favicon.png">
   <link rel="icon" href="favicon.ico">
   <link rel="icon" type="image/svg+xml" href="favicon.svg">
@@ -40,7 +40,7 @@
     .navlinks{display:flex; gap:14px; align-items:center}
     .navlinks a{opacity:.85}
     .navlinks a:hover{opacity:1}
-    .btn{display:inline-block; padding:10px 16px; border-radius:999px; font-weight:700; border:none; cursor:pointer; transition:transform .08s ease, box-shadow .1s ease, opacity .2s;}
+    .btn{display:inline-block; padding:10px 16px; border-radius:999px; font-weight:700; border:none; cursor:pointer; transition:.08s transform,.1s box-shadow,.2s opacity}
     .btn-cta{background:var(--brand); color:#0b0f10; box-shadow:0 8px 22px rgba(0,0,0,.18)}
     .btn-cta:hover{transform:translateY(-1px)}
 
@@ -57,6 +57,9 @@
     section > .wrap > h2{text-align:center; margin:0 0 18px; line-height:1.2; letter-spacing:.2px; font-size:clamp(24px,4.6vw,34px);}
     .lead{color:var(--muted); text-align:center; max-width:60ch; margin:0 auto 24px}
 
+    /* Cards base */
+    .card{background:var(--card); border:1px solid rgba(255,255,255,.06); border-radius:var(--radius); padding:18px; box-shadow:var(--shadow);}
+
     /* Qué ofrecemos */
     .features{display:grid; grid-template-columns:repeat(3,1fr); gap:14px}
     .feat{background:var(--card); border:1px solid rgba(255,255,255,.06); border-radius:var(--radius); padding:18px; box-shadow:var(--shadow);}
@@ -65,53 +68,27 @@
     @media (max-width:900px){.features{grid-template-columns:1fr 1fr}}
     @media (max-width:640px){.features{grid-template-columns:1fr}}
 
-    /* Conecta con tu tribu */
+    /* Tribu */
     .tribe-layout{display:grid; grid-template-columns:1.1fr .9fr; gap:16px; align-items:stretch;}
-    .card{background:var(--card); border:1px solid rgba(255,255,255,.06); border-radius:var(--radius); padding:18px; box-shadow:var(--shadow);}
     .tribe-photo{overflow:hidden; display:flex;}
-    .tribe-photo img{width:100%; height:100%; aspect-ratio: 3 / 2; object-fit: cover; object-position: center;}
+    .tribe-photo img{width:100%; height:100%; aspect-ratio:3/2; object-fit:cover; object-position:center;}
     .tribe-grid{display:grid; grid-template-columns:1fr; gap:14px;}
     #tribu .card{height:100%;}
-    @media (max-width:900px){.tribe-layout{ grid-template-columns:1fr; } .tribe-photo img{ aspect-ratio: 16 / 9; }}
+    @media (max-width:900px){.tribe-layout{grid-template-columns:1fr;} .tribe-photo img{aspect-ratio:16/9;}}
 
-    /* Maldivas — MISMO ESTILO Y PAREO PERFECTO */
-    #maldivas .grid{
-      display:grid; grid-template-columns:1.1fr .9fr; gap:16px; align-items:stretch;
-    }
-    /* Columna de fotos convertida en card igual que las demás */
-    #maldivas .photos-card{ /* card gemela */
-      background:var(--card); border:1px solid rgba(255,255,255,.06); border-radius:var(--radius); box-shadow:var(--shadow);
-      padding:12px; display:flex; height:100%;
-    }
-    /* Truco: la galería ocupa toda la altura de su card */
-    #maldivas .gallery{
-      display:grid; grid-template-columns:1fr 1fr; gap:12px; width:100%; height:100%;
-    }
-    #maldivas .gallery picture{
-      position:relative; border-radius:var(--radius); overflow:hidden; box-shadow:var(--shadow); background:#000;
-    }
-    /* Cada imagen rellena su celda SIN deformarse. Horizontal potente. */
-    #maldivas .gallery picture>img{
-      position:absolute; inset:0; width:100%; height:100%;
-      object-fit:cover; object-position:center;
-      /* Mantiene sensación horizontal: la celda es más ancha que alta por el grid */
-    }
-    /* Card de texto con el mismo look que las de “Tribu” */
-    #maldivas .text-card{
-      background:var(--card); border:1px solid rgba(255,255,255,.06); border-radius:var(--radius); box-shadow:var(--shadow);
-      padding:22px; display:flex; flex-direction:column; justify-content:center; align-items:center; text-align:center; gap:14px; height:100%;
-    }
-    #maldivas .text-card h3{margin:0; font-size:18px; color:var(--accent);}
-    #maldivas .text-card ul{list-style:none; padding:0; margin:0;}
-    #maldivas .text-card li{margin:6px 0; color:var(--muted);}
-    @media (max-width:900px){
-      #maldivas .grid{grid-template-columns:1fr; gap:14px}
-      #maldivas .photos-card, #maldivas .text-card{height:auto}
-      #maldivas .gallery{grid-template-columns:1fr 1fr}
-    }
-    @media (max-width:520px){
-      #maldivas .gallery{grid-template-columns:1fr}
-    }
+    /* Maldivas — igual estética, fotos horizontales grandes */
+    .maldivas-layout{display:grid; grid-template-columns:1.1fr .9fr; gap:16px; align-items:start;}
+    .photos-card{padding:12px;}
+    .photos-grid{display:grid; grid-template-columns:1fr 1fr; gap:12px;}
+    .photos-grid .ph{display:block; aspect-ratio:3/2; border-radius:var(--radius); overflow:hidden; box-shadow:var(--shadow); background:#000; margin:0;}
+    .photos-grid .ph>img{width:100%; height:100%; object-fit:cover; object-position:center; display:block;}
+    .text-card{display:flex; flex-direction:column; justify-content:center; gap:12px; text-align:left; padding:18px;}
+    .text-card h3{margin:0 0 4px; font-size:18px; color:var(--accent);}
+    ul.clean{list-style:none; padding:0; margin:0;}
+    ul.clean li{position:relative; padding-left:18px; margin:6px 0; color:var(--muted);}
+    ul.clean li::before{content:"•"; color:var(--brand); position:absolute; left:0; top:0; line-height:1;}
+    @media (max-width:900px){.maldivas-layout{grid-template-columns:1fr; gap:14px;} .photos-grid{grid-template-columns:1fr 1fr;}}
+    @media (max-width:520px){.photos-grid{grid-template-columns:1fr;}}
 
     /* Formulario */
     .form-wrap{max-width:760px; margin:0 auto; background:var(--card); border:1px solid rgba(255,255,255,.06); border-radius:var(--radius); padding:18px; box-shadow:var(--shadow);}
@@ -142,11 +119,8 @@
   <!-- Header -->
   <header>
     <div class="wrap nav">
-      <a href="#" class="brand">
-        <span class="dot"></span> <span>Savage Nomads</span>
-      </a>
+      <a href="#" class="brand"><span class="dot"></span> <span>Savage Nomads</span></a>
 
-      <!-- NAV links restaurados -->
       <nav class="navlinks">
         <a href="#ofrecemos">Qué ofrecemos</a>
         <a href="#tribu">Tribu</a>
@@ -208,26 +182,24 @@
       <h2>Maldivas Aventureras</h2>
       <p class="lead">Playas de postal, vida marina y un ritmo pensado para exprimir cada día sin ir con la lengua fuera.</p>
 
-      <div class="grid">
-        <!-- Card de fotos con el mismo estilo que el resto -->
-        <div class="photos-card">
-          <div class="gallery">
-            <picture><img src="pareja.jpg?v=6" alt="Pareja disfrutando en Maldivas" loading="lazy"></picture>
-            <picture><img src="subm.jpg?v=6" alt="Snorkel en arrecife de Maldivas" loading="lazy"></picture>
+      <div class="maldivas-layout">
+        <div class="card photos-card">
+          <div class="photos-grid">
+            <figure class="ph"><img src="pareja.jpg?v=7" alt="Pareja disfrutando en Maldivas" loading="lazy"></figure>
+            <figure class="ph"><img src="subm.jpg?v=7" alt="Snorkel en arrecife de Maldivas" loading="lazy"></figure>
           </div>
         </div>
 
-        <!-- Card de texto con el mismo estilo que 'Tribu' -->
-        <div class="text-card">
+        <div class="card text-card">
           <h3>Qué vas a vivir</h3>
-          <ul>
+          <ul class="clean">
             <li>Islas locales y arena blanca real</li>
             <li>Snorkel con arrecifes de colores</li>
             <li>Amaneceres tranquilos, atardeceres potentes</li>
             <li>Comercios y comida local sin turistada</li>
           </ul>
           <h3>Incluye</h3>
-          <ul>
+          <ul class="clean">
             <li>Coordinación en destino</li>
             <li>Itinerario optimizado día a día</li>
             <li>Selección de alojamientos y traslados</li>
@@ -238,7 +210,7 @@
     </div>
   </section>
 
-  <!-- Preguntas frecuentes (restauradas) -->
+  <!-- Preguntas frecuentes -->
   <section id="faq">
     <div class="wrap">
       <h2>Preguntas frecuentes</h2>
