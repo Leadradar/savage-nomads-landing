@@ -4,45 +4,23 @@
   <meta charset="utf-8">
   <!-- Viewport sin zoom/pinch -->
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-  <title>Savage Nomads — Viajes en grupo pensados de verdad</title>
-
-  <!-- ===== FIX iOS: no restaurar scroll y empezar arriba si no hay hash ===== -->
-  <script>
-    (function () {
-      try { if ('scrollRestoration' in history) { history.scrollRestoration = 'manual'; } } catch(e){}
-      function topIfNoHash() {
-        if (!location.hash) {
-          // desactiva scroll suave un instante para evitar “rebote”
-          const html = document.documentElement;
-          const prev = html.style.scrollBehavior;
-          html.style.scrollBehavior = 'auto';
-          // varios intentos porque iOS a veces aplica su scroll después
-          requestAnimationFrame(() => { window.scrollTo(0,0);
-            setTimeout(() => { window.scrollTo(0,0); html.style.scrollBehavior = prev || 'smooth'; }, 0);
-          });
-        }
-      }
-      // Al mostrar (incluye BFCache) y también en primera carga
-      window.addEventListener('pageshow', topIfNoHash, { once:true });
-      window.addEventListener('load', topIfNoHash, { once:true });
-    })();
-  </script>
+  <title>Savage Nomads — Viajes en grupo bien pensados</title>
 
   <!-- SEO básico -->
-  <meta name="title" content="Savage Nomads — Viajes en grupo pensados de verdad">
+  <meta name="title" content="Savage Nomads — Viajes en grupo bien pensados">
   <meta name="description" content="Viajes en grupo seleccionados, con itinerarios cuidados y buena compañía. Únete a Savage Nomads.">
 
   <!-- Open Graph -->
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://leadradar.github.io/savage-nomads-landing/">
-  <meta property="og:title" content="Savage Nomads — Viajes en grupo pensados de verdad">
+  <meta property="og:title" content="Savage Nomads — Viajes en grupo bien pensados">
   <meta property="og:description" content="Viajes en grupo seleccionados, con itinerarios cuidados y buena compañía. Únete a Savage Nomads.">
   <meta property="og:image" content="https://leadradar.github.io/savage-nomads-landing/hero.jpg">
 
   <!-- Twitter -->
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:url" content="https://leadradar.github.io/savage-nomads-landing/">
-  <meta name="twitter:title" content="Savage Nomads — Viajes en grupo pensados de verdad">
+  <meta name="twitter:title" content="Savage Nomads — Viajes en grupo bien pensados">
   <meta name="twitter:description" content="Viajes en grupo seleccionados, con itinerarios cuidados y buena compañía. Únete a Savage Nomads.">
   <meta name="twitter:image" content="https://leadradar.github.io/savage-nomads-landing/hero.jpg">
 
@@ -66,15 +44,18 @@
       --section-gap:56px;
       --section-gap-mobile:40px;
 
-      /* Vars shrink */
+      /* Vars header */
       --nav-h:64px;
-      --nav-h-shrink:48px;     /* móvil/tablet */
+      --nav-h-shrink:48px;
       --brand-dot:10px;
-      --brand-dot-shrink:7px;  /* móvil/tablet */
+      --brand-dot-shrink:7px;
       --navlink-size:15.5px;
-      --navlink-size-shrink:14.5px; /* móvil/tablet */
+      --navlink-size-shrink:14.5px;
       --navlink-gap:14px;
-      --navlink-gap-shrink:10px;    /* móvil/tablet */
+      --navlink-gap-shrink:10px;
+
+      /* Progreso de encogido (0..1) – lo actualiza el JS sólo en móvil */
+      --shrink: 0;
     }
     *{box-sizing:border-box}
     html{scroll-behavior:smooth}
@@ -93,7 +74,7 @@
     .wrap{max-width:1100px; margin:0 auto; padding:0 16px}
     .nav{
       display:flex; align-items:center; justify-content:space-between;
-      height:var(--nav-h); /* SIN transición de altura en desktop */
+      height:var(--nav-h); /* Desktop siempre fijo */
     }
     .brand{display:flex; gap:10px; align-items:center; font-weight:800; letter-spacing:.2px}
     .brand .dot{width:var(--brand-dot); height:var(--brand-dot); border-radius:50%; background:var(--brand);}
@@ -103,16 +84,31 @@
     .btn{display:inline-block; padding:10px 16px; border-radius:999px; font-weight:700; border:none; cursor:pointer; transition:transform .2s, box-shadow .2s;}
     .btn-cta{background:var(--brand); color:#0b0f10; box-shadow:0 8px 22px rgba(0,0,0,.18)}
     .btn-cta:hover{transform:translateY(-1px)}
-
-    /* Estado SHRINK: en desktop SOLO fondo/sombra (tamaño fijo) */
-    header.shrink{background:rgba(11,15,16,.9); box-shadow:0 6px 18px rgba(0,0,0,.35); border-bottom-color:rgba(255,255,255,.1)}
+    header.shrink-bg{background:rgba(11,15,16,.9); box-shadow:0 6px 18px rgba(0,0,0,.35); border-bottom-color:rgba(255,255,255,.1)}
 
     /* Hero */
     .hero{position:relative}
-    .hero img{width:100%; height:clamp(380px, 58vh, 520px); object-fit:cover;}
+    .hero img{width:100%; height:clamp(420px, 60vh, 560px); object-fit:cover; object-position:center;}
     .hero .overlay{position:absolute; inset:0; background:linear-gradient(180deg, rgba(0,0,0,.28), rgba(0,0,0,.18), transparent 55%)}
-    .hero h1{position:absolute; left:50%; top:50%; transform:translate(-50%,-50%); margin:0; text-align:center; color:var(--accent); font-size:clamp(28px, 5.2vw, 44px); line-height:1.15; text-shadow:0 6px 24px rgba(0,0,0,.45); max-width:18ch;}
-    .hero .sub{position:absolute; left:50%; top:calc(50% + 86px); transform:translateX(-50%); color:var(--fg); opacity:.92; text-align:center; max-width:46ch; padding:0 12px; font-size:clamp(15px,2.3vw,18px); text-shadow:0 4px 16px rgba(0,0,0,.45);}
+    .hero-content{
+      position:absolute; inset:0; display:flex; flex-direction:column;
+      align-items:center; justify-content:center; gap:12px; padding:0 16px;
+      text-align:center;
+    }
+    .hero h1{
+      margin:0; color:var(--accent);
+      font-size:clamp(28px, 5.2vw, 44px); line-height:1.15;
+      text-shadow:0 6px 24px rgba(0,0,0,.45); max-width:18ch;
+    }
+    .hero .sub{
+      margin:0; color:var(--fg); opacity:.92; max-width:46ch;
+      font-size:clamp(15px,2.3vw,18px); text-shadow:0 4px 16px rgba(0,0,0,.45);
+    }
+
+    /* En móvil, colocamos el texto un poco más abajo (mejor lectura sobre la foto) */
+    @media (max-width:700px){
+      .hero-content{justify-content:flex-end; padding-bottom:12vh;}
+    }
 
     /* Secciones */
     section{padding: clamp(var(--section-gap-mobile), 5vw, var(--section-gap)) 0}
@@ -139,7 +135,7 @@
     #tribu .card{height:100%;}
     @media (max-width:900px){.tribe-layout{grid-template-columns:1fr;} .tribe-photo img{aspect-ratio:16/9;}}
 
-    /* Maldivas — fotos horizontales 3:2 */
+    /* Maldivas — fotos 3:2 */
     .maldivas-layout{display:grid; grid-template-columns:1.1fr .9fr; gap:16px; align-items:center;}
     .photos-card{padding:12px;}
     .photos-grid{display:grid; grid-template-columns:1fr 1fr; gap:12px; align-items:center;}
@@ -176,33 +172,62 @@
     /* Footer */
     footer{padding:28px 0; color:var(--muted); text-align:center; border-top:1px solid rgba(255,255,255,.06)}
 
-    /* Desktop (mantener tamaño fijo en shrink) */
+    /* Desktop fijo en tamaño (sólo cambia fondo/sombra) */
     @media (min-width:901px){
       .tribe-layout, .maldivas-layout{ gap:18px; }
-      header.shrink .nav{height:var(--nav-h)}
-      header.shrink .brand .dot{width:var(--brand-dot); height:var(--brand-dot)}
-      header.shrink .navlinks{gap:var(--navlink-gap); font-size:var(--navlink-size)}
     }
     .navlinks a{ transition: opacity .15s ease; }
     .navlinks a:hover{ opacity:1; text-decoration:underline; text-underline-offset:3px; }
     section[id]{ scroll-margin-top: 84px; }
 
-    /* Móvil/tablet: cabecera 2 filas + shrink suave */
+    /* Móvil/tablet: cabecera 2 filas + encogido PROGRESIVO */
     @media (max-width: 900px) {
       .nav{flex-wrap:wrap; height:auto; padding:10px 0; gap:8px;}
       .brand{order:1;}
       .btn-cta{order:2;}
       .navlinks{
-        order:3; width:100%; justify-content:center; gap:var(--navlink-gap);
+        order:3; width:100%; justify-content:center;
         border-top:1px solid rgba(255,255,255,.06); padding-top:8px; flex-wrap:wrap;
       }
-      /* aquí sí encogemos un pelín */
-      header.shrink .nav{height:var(--nav-h-shrink)}
-      header.shrink .brand .dot{width:var(--brand-dot-shrink); height:var(--brand-dot-shrink)}
-      header.shrink .navlinks{gap:var(--navlink-gap-shrink); font-size:var(--navlink-size-shrink)}
-      header.shrink .btn-cta{transform:none; padding:9px 14px}
+
+      /* Transición contínua con --shrink (0..1) */
+      header{
+        /* Altura interpola entre nav-h y nav-h-shrink */
+        --h: calc( var(--nav-h) - (var(--nav-h) - var(--nav-h-shrink)) * var(--shrink) );
+      }
+      header .nav{height:var(--h);}
+      header .brand .dot{
+        width: calc( var(--brand-dot) - (var(--brand-dot) - var(--brand-dot-shrink)) * var(--shrink) );
+        height: calc( var(--brand-dot) - (var(--brand-dot) - var(--brand-dot-shrink)) * var(--shrink) );
+      }
+      header .navlinks{
+        gap: calc( var(--navlink-gap) - (var(--navlink-gap) - var(--navlink-gap-shrink)) * var(--shrink) );
+        font-size: calc( var(--navlink-size) - (var(--navlink-size) - var(--navlink-size-shrink)) * var(--shrink) );
+      }
+      header .btn-cta{
+        padding: calc(10px - 2px * var(--shrink)) calc(16px - 2px * var(--shrink));
+      }
     }
   </style>
+
+  <!-- FIX iOS: no restaurar scroll y empezar arriba si no hay hash -->
+  <script>
+    (function () {
+      try { if ('scrollRestoration' in history) { history.scrollRestoration = 'manual'; } } catch(e){}
+      function topIfNoHash() {
+        if (!location.hash) {
+          const html = document.documentElement;
+          const prev = html.style.scrollBehavior;
+          html.style.scrollBehavior = 'auto';
+          requestAnimationFrame(() => { window.scrollTo(0,0);
+            setTimeout(() => { window.scrollTo(0,0); html.style.scrollBehavior = prev || 'smooth'; }, 0);
+          });
+        }
+      }
+      window.addEventListener('pageshow', topIfNoHash, { once:true });
+      window.addEventListener('load', topIfNoHash, { once:true });
+    })();
+  </script>
 </head>
 <body>
 
@@ -224,8 +249,10 @@
   <section class="hero" aria-label="Portada">
     <img src="hero.jpg" alt="Grupo viajando por playas de aguas turquesas">
     <div class="overlay"></div>
-    <h1>Viajes en grupo, pensados de verdad</h1>
-    <p class="sub">Rutas cuidadas, gente afín y cero dolores de cabeza. Tú ven —del resto nos ocupamos nosotros.</p>
+    <div class="hero-content">
+      <h1>Viajes en grupo bien pensados</h1>
+      <p class="sub">Rutas cuidadas, gente afín y cero dolores de cabeza. Tú ven —del resto nos ocupamos nosotros.</p>
+    </div>
   </section>
 
   <!-- Qué ofrecemos -->
@@ -358,10 +385,56 @@
   <script>
     // Año dinámico
     document.getElementById('y').textContent = new Date().getFullYear();
-  </script>
 
-  <!-- Redirección forzada tras enviar form -->
-  <script>
+    // Encogido PROGRESIVO sólo en móvil/tablet (hasta 80px de scroll)
+    (function(){
+      const header = document.getElementById('site-header');
+      if(!header) return;
+      const isMobile = () => window.matchMedia('(max-width: 900px)').matches;
+      let ticking = false;
+
+      function onScroll(){
+        if (ticking) return;
+        ticking = true;
+        requestAnimationFrame(() => {
+          const y = window.scrollY || 0;
+          // progreso de 0..1 en los primeros 80px
+          const s = Math.max(0, Math.min(1, y / 80));
+          if (isMobile()){
+            document.documentElement.style.setProperty('--shrink', s.toFixed(3));
+          } else {
+            document.documentElement.style.setProperty('--shrink', '0');
+          }
+          // Sólo cambia fondo/sombra (sin tamaño) para desktop
+          if (y > 8) header.classList.add('shrink-bg'); else header.classList.remove('shrink-bg');
+          ticking = false;
+        });
+      }
+      window.addEventListener('scroll', onScroll, { passive:true });
+      window.addEventListener('resize', onScroll);
+      onScroll();
+    })();
+
+    // iOS/Safari: no restaurar scroll; empezar arriba si no hay hash
+    (function () {
+      try { if ('scrollRestoration' in history) { history.scrollRestoration = 'manual'; } } catch(e){}
+      function topIfNoHash() {
+        if (!location.hash) {
+          const html = document.documentElement;
+          const prev = html.style.scrollBehavior;
+          html.style.scrollBehavior = 'auto';
+          requestAnimationFrame(() => { window.scrollTo(0,0);
+            setTimeout(() => { window.scrollTo(0,0); html.style.scrollBehavior = prev || 'smooth'; }, 0);
+          });
+        }
+      }
+      window.addEventListener('pageshow', topIfNoHash, { once:true });
+      window.addEventListener('load', topIfNoHash, { once:true });
+      // extra por si abre con teclado/zoom
+      if (!location.hash) { setTimeout(() => { window.scrollTo(0,0); }, 300); }
+    })();
+
+    // Formspree con redirección forzada
     (function () {
       const form = document.getElementById('form-savage');
       if (!form) return;
@@ -381,35 +454,5 @@
       });
     })();
   </script>
-
-  <!-- Header shrink on scroll -->
-  <script>
-    (function(){
-      const header = document.getElementById('site-header');
-      if(!header) return;
-      let ticking = false;
-      function apply(){
-        const y = window.scrollY || window.pageYOffset || 0;
-        if(y > 10){ header.classList.add('shrink'); }
-        else { header.classList.remove('shrink'); }
-      }
-      window.addEventListener('scroll', function(){
-        if(!ticking){
-          requestAnimationFrame(function(){ apply(); ticking=false; });
-          ticking = true;
-        }
-      }, { passive: true });
-      apply(); // estado inicial por si recarga scrolleado
-    })();
-  </script>
-
-  <!-- ===== FIX iOS extra: por si un teclado/zoom empuja al cargar ===== -->
-  <script>
-    (function(){
-      // a los 300ms tras cargar, garantiza estar arriba si no hay hash
-      if (!location.hash) { setTimeout(() => { window.scrollTo(0,0); }, 300); }
-    })();
-  </script>
-
 </body>
 </html>
