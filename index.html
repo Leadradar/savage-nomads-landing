@@ -4,23 +4,23 @@
   <meta charset="utf-8">
   <!-- Viewport sin zoom/pinch -->
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-  <title>Savage Nomads — Viajes en grupo bien pensados</title>
+  <title>Savage Nomads — Explora el mundo, conecta de verdad</title>
 
   <!-- SEO básico -->
-  <meta name="title" content="Savage Nomads — Viajes en grupo bien pensados">
+  <meta name="title" content="Savage Nomads — Explora el mundo, conecta de verdad">
   <meta name="description" content="Viajes en grupo seleccionados, con itinerarios cuidados y buena compañía. Únete a Savage Nomads.">
 
   <!-- Open Graph -->
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://leadradar.github.io/savage-nomads-landing/">
-  <meta property="og:title" content="Savage Nomads — Viajes en grupo bien pensados">
+  <meta property="og:title" content="Savage Nomads — Explora el mundo, conecta de verdad">
   <meta property="og:description" content="Viajes en grupo seleccionados, con itinerarios cuidados y buena compañía. Únete a Savage Nomads.">
   <meta property="og:image" content="https://leadradar.github.io/savage-nomads-landing/hero.jpg">
 
   <!-- Twitter -->
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:url" content="https://leadradar.github.io/savage-nomads-landing/">
-  <meta name="twitter:title" content="Savage Nomads — Viajes en grupo bien pensados">
+  <meta name="twitter:title" content="Savage Nomads — Explora el mundo, conecta de verdad">
   <meta name="twitter:description" content="Viajes en grupo seleccionados, con itinerarios cuidados y buena compañía. Únete a Savage Nomads.">
   <meta name="twitter:image" content="https://leadradar.github.io/savage-nomads-landing/hero.jpg">
 
@@ -28,6 +28,11 @@
   <link rel="icon" type="image/png" href="favicon.png">
   <link rel="icon" href="favicon.ico">
   <link rel="icon" type="image/svg+xml" href="favicon.svg">
+
+  <!-- Google Fonts: Poppins -->
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;800&display=swap" rel="stylesheet">
 
   <link rel="preload" as="image" href="hero.jpg">
 
@@ -52,7 +57,11 @@
     }
     *{box-sizing:border-box}
     html{scroll-behavior:smooth}
-    body{margin:0; font-family:system-ui,-apple-system,Segoe UI,Roboto,Inter,Ubuntu,Arial,sans-serif; background:var(--bg); color:var(--fg); line-height:1.5;}
+    body{
+      margin:0;
+      font-family:'Poppins',system-ui,-apple-system,Segoe UI,Roboto,Inter,Ubuntu,Arial,sans-serif;
+      background:var(--bg); color:var(--fg); line-height:1.5;
+    }
     a{color:inherit; text-decoration:none}
     img{max-width:100%; display:block}
 
@@ -81,16 +90,19 @@
     /* Fondo opaco al scrollear (ligero) */
     header.solid{background:rgba(11,15,16,.92); box-shadow:0 6px 18px rgba(0,0,0,.35); border-bottom-color:rgba(255,255,255,.1)}
 
-    /* Hero con PARALLAX (imagen se mueve sutilmente) */
-    .hero{position:relative; overflow:hidden;}
+    /* Hero con PARALLAX y overlay reforzado */
+    .hero{position:relative; overflow:hidden}
     .hero img{
       width:100%; height:clamp(420px, 60vh, 560px);
       object-fit:cover; object-position:center;
       will-change:transform;
-      transform:translateY(0); /* lo moveremos con JS en desktop */
+      transform:translateY(0);
       transition:transform .08s linear;
     }
-    .hero .overlay{position:absolute; inset:0; background:linear-gradient(180deg, rgba(0,0,0,.28), rgba(0,0,0,.18), transparent 55%)}
+    .hero .overlay{
+      position:absolute; inset:0;
+      background:linear-gradient(180deg, rgba(0,0,0,.45), rgba(0,0,0,.28), rgba(0,0,0,.6));
+    }
     .hero-content{
       position:absolute; inset:0; display:flex; flex-direction:column;
       align-items:center; justify-content:center; gap:12px; padding:0 16px;
@@ -98,12 +110,17 @@
     }
     .hero h1{
       margin:0; color:var(--accent);
-      font-size:clamp(28px, 5.2vw, 44px); line-height:1.15;
-      text-shadow:0 6px 24px rgba(0,0,0,.45); max-width:18ch;
+      font-weight:800;
+      font-size:clamp(30px, 5.5vw, 52px);
+      line-height:1.1;
+      text-shadow:0 8px 28px rgba(0,0,0,.65);
+      max-width:20ch;
     }
     .hero .sub{
-      margin:0; color:var(--fg); opacity:.92; max-width:46ch;
-      font-size:clamp(15px,2.3vw,18px); text-shadow:0 4px 16px rgba(0,0,0,.45);
+      margin:0; color:#f5f7f8; opacity:.96; max-width:48ch;
+      font-weight:400;
+      font-size:clamp(16px,2.4vw,20px);
+      text-shadow:0 6px 22px rgba(0,0,0,.65);
     }
 
     /* Secciones */
@@ -113,11 +130,12 @@
     .lead{color:var(--muted); text-align:center; max-width:60ch; margin:0 auto 24px}
 
     /* Card base */
-    .card{background:var(--card); border:1px solid rgba(255,255,255,.06); border-radius:var(--radius); padding:18px; box-shadow:var(--shadow); transition:transform .22s ease, box-shadow .22s ease;}
+    .card{background:var(--card); border:1px solid rgba(255,255,255,.06); border-radius:var(--radius); padding:18px; box-shadow:var(--shadow);}
 
-    /* WOW: hover elegante en cards (solo desktop) */
+    /* WOW: hover elegante SOLO en cards de contenido (no botones/cabecera/form) */
     @media (min-width:901px){
-      .card:hover{ transform:translateY(-4px); box-shadow:var(--shadow-strong); }
+      section .card{ transition:transform .22s ease, box-shadow .22s ease; }
+      section .card:hover{ transform:translateY(-4px); box-shadow:var(--shadow-strong); }
     }
 
     /* Qué ofrecemos */
@@ -160,7 +178,7 @@
     label{font-size:13px; color:var(--muted)}
     input, select, textarea{width:100%; padding:11px 12px; border-radius:10px; border:1px solid rgba(255,255,255,.1); background:#0f1417; color:#e9f1f3;}
     textarea{min-height:120px; resize:vertical}
-    button[type="submit"]{justify-self:center; margin-top:6px}
+    button[type="submit"){justify-self:center; margin-top:6px}
     @media (max-width:640px){form{grid-template-columns:1fr}}
 
     /* FAQ */
@@ -173,7 +191,7 @@
     .faq details:hover{border-color:rgba(255,255,255,.14);}
     .faq p{color:var(--muted); margin:10px 0 0;}
 
-    /* Desktop: mejoras visuales adicionales */
+    /* Desktop: mejoras visuales y accesibilidad */
     @media (min-width:901px){
       .tribe-layout, .maldivas-layout{ gap:18px; }
 
@@ -190,7 +208,7 @@
         border-radius: 6px;
       }
 
-      /* WOW: reveal de secciones al entrar en viewport */
+      /* WOW: reveal de secciones */
       .reveal{
         opacity:0;
         transform: translateY(12px) scale(0.995);
@@ -207,7 +225,6 @@
     @media (prefers-reduced-motion: reduce){
       html{ scroll-behavior: auto; }
       *{ animation-duration: .01ms !important; animation-iteration-count: 1 !important; transition-duration: .01ms !important; }
-      /* Desactiva parallax en este modo por respeto */
       .hero img{ transition:none !important; transform:none !important; }
     }
 
@@ -215,7 +232,7 @@
     .navlinks a:hover{ opacity:1; text-decoration:underline; text-underline-offset:3px; }
     section[id]{ scroll-margin-top: 84px; }
 
-    /* ===== SOLO MÓVIL/TABLET (idéntico a lo que tenías) ===== */
+    /* ===== SOLO MÓVIL/TABLET (lo que ya tenías) ===== */
     @media (max-width: 900px) {
       .nav{flex-wrap:wrap; height:auto; padding:10px 0; gap:8px;}
       .brand{order:1;}
@@ -274,8 +291,8 @@
     <img id="hero-img" src="hero.jpg" alt="Grupo viajando por playas de aguas turquesas">
     <div class="overlay"></div>
     <div class="hero-content">
-      <h1>Viajes en grupo bien pensados</h1>
-      <p class="sub">Rutas cuidadas, gente afín y cero dolores de cabeza. Tú ven —del resto nos ocupamos nosotros.</p>
+      <h1>Explora el mundo, conecta de verdad</h1>
+      <p class="sub">Viajar con tu tribu, descubrir lugares únicos y vivir momentos que no se olvidan.</p>
     </div>
   </section>
 
@@ -509,12 +526,11 @@
 
     // 3) WOW: Reveal de secciones (desktop)
     (function(){
+      const els = document.querySelectorAll('.reveal');
       if (!window.matchMedia('(min-width: 901px)').matches) {
-        // en móvil, muestra todo sin animar
-        document.querySelectorAll('.reveal').forEach(el => el.classList.add('in'));
+        els.forEach(el => el.classList.add('in')); // en móvil, visibles sin animar
         return;
       }
-      const els = document.querySelectorAll('.reveal');
       const io = new IntersectionObserver((entries, obs)=>{
         entries.forEach(entry=>{
           if (entry.isIntersecting){
@@ -539,7 +555,6 @@
         requestAnimationFrame(()=>{
           const rect = img.parentElement.getBoundingClientRect();
           const vh = window.innerHeight || 1;
-          // progreso de visibilidad de la sección (0 .. 1+)
           const p = Math.max(0, Math.min(1, 1 - rect.top / vh));
           const shift = (p * maxShift);
           img.style.transform = `translateY(${shift}px)`;
