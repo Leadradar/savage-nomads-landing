@@ -41,6 +41,7 @@
       --card:#11171a;
       --radius:14px;
       --shadow:0 10px 30px rgba(0,0,0,.12);
+      --shadow-strong:0 14px 36px rgba(0,0,0,.28);
       --section-gap:56px;
       --section-gap-mobile:40px;
 
@@ -80,14 +81,20 @@
     /* Fondo opaco al scrollear (ligero) */
     header.solid{background:rgba(11,15,16,.92); box-shadow:0 6px 18px rgba(0,0,0,.35); border-bottom-color:rgba(255,255,255,.1)}
 
-    /* Hero remaquetado centrado */
-    .hero{position:relative}
-    .hero img{width:100%; height:clamp(420px, 60vh, 560px); object-fit:cover; object-position:center;}
+    /* Hero con PARALLAX (imagen se mueve sutilmente) */
+    .hero{position:relative; overflow:hidden;}
+    .hero img{
+      width:100%; height:clamp(420px, 60vh, 560px);
+      object-fit:cover; object-position:center;
+      will-change:transform;
+      transform:translateY(0); /* lo moveremos con JS en desktop */
+      transition:transform .08s linear;
+    }
     .hero .overlay{position:absolute; inset:0; background:linear-gradient(180deg, rgba(0,0,0,.28), rgba(0,0,0,.18), transparent 55%)}
     .hero-content{
       position:absolute; inset:0; display:flex; flex-direction:column;
       align-items:center; justify-content:center; gap:12px; padding:0 16px;
-      text-align:center;
+      text-align:center; pointer-events:none;
     }
     .hero h1{
       margin:0; color:var(--accent);
@@ -106,7 +113,12 @@
     .lead{color:var(--muted); text-align:center; max-width:60ch; margin:0 auto 24px}
 
     /* Card base */
-    .card{background:var(--card); border:1px solid rgba(255,255,255,.06); border-radius:var(--radius); padding:18px; box-shadow:var(--shadow);}
+    .card{background:var(--card); border:1px solid rgba(255,255,255,.06); border-radius:var(--radius); padding:18px; box-shadow:var(--shadow); transition:transform .22s ease, box-shadow .22s ease;}
+
+    /* WOW: hover elegante en cards (solo desktop) */
+    @media (min-width:901px){
+      .card:hover{ transform:translateY(-4px); box-shadow:var(--shadow-strong); }
+    }
 
     /* Qué ofrecemos */
     .features{display:grid; grid-template-columns:repeat(3,1fr); gap:14px}
@@ -123,7 +135,6 @@
     #tribu .card{height:100%;}
     @media (max-width:900px){
       .tribe-layout{grid-template-columns:1fr; gap:18px;}
-      /* MÁS separación bajo la foto en móvil */
       .tribe-photo{margin-bottom: clamp(16px, 6vw, 28px);}
       .tribe-photo img{aspect-ratio:16/9;}
     }
@@ -162,12 +173,10 @@
     .faq details:hover{border-color:rgba(255,255,255,.14);}
     .faq p{color:var(--muted); margin:10px 0 0;}
 
-    /* Footer */
-    footer{padding:28px 0; color:var(--muted); text-align:center; border-top:1px solid rgba(255,255,255,.06)}
-
-    /* Desktop (mantener tamaño fijo; mejoras visuales ligeras) */
+    /* Desktop: mejoras visuales adicionales */
     @media (min-width:901px){
       .tribe-layout, .maldivas-layout{ gap:18px; }
+
       /* Link activo en el menú (scrollspy) */
       header .navlinks a.active{
         opacity:1;
@@ -180,21 +189,17 @@
         outline-offset: 2px;
         border-radius: 6px;
       }
-      /* Micro-animación en FAQ (sutil) */
-      .faq details{
-        overflow: hidden;
-        transition: border-color .2s ease;
+
+      /* WOW: reveal de secciones al entrar en viewport */
+      .reveal{
+        opacity:0;
+        transform: translateY(12px) scale(0.995);
+        will-change: opacity, transform;
       }
-      .faq details > p{
-        margin: 0;
-        padding-top: 10px;
-      }
-      .faq details[open] > p{
-        animation: faq-reveal .22s ease;
-      }
-      @keyframes faq-reveal{
-        from{ opacity:.4; transform: translateY(-2px); }
-        to{ opacity:1; transform: translateY(0); }
+      .reveal.in{
+        opacity:1;
+        transform: none;
+        transition: opacity .45s ease, transform .45s ease;
       }
     }
 
@@ -202,13 +207,15 @@
     @media (prefers-reduced-motion: reduce){
       html{ scroll-behavior: auto; }
       *{ animation-duration: .01ms !important; animation-iteration-count: 1 !important; transition-duration: .01ms !important; }
+      /* Desactiva parallax en este modo por respeto */
+      .hero img{ transition:none !important; transform:none !important; }
     }
 
     .navlinks a{ transition: opacity .15s ease; }
     .navlinks a:hover{ opacity:1; text-decoration:underline; text-underline-offset:3px; }
     section[id]{ scroll-margin-top: 84px; }
 
-    /* ===== SOLO MÓVIL/TABLET (todo igual que ya tenías) ===== */
+    /* ===== SOLO MÓVIL/TABLET (idéntico a lo que tenías) ===== */
     @media (max-width: 900px) {
       .nav{flex-wrap:wrap; height:auto; padding:10px 0; gap:8px;}
       .brand{order:1;}
@@ -223,7 +230,6 @@
         border-radius:12px;
         margin-top:8px;
       }
-      /* Header más fuerte en móvil para evitar solapes al inicio */
       header{ background: rgba(11,15,16,.9); }
     }
   </style>
@@ -264,8 +270,8 @@
   </header>
 
   <!-- Hero -->
-  <section class="hero" aria-label="Portada">
-    <img src="hero.jpg" alt="Grupo viajando por playas de aguas turquesas">
+  <section class="hero reveal" aria-label="Portada">
+    <img id="hero-img" src="hero.jpg" alt="Grupo viajando por playas de aguas turquesas">
     <div class="overlay"></div>
     <div class="hero-content">
       <h1>Viajes en grupo bien pensados</h1>
@@ -274,7 +280,7 @@
   </section>
 
   <!-- Qué ofrecemos -->
-  <section id="ofrecemos">
+  <section id="ofrecemos" class="reveal">
     <div class="wrap">
       <h2>Qué ofrecemos</h2>
       <p class="lead">Selección honesta, logística afinada y detalles que marcan la diferencia. Sin humo.</p>
@@ -290,7 +296,7 @@
   </section>
 
   <!-- Conecta con tu tribu -->
-  <section id="tribu">
+  <section id="tribu" class="reveal">
     <div class="wrap">
       <h2>Conecta con tu tribu</h2>
       <p class="lead">Gente afín, buen rollo y cero postureo: viajamos para vivirlo de verdad, no para coleccionar check-ins.</p>
@@ -310,7 +316,7 @@
   </section>
 
   <!-- Maldivas Aventureras -->
-  <section id="maldivas">
+  <section id="maldivas" class="reveal">
     <div class="wrap">
       <h2>Maldivas Aventureras</h2>
       <p class="lead">Playas de postal, vida marina y un ritmo pensado para exprimir cada día sin ir con la lengua fuera.</p>
@@ -346,7 +352,7 @@
   </section>
 
   <!-- Preguntas frecuentes -->
-  <section id="faq">
+  <section id="faq" class="reveal">
     <div class="wrap">
       <h2>Preguntas frecuentes</h2>
       <p class="lead">Lo más típico que nos preguntan antes de reservar plaza.</p>
@@ -362,7 +368,7 @@
   </section>
 
   <!-- Formulario -->
-  <section id="apuntate">
+  <section id="apuntate" class="reveal">
     <div class="wrap">
       <h2>¿Te apuntas?</h2>
       <p class="lead">Déjanos tus datos y te escribimos con fechas, plazas y próximos destinos.</p>
@@ -404,7 +410,7 @@
     // Año dinámico
     document.getElementById('y').textContent = new Date().getFullYear();
 
-    // Header: ya lo tenías -> sólo fondo/sombra al bajar (barato => sin tirones)
+    // Header: fondo/sombra al bajar (barato => sin tirones)
     (function(){
       const header = document.getElementById('site-header');
       if(!header) return;
@@ -420,7 +426,7 @@
       apply();
     })();
 
-    // iOS: evitar que arranque abajo si no hay hash (móvil; no afecta desktop)
+    // iOS: evitar que arranque abajo si no hay hash (móvil)
     (function () {
       try { if ('scrollRestoration' in history) { history.scrollRestoration = 'manual'; } } catch(e){}
       function topIfNoHash() {
@@ -457,19 +463,18 @@
       });
     })();
 
-    /* ====== MEJORAS SOLO ESCRITORIO (no cambian nada visual en móvil) ====== */
+    /* ====== MEJORAS SOLO ESCRITORIO ====== */
 
-    // 1) Navegación de anclas con offset (para que el sticky no tape títulos) + suave
+    // 1) Navegación de anclas con offset + suave
     (function(){
       if (!window.matchMedia('(min-width: 901px)').matches) return;
-      const OFFSET = 84; // coincide con scroll-margin-top
+      const OFFSET = 84;
       function scrollToHash(hash) {
         const el = document.querySelector(hash);
         if (!el) return;
         const y = el.getBoundingClientRect().top + window.pageYOffset - OFFSET;
         window.scrollTo({ top: y, behavior: 'smooth' });
       }
-      // Intercepta clics del menú (solo desktop)
       document.querySelectorAll('header .navlinks a[href^="#"]').forEach(a=>{
         a.addEventListener('click', e=>{
           const href = a.getAttribute('href');
@@ -480,11 +485,10 @@
           }
         });
       });
-      // Si se entra con hash, aplica offset
       window.addEventListener('load', ()=>{ if (location.hash) scrollToHash(location.hash); });
     })();
 
-    // 2) Scrollspy: resalta el link según la sección visible (solo desktop)
+    // 2) Scrollspy: resalta el link según sección visible (desktop)
     (function(){
       if (!window.matchMedia('(min-width: 901px)').matches) return;
       const links = [...document.querySelectorAll('header .navlinks a[href^="#"]')];
@@ -501,6 +505,50 @@
         });
       }, { rootMargin: "-55% 0px -40% 0px", threshold: 0.01 });
       document.querySelectorAll('section[id]').forEach(sec => spy.observe(sec));
+    })();
+
+    // 3) WOW: Reveal de secciones (desktop)
+    (function(){
+      if (!window.matchMedia('(min-width: 901px)').matches) {
+        // en móvil, muestra todo sin animar
+        document.querySelectorAll('.reveal').forEach(el => el.classList.add('in'));
+        return;
+      }
+      const els = document.querySelectorAll('.reveal');
+      const io = new IntersectionObserver((entries, obs)=>{
+        entries.forEach(entry=>{
+          if (entry.isIntersecting){
+            entry.target.classList.add('in');
+            obs.unobserve(entry.target);
+          }
+        });
+      }, { rootMargin: "0px 0px -10% 0px", threshold: 0.08 });
+      els.forEach(el => io.observe(el));
+    })();
+
+    // 4) PARALLAX del hero (desktop, súper ligero)
+    (function(){
+      if (!window.matchMedia('(min-width: 901px)').matches) return;
+      const img = document.getElementById('hero-img');
+      if (!img) return;
+      let ticking = false;
+      const maxShift = 20; // px máximos de desplazamiento (sutil)
+      function onScroll(){
+        if (ticking) return;
+        ticking = true;
+        requestAnimationFrame(()=>{
+          const rect = img.parentElement.getBoundingClientRect();
+          const vh = window.innerHeight || 1;
+          // progreso de visibilidad de la sección (0 .. 1+)
+          const p = Math.max(0, Math.min(1, 1 - rect.top / vh));
+          const shift = (p * maxShift);
+          img.style.transform = `translateY(${shift}px)`;
+          ticking = false;
+        });
+      }
+      window.addEventListener('scroll', onScroll, { passive:true });
+      window.addEventListener('resize', onScroll);
+      onScroll();
     })();
   </script>
 </body>
