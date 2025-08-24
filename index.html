@@ -6,7 +6,7 @@
   <title>Savage Nomads — Viajes en grupo pensados de verdad</title>
   <meta name="description" content="Viajes en grupo seleccionados, con itinerarios cuidados y buena compañía. Únete a Savage Nomads.">
 
-  <!-- Favicon en la raíz (ajusta nombres si usas otros) -->
+  <!-- Favicon (asegúrate de tener uno en la raíz con alguno de estos nombres) -->
   <link rel="icon" type="image/png" href="favicon.png">
   <link rel="icon" href="favicon.ico">
   <link rel="icon" type="image/svg+xml" href="favicon.svg">
@@ -76,34 +76,66 @@
     #tribu .card{height:100%;}
     @media (max-width:900px){.tribe-layout{grid-template-columns:1fr;} .tribe-photo img{aspect-ratio:16/9;}}
 
-    /* Maldivas — fotos horizontales 3:2, cards gemelas y coherentes con Tribu */
+    /* ===== Maldivas Aventureras (coherente con Tribu) ===== */
     .maldivas-layout{
-      display:grid; grid-template-columns:1.1fr .9fr; gap:16px; align-items:stretch;
+      display:grid;
+      grid-template-columns:1.1fr .9fr;  /* equilibrio parecido al de Tribu */
+      gap:16px;
+      align-items:center;                /* centra el texto respecto a las fotos */
     }
-    /* misma altura mínima para ambas columnas (pareo visual) */
-    .maldivas-layout > .card{
-      min-height:clamp(360px, 34vw, 520px);
-      height:100%;
+
+    /* Card de FOTOS (misma estética) */
+    .photos-card{ padding:12px; }
+    .photos-grid{
+      display:grid;
+      grid-template-columns:1fr 1fr;
+      gap:12px;
+      align-items:center;
     }
-    /* FOTOS */
-    .photos-card{padding:12px;}
-    .photos-grid{display:grid; grid-template-columns:1fr 1fr; gap:12px; height:100%;}
-    .photos-grid .ph{margin:0; border-radius:var(--radius); overflow:hidden; box-shadow:var(--shadow); background:#000;}
-    .photos-grid .ph>img{width:100%; height:100%; object-fit:cover; object-position:center;}
-    /* TEXTO — MISMO ESTILO QUE TRIBU (sin amarillo) */
-    .text-card{padding:18px; display:flex; flex-direction:column; justify-content:center; gap:12px; text-align:left;}
-    .text-card h3{margin:0 0 6px; font-size:18px; color:inherit; font-weight:700;} /* 👈 sin amarillo */
+    .photos-grid figure{
+      margin:0;
+      border-radius:var(--radius);
+      overflow:hidden;
+      box-shadow:var(--shadow);
+      background:#000;
+      aspect-ratio:3/2;                 /* HORIZONTAL real y consistente */
+    }
+    .photos-grid img{
+      width:100%; height:100%;
+      object-fit:cover; object-position:center;
+      display:block;
+    }
+
+    /* Card de TEXTO (misma estética que las cards de Tribu) */
+    .text-card{
+      padding:18px;
+      display:flex;
+      flex-direction:column;
+      justify-content:center;            /* centrado vertical */
+      gap:12px;
+      text-align:left;
+      min-height:clamp(260px, 28vw, 380px); /* altura visual parecida a las fotos */
+    }
+    .text-card h3{
+      margin:0 0 6px;
+      font-size:18px;
+      font-weight:700;      /* mismo color que el resto, sin amarillo */
+      color:inherit;
+    }
+    /* Lista limpia (igual estilo en todo el sitio) */
     ul.clean{list-style:none; padding:0; margin:0;}
     ul.clean li{position:relative; padding-left:18px; margin:6px 0; color:var(--muted);}
     ul.clean li::before{content:"•"; color:var(--brand); position:absolute; left:0; top:0; line-height:1;}
 
+    /* Responsive */
     @media (max-width:900px){
-      .maldivas-layout{grid-template-columns:1fr; gap:14px;}
-      .maldivas-layout > .card{min-height:0; height:auto;}
-      .photos-grid{grid-template-columns:1fr 1fr; height:auto;}
-      .photos-grid .ph{aspect-ratio:16/9;} /* panorámico en móvil */
+      .maldivas-layout{ grid-template-columns:1fr; gap:14px; }
+      .text-card{ min-height:0; } /* que fluya en móvil */
+      .photos-grid{ grid-template-columns:1fr 1fr; }
     }
-    @media (max-width:520px){.photos-grid{grid-template-columns:1fr;}}
+    @media (max-width:520px){
+      .photos-grid{ grid-template-columns:1fr; }
+    }
 
     /* Formulario */
     .form-wrap{max-width:760px; margin:0 auto; background:var(--card); border:1px solid rgba(255,255,255,.06); border-radius:var(--radius); padding:18px; box-shadow:var(--shadow);}
@@ -196,13 +228,15 @@
       <p class="lead">Playas de postal, vida marina y un ritmo pensado para exprimir cada día sin ir con la lengua fuera.</p>
 
       <div class="maldivas-layout">
+        <!-- Card de fotos -->
         <div class="card photos-card">
           <div class="photos-grid">
-            <figure class="ph"><img src="pareja.jpg?v=7" alt="Pareja disfrutando en Maldivas" loading="lazy"></figure>
-            <figure class="ph"><img src="subm.jpg?v=7" alt="Snorkel en arrecife de Maldivas" loading="lazy"></figure>
+            <figure><img src="pareja.jpg?v=8" alt="Pareja disfrutando en Maldivas" loading="lazy"></figure>
+            <figure><img src="subm.jpg?v=8" alt="Snorkel en arrecife de Maldivas" loading="lazy"></figure>
           </div>
         </div>
 
+        <!-- Card de texto -->
         <div class="card text-card">
           <h3>Qué vas a vivir</h3>
           <ul class="clean">
