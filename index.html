@@ -6,6 +6,28 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
   <title>Savage Nomads — Viajes en grupo pensados de verdad</title>
 
+  <!-- ===== FIX iOS: no restaurar scroll y empezar arriba si no hay hash ===== -->
+  <script>
+    (function () {
+      try { if ('scrollRestoration' in history) { history.scrollRestoration = 'manual'; } } catch(e){}
+      function topIfNoHash() {
+        if (!location.hash) {
+          // desactiva scroll suave un instante para evitar “rebote”
+          const html = document.documentElement;
+          const prev = html.style.scrollBehavior;
+          html.style.scrollBehavior = 'auto';
+          // varios intentos porque iOS a veces aplica su scroll después
+          requestAnimationFrame(() => { window.scrollTo(0,0);
+            setTimeout(() => { window.scrollTo(0,0); html.style.scrollBehavior = prev || 'smooth'; }, 0);
+          });
+        }
+      }
+      // Al mostrar (incluye BFCache) y también en primera carga
+      window.addEventListener('pageshow', topIfNoHash, { once:true });
+      window.addEventListener('load', topIfNoHash, { once:true });
+    })();
+  </script>
+
   <!-- SEO básico -->
   <meta name="title" content="Savage Nomads — Viajes en grupo pensados de verdad">
   <meta name="description" content="Viajes en grupo seleccionados, con itinerarios cuidados y buena compañía. Únete a Savage Nomads.">
@@ -16,7 +38,6 @@
   <meta property="og:title" content="Savage Nomads — Viajes en grupo pensados de verdad">
   <meta property="og:description" content="Viajes en grupo seleccionados, con itinerarios cuidados y buena compañía. Únete a Savage Nomads.">
   <meta property="og:image" content="https://leadradar.github.io/savage-nomads-landing/hero.jpg">
-  <!-- <meta property="fb:app_id" content="1234567890"> -->
 
   <!-- Twitter -->
   <meta name="twitter:card" content="summary_large_image">
@@ -47,13 +68,13 @@
 
       /* Vars shrink */
       --nav-h:64px;
-      --nav-h-shrink:48px;     /* se usará SOLO en móvil/tablet */
+      --nav-h-shrink:48px;     /* móvil/tablet */
       --brand-dot:10px;
-      --brand-dot-shrink:7px;  /* SOLO en móvil/tablet */
+      --brand-dot-shrink:7px;  /* móvil/tablet */
       --navlink-size:15.5px;
-      --navlink-size-shrink:14.5px; /* SOLO en móvil/tablet */
+      --navlink-size-shrink:14.5px; /* móvil/tablet */
       --navlink-gap:14px;
-      --navlink-gap-shrink:10px;    /* SOLO en móvil/tablet */
+      --navlink-gap-shrink:10px;    /* móvil/tablet */
     }
     *{box-sizing:border-box}
     html{scroll-behavior:smooth}
@@ -72,48 +93,26 @@
     .wrap{max-width:1100px; margin:0 auto; padding:0 16px}
     .nav{
       display:flex; align-items:center; justify-content:space-between;
-      height:var(--nav-h);
-      /* OJO: sin transition de height para evitar efecto feo en desktop */
+      height:var(--nav-h); /* SIN transición de altura en desktop */
     }
     .brand{display:flex; gap:10px; align-items:center; font-weight:800; letter-spacing:.2px}
-    .brand .dot{
-      width:var(--brand-dot); height:var(--brand-dot);
-      border-radius:50%; background:var(--brand);
-      /* sin transition en desktop; se activará solo en móvil */
-    }
-    .navlinks{
-      display:flex; align-items:center;
-      gap:var(--navlink-gap);
-      font-size:var(--navlink-size);
-    }
+    .brand .dot{width:var(--brand-dot); height:var(--brand-dot); border-radius:50%; background:var(--brand);}
+    .navlinks{display:flex; align-items:center; gap:var(--navlink-gap); font-size:var(--navlink-size);}
     .navlinks a{opacity:.85; transition:opacity .15s}
     .navlinks a:hover{opacity:1}
-    .btn{
-      display:inline-block; padding:10px 16px; border-radius:999px;
-      font-weight:700; border:none; cursor:pointer;
-      transition:transform .2s, box-shadow .2s;
-    }
+    .btn{display:inline-block; padding:10px 16px; border-radius:999px; font-weight:700; border:none; cursor:pointer; transition:transform .2s, box-shadow .2s;}
     .btn-cta{background:var(--brand); color:#0b0f10; box-shadow:0 8px 22px rgba(0,0,0,.18)}
     .btn-cta:hover{transform:translateY(-1px)}
 
     /* Estado SHRINK: en desktop SOLO fondo/sombra (tamaño fijo) */
     header.shrink{background:rgba(11,15,16,.9); box-shadow:0 6px 18px rgba(0,0,0,.35); border-bottom-color:rgba(255,255,255,.1)}
 
-    /* ---- Hero ---- */
+    /* Hero */
     .hero{position:relative}
     .hero img{width:100%; height:clamp(380px, 58vh, 520px); object-fit:cover;}
     .hero .overlay{position:absolute; inset:0; background:linear-gradient(180deg, rgba(0,0,0,.28), rgba(0,0,0,.18), transparent 55%)}
-    .hero h1{
-      position:absolute; left:50%; top:50%; transform:translate(-50%,-50%);
-      margin:0; text-align:center; color:var(--accent);
-      font-size:clamp(28px, 5.2vw, 44px); line-height:1.15;
-      text-shadow:0 6px 24px rgba(0,0,0,.45); max-width:18ch;
-    }
-    .hero .sub{
-      position:absolute; left:50%; top:calc(50% + 86px); transform:translateX(-50%);
-      color:var(--fg); opacity:.92; text-align:center; max-width:46ch; padding:0 12px;
-      font-size:clamp(15px,2.3vw,18px); text-shadow:0 4px 16px rgba(0,0,0,.45);
-    }
+    .hero h1{position:absolute; left:50%; top:50%; transform:translate(-50%,-50%); margin:0; text-align:center; color:var(--accent); font-size:clamp(28px, 5.2vw, 44px); line-height:1.15; text-shadow:0 6px 24px rgba(0,0,0,.45); max-width:18ch;}
+    .hero .sub{position:absolute; left:50%; top:calc(50% + 86px); transform:translateX(-50%); color:var(--fg); opacity:.92; text-align:center; max-width:46ch; padding:0 12px; font-size:clamp(15px,2.3vw,18px); text-shadow:0 4px 16px rgba(0,0,0,.45);}
 
     /* Secciones */
     section{padding: clamp(var(--section-gap-mobile), 5vw, var(--section-gap)) 0}
@@ -140,7 +139,7 @@
     #tribu .card{height:100%;}
     @media (max-width:900px){.tribe-layout{grid-template-columns:1fr;} .tribe-photo img{aspect-ratio:16/9;}}
 
-    /* Maldivas */
+    /* Maldivas — fotos horizontales 3:2 */
     .maldivas-layout{display:grid; grid-template-columns:1.1fr .9fr; gap:16px; align-items:center;}
     .photos-card{padding:12px;}
     .photos-grid{display:grid; grid-template-columns:1fr 1fr; gap:12px; align-items:center;}
@@ -177,10 +176,9 @@
     /* Footer */
     footer{padding:28px 0; color:var(--muted); text-align:center; border-top:1px solid rgba(255,255,255,.06)}
 
-    /* Desktop & hover */
+    /* Desktop (mantener tamaño fijo en shrink) */
     @media (min-width:901px){
       .tribe-layout, .maldivas-layout{ gap:18px; }
-      /* En desktop NO encogemos tamaños al hacer scroll */
       header.shrink .nav{height:var(--nav-h)}
       header.shrink .brand .dot{width:var(--brand-dot); height:var(--brand-dot)}
       header.shrink .navlinks{gap:var(--navlink-gap); font-size:var(--navlink-size)}
@@ -189,7 +187,7 @@
     .navlinks a:hover{ opacity:1; text-decoration:underline; text-underline-offset:3px; }
     section[id]{ scroll-margin-top: 84px; }
 
-    /* SOLO MÓVIL/TABLET: cabecera dos filas + shrink suave */
+    /* Móvil/tablet: cabecera 2 filas + shrink suave */
     @media (max-width: 900px) {
       .nav{flex-wrap:wrap; height:auto; padding:10px 0; gap:8px;}
       .brand{order:1;}
@@ -197,9 +195,8 @@
       .navlinks{
         order:3; width:100%; justify-content:center; gap:var(--navlink-gap);
         border-top:1px solid rgba(255,255,255,.06); padding-top:8px; flex-wrap:wrap;
-        transition:gap .2s, font-size .2s;
       }
-      /* Aquí SÍ encogemos suavemente */
+      /* aquí sí encogemos un pelín */
       header.shrink .nav{height:var(--nav-h-shrink)}
       header.shrink .brand .dot{width:var(--brand-dot-shrink); height:var(--brand-dot-shrink)}
       header.shrink .navlinks{gap:var(--navlink-gap-shrink); font-size:var(--navlink-size-shrink)}
@@ -361,18 +358,6 @@
   <script>
     // Año dinámico
     document.getElementById('y').textContent = new Date().getFullYear();
-
-    // Fix #1 móvil: forzar estar arriba solo si NO hay hash
-    (function(){
-      if (!location.hash) {
-        const html = document.documentElement;
-        const prev = html.style.scrollBehavior;
-        html.style.scrollBehavior = 'auto'; // evita rebote suave
-        window.scrollTo(0,0);
-        // restaura comportamiento suave inmediatamente
-        setTimeout(() => { html.style.scrollBehavior = prev || 'smooth'; }, 0);
-      }
-    })();
   </script>
 
   <!-- Redirección forzada tras enviar form -->
@@ -415,6 +400,14 @@
         }
       }, { passive: true });
       apply(); // estado inicial por si recarga scrolleado
+    })();
+  </script>
+
+  <!-- ===== FIX iOS extra: por si un teclado/zoom empuja al cargar ===== -->
+  <script>
+    (function(){
+      // a los 300ms tras cargar, garantiza estar arriba si no hay hash
+      if (!location.hash) { setTimeout(() => { window.scrollTo(0,0); }, 300); }
     })();
   </script>
 
