@@ -265,3 +265,39 @@
     </div>
   </div>
 </section>
+
+<footer>
+  <div class="wrap">
+    <small>© <span id="y"></span> Savage Nomads • Hecho con cariño y ganas de viajar</small>
+  </div>
+</footer>
+
+<script>
+  // año dinámico en el footer
+  document.getElementById('y').textContent = new Date().getFullYear();
+</script>
+
+<!-- Redirección forzada tras enviar form -->
+<script>
+  (function () {
+    const form = document.getElementById('form-savage');
+    if (!form) return;
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const data = new FormData(form);
+      try {
+        await fetch(form.action, {
+          method: 'POST',
+          body: data,
+          headers: { 'Accept': 'application/json' }
+        });
+        window.location.href = 'gracias.html';
+      } catch (err) {
+        window.location.href = 'gracias.html';
+      }
+    });
+  })();
+</script>
+
+</body>
+</html>
