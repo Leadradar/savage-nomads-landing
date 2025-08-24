@@ -2,7 +2,7 @@
 <html lang="es">
 <head>
   <meta charset="utf-8">
-  <!-- 👇 Viewport mejorado: sin zoom/pinch en móvil -->
+  <!-- Viewport sin zoom/pinch -->
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
   <title>Savage Nomads — Viajes en grupo pensados de verdad</title>
 
@@ -16,8 +16,7 @@
   <meta property="og:title" content="Savage Nomads — Viajes en grupo pensados de verdad">
   <meta property="og:description" content="Viajes en grupo seleccionados, con itinerarios cuidados y buena compañía. Únete a Savage Nomads.">
   <meta property="og:image" content="https://leadradar.github.io/savage-nomads-landing/hero.jpg">
-  <!-- Si quieres quitar la advertencia del debugger:
-  <meta property="fb:app_id" content="1234567890"> -->
+  <!-- <meta property="fb:app_id" content="1234567890"> -->
 
   <!-- Twitter -->
   <meta name="twitter:card" content="summary_large_image">
@@ -55,7 +54,8 @@
     /* Header */
     header{position:sticky; top:0; z-index:50; backdrop-filter:saturate(140%) blur(6px); background:rgba(11,15,16,.72); border-bottom:1px solid rgba(255,255,255,.06);}
     .wrap{max-width:1100px; margin:0 auto; padding:0 16px}
-    .nav{display:flex; align-items:center; justify-content:space-between; height:64px;}
+    /* NUEVO: cabecera en dos filas en móvil */
+    .nav-top{display:flex; align-items:center; justify-content:space-between; height:64px;}
     .brand{display:flex; gap:10px; align-items:center; font-weight:800; letter-spacing:.2px}
     .brand .dot{width:10px; height:10px; border-radius:50%; background:var(--brand)}
     .navlinks{display:flex; gap:14px; align-items:center}
@@ -134,19 +134,27 @@
     /* Footer */
     footer{padding:28px 0; color:var(--muted); text-align:center; border-top:1px solid rgba(255,255,255,.06)}
 
-    /* === AJUSTES FINALES (desktop y hover) === */
+    /* Desktop & hover */
     @media (min-width:901px){
+      .navlinks{height:44px;}
       .tribe-layout, .maldivas-layout{ gap:18px; }
     }
     .navlinks a{ transition: opacity .15s ease; }
     .navlinks a:hover{ opacity:1; text-decoration:underline; text-underline-offset:3px; }
     section[id]{ scroll-margin-top: 84px; }
 
-    /* === NUEVO: menú móvil con aire === */
+    /* NUEVO: layout header en móvil (dos filas) */
     @media (max-width: 640px) {
-      .nav { flex-wrap: wrap; height: auto; padding: 10px 0; }
-      .navlinks { flex-wrap: wrap; justify-content: center; gap: 10px; margin-top: 6px; }
-      .btn-cta { margin-top: 8px; }
+      .nav-top{height:auto; padding:10px 0;}
+      .brand{font-size:20px}
+      .btn-cta{padding:10px 14px; font-size:15px;}
+      .navlinks{
+        justify-content:center;
+        gap:14px;
+        padding:8px 0 10px;
+        border-top:1px solid rgba(255,255,255,.06);
+        flex-wrap:wrap;
+      }
     }
   </style>
 </head>
@@ -154,15 +162,17 @@
 
   <!-- Header -->
   <header>
-    <div class="wrap nav">
-      <a href="#" class="brand"><span class="dot"></span> <span>Savage Nomads</span></a>
+    <div class="wrap">
+      <div class="nav-top">
+        <a href="#" class="brand"><span class="dot"></span> <span>Savage Nomads</span></a>
+        <a href="#form-savage" class="btn btn-cta">Apúntate</a>
+      </div>
       <nav class="navlinks">
         <a href="#ofrecemos">Qué ofrecemos</a>
         <a href="#tribu">Tribu</a>
         <a href="#maldivas">Maldivas</a>
         <a href="#faq">FAQ</a>
       </nav>
-      <a href="#form-savage" class="btn btn-cta">Apúntate</a>
     </div>
   </header>
 
@@ -271,7 +281,6 @@
         <form id="form-savage"
               action="https://formspree.io/f/manbrrzl"
               method="POST">
-          <!-- Dejamos _redirect absoluto por compatibilidad, aunque el JS fuerza -->
           <input type="hidden" name="_redirect" value="https://leadradar.github.io/savage-nomads-landing/gracias.html">
 
           <div class="full"><label>Nombre</label><input name="nombre" type="text" placeholder="Tu nombre" required></div>
