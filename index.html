@@ -129,51 +129,56 @@
       .tribe-photo img{ aspect-ratio: 16 / 9; }
     }
 
-    /* --- MALDIVAS: columnas pareadas + fotos horizontales --- */
+   /* ==== MALDIVAS: fotos SIEMPRE horizontales 16:9 y columnas pareadas ==== */
 #maldivas .grid{
   display:grid;
   grid-template-columns:1.1fr .9fr;
   gap:16px;
-  align-items:stretch; /* ambas columnas misma altura */
+  align-items:stretch; /* iguala alturas */
 }
 
-/* Ambas columnas con la misma altura mínima */
+/* Igualamos altura mínima de ambas columnas (ajusta 460 a tu gusto) */
 #maldivas .gallery-card,
 #maldivas .card{
   background:var(--card);
   border:1px solid rgba(255,255,255,.06);
   border-radius:var(--radius);
   box-shadow:var(--shadow);
-  min-height:clamp(320px, 36vw, 460px); /* ajusta aquí si quieres más/menos alto */
+  min-height:clamp(320px, 36vw, 460px);
 }
-
-/* padding distinto */
-#maldivas .gallery-card{ padding:12px; display:grid; align-content:center; } /* centra el grid de fotos dentro de la card */
+#maldivas .gallery-card{ padding:12px; }
 #maldivas .card{ padding:18px; }
 
-/* La galería NO estira a 100% de altura: respeta 16:9 y queda horizontal */
+/* Grid de dos fotos */
 #maldivas .gallery{
   display:grid;
   grid-template-columns:1fr 1fr;
   gap:12px;
+  align-items:center; /* evita que una se estire rara */
 }
 
-#maldivas .gallery img{
+/* 👇 El truco: el MARCO (picture) fija 16:9 y el IMG rellena */
+#maldivas .gallery picture{
+  display:block;
+  aspect-ratio:16/9 !important;    /* marco horizontal, sí o sí */
+  border-radius:var(--radius);
+  overflow:hidden;                  /* esquinas redondas reales */
+  box-shadow:var(--shadow);
+  background:#000;
+}
+#maldivas .gallery picture > img{
   width:100%;
-  height:auto;               /* 👈 clave para NO volverse vertical */
-  aspect-ratio:16/9;         /* 👈 horizontal siempre */
+  height:100%;
   object-fit:cover;
   object-position:center;
-  border-radius:var(--radius);
-  background:#000;
-  box-shadow:var(--shadow);
+  display:block;
 }
 
-/* Responsivo */
+/* Responsive */
 @media (max-width:900px){
   #maldivas .grid{ grid-template-columns:1fr; gap:14px; }
   #maldivas .gallery-card,
-  #maldivas .card{ min-height:0; }   /* en móvil dejamos que fluyan */
+  #maldivas .card{ min-height:0; }  /* en móvil dejamos fluir */
   #maldivas .gallery{ grid-template-columns:1fr 1fr; }
 }
 @media (max-width:520px){
