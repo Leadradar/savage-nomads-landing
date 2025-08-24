@@ -21,8 +21,8 @@
     .nav a:hover{color:var(--azul)} .nav a:hover::after{right:0}
     .nav a.active::after{right:0}
     .cta{background:var(--azul);color:var(--ambar)!important;padding:10px 16px;border-radius:10px;font-weight:800;
-         transition:transform .18s ease, box-shadow .18s ease, filter .18s ease; position:relative; overflow:hidden}
-    .cta:hover{filter:brightness(1.1);transform:translateY(-1px) scale(1.04);box-shadow:0 10px 24px rgba(15,42,107,.25)}
+         transition:transform .18s ease, box-shadow .18s ease, filter .18s ease}
+    .cta:hover{filter:brightness(1.1);transform:translateY(-1px);box-shadow:0 10px 24px rgba(15,42,107,.25)}
 
     /* Hero */
     .hero{position:relative}
@@ -31,21 +31,33 @@
     .hero h1{position:absolute;left:50%;top:48%;transform:translate(-50%,-50%);color:var(--ambar);font-size:42px;line-height:1.2;text-align:center;margin:0;text-shadow:0 6px 24px rgba(0,0,0,.45)}
 
     /* Secciones */
-    section{padding:72px 0}
-    h2.sec{font-size:42px;font-weight:900;text-align:left;margin:0 0 18px;background:linear-gradient(90deg, var(--azul), #f59e0b);-webkit-background-clip:text;background-clip:text;color:transparent;letter-spacing:.4px;text-transform:uppercase}
-    h2.sec::after{content:"";display:block;width:80px;height:3px;margin:12px 0 0;background:linear-gradient(90deg, var(--azul), #f59e0b);border-radius:4px}
-    p.center, .lead{max-width:900px;color:#334155;line-height:1.75;font-size:18px}
+    section{padding:80px 0}
+    h2.sec{font-size:44px;font-weight:900;text-align:left !important;margin:0 0 18px;background:linear-gradient(90deg, var(--azul), #f59e0b);-webkit-background-clip:text;background-clip:text;color:transparent;letter-spacing:.4px;text-transform:uppercase}
+    h2.sec::after{content:"";display:block;width:92px;height:3px;margin:12px 0 0;background:linear-gradient(90deg, var(--azul), #f59e0b);border-radius:4px}
+    .lead{max-width:900px;color:#334155;line-height:1.75;font-size:19px}
 
-    /* Ofrecemos */
+    /* Cards, grids */
     .features{display:grid;grid-template-columns:1fr;gap:14px}
     @media (min-width:900px){.features{grid-template-columns:repeat(3,1fr)}}
     .feat{background:var(--gris);border-radius:16px;padding:18px 16px}
     .feat b{display:block;margin-bottom:6px}
 
-    /* --- Imagenes anti estirado --- */
+    /* Imagenes anti estirado */
     img{max-width:100%;height:auto;display:block}
     picture{display:block}
-    .badge{display:inline-block;background:#e0f2fe;color:#075985;font-weight:700;border-radius:999px;padding:6px 12px}
+    .badge{display:inline-block;background:#e0f2fe;color:#075985;font-weight:700;border-radius:999px;padding:6px 12px;box-shadow:0 6px 16px rgba(2,132,199,.15)}
+
+    /* MALDIVAS — 2 columnas sin solapamientos */
+    #maldivas{padding:100px 0 90px}
+    #maldivas .wrap{display:grid;gap:40px;align-items:center}
+    @media (min-width:1024px){ #maldivas .wrap{grid-template-columns:1.2fr 1fr} }
+    .lgallery{display:grid;gap:18px}
+    @media (min-width:700px){ .lgallery{grid-template-columns:1fr 1fr} }
+    .lgallery .card{border-radius:20px;overflow:hidden;box-shadow:0 18px 40px rgba(15,42,107,.14);background:#0f2a6b}
+    .lgallery .card img{width:100%;height:420px;object-fit:cover}
+    @media (max-width:1024px){ .lgallery .card img{height:auto} }
+    /* toque de mosaico suave: segunda imagen baja un poco en desktop */
+    @media (min-width:1024px){ .lgallery .card:nth-child(2){margin-top:26px} }
 
     /* FORMULARIO */
     .form-wrap{max-width:1100px;margin:0 auto;padding:56px 24px}
@@ -65,23 +77,6 @@
     .qa{max-width:900px;margin:0 auto;display:grid;gap:16px;padding:0 24px}
     .qa > div > b{display:block;margin:8px 0;font-size:18px;color:var(--azul2)}
     .qa > div > div{color:#475569}
-
-    /* === Maldivas: galería a la izquierda + texto a la derecha, sin solaparse la columna === */
-    #maldivas{padding:100px 0 90px}
-    #maldivas .grid{display:grid;gap:32px;align-items:center}
-    @media (min-width:1024px){ #maldivas .grid{grid-template-columns:1.2fr 1fr} }
-    .stack{position:relative}
-    .stack .card{border-radius:22px;overflow:hidden;box-shadow:0 24px 60px rgba(15,42,107,.14)}
-    .stack .card img{width:100%;height:500px;object-fit:cover;display:block}
-    .stack .top{position:relative;z-index:2;transform:translate(40px, -40px)}
-    .stack .bottom{position:relative;z-index:1}
-    @media (max-width:1024px){
-      .stack .top{transform:none;margin-top:16px}
-      .stack .card img{height:auto}
-    }
-    #maldivas .content .badge{box-shadow:0 6px 16px rgba(2,132,199,.15)}
-    #maldivas .content h2.sec{font-size:46px;margin-top:6px}
-    #maldivas .content .lead{font-size:19px}
 
     /* Mobile */
     @media (max-width: 600px){
@@ -132,18 +127,22 @@
     </div>
   </section>
 
-  <!-- Maldivas con columnas -->
+  <!-- Maldivas (galería izquierda + contenido derecha, sin solapamientos) -->
   <section id="maldivas">
-    <div class="container grid">
-      <div class="stack">
-        <picture class="card bottom">
-          <source srcset="pareja.webp" type="image/webp">
-          <img src="pareja.jpg" alt="Momentos en pareja en Maldivas" onerror="this.closest('.card').style.display='none'">
-        </picture>
-        <picture class="card top">
-          <source srcset="subm.webp" type="image/webp">
-          <img src="subm.jpg" alt="Buceo en arrecife, Maldivas">
-        </picture>
+    <div class="container wrap">
+      <div class="lgallery">
+        <div class="card">
+          <picture>
+            <source srcset="pareja.webp" type="image/webp">
+            <img src="pareja.jpg" alt="Momentos en pareja en Maldivas" onerror="this.onerror=null; this.src='subm.jpg';">
+          </picture>
+        </div>
+        <div class="card">
+          <picture>
+            <source srcset="subm.webp" type="image/webp">
+            <img src="subm.jpg" alt="Buceo en arrecife, Maldivas">
+          </picture>
+        </div>
       </div>
       <div class="content">
         <span class="badge">Primer viaje: Maldivas 🌴</span>
@@ -160,7 +159,7 @@
     <div class="container">
       <h2 class="sec">Conecta con tu tribu</h2>
       <p class="lead">Viajar es más que ver paisajes: es compartirlos. Momentos reales con gente que vibra como tú.</p>
-      <div class="features" style="grid-template-columns:1.2fr 1fr;gap:18px">
+      <div style="display:grid;grid-template-columns:1.2fr 1fr;gap:22px;align-items:center;margin-top:18px">
         <picture>
           <source srcset="grupo.webp" type="image/webp">
           <img src="grupo.jpg" alt="Grupo de viajeros Savage Nomads" style="border-radius:18px;box-shadow:0 16px 40px rgba(15,42,107,.12)">
