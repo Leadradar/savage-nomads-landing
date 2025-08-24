@@ -1,7 +1,7 @@
 <!doctype html>
 <html lang="es">
 <head>
-  <meta charset="utf-8">
+  <meta charset="="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Savage Nomads — Viajes en grupo pensados de verdad</title>
   <meta name="description" content="Viajes en grupo seleccionados, con itinerarios cuidados y buena compañía. Únete a Savage Nomads.">
@@ -39,14 +39,14 @@
 
     /* ---------- Hero ---------- */
     .hero{position:relative}
-    .hero img{width:100%; height:clamp(380px, 58vh, 520px); object-fit:cover; filter:none !important;}
+    .hero img{width:100%; height:clamp(380px, 58vh, 520px); object-fit:cover;}
     .hero .overlay{position:absolute; inset:0; background:linear-gradient(180deg, rgba(0,0,0,.28), rgba(0,0,0,.18), transparent 55%)}
     .hero h1{position:absolute; left:50%; top:50%; transform:translate(-50%,-50%); margin:0; text-align:center; color:var(--accent); font-size:clamp(28px, 5.2vw, 44px); line-height:1.15; text-shadow:0 6px 24px rgba(0,0,0,.45); max-width:18ch;}
     .hero .sub{position:absolute; left:50%; top:calc(50% + 86px); transform:translateX(-50%); color:var(--fg); opacity:.92; text-align:center; max-width:46ch; padding:0 12px; font-size:clamp(15px,2.3vw,18px); text-shadow:0 4px 16px rgba(0,0,0,.45);}
 
     /* ---------- Secciones ---------- */
     section{padding: clamp(var(--section-gap-mobile), 5vw, var(--section-gap)) 0}
-    section[id]{scroll-margin-top:84px;} /* evita que el header tape las anclas */
+    section[id]{scroll-margin-top:84px;}
     section > .wrap > h2{text-align:center; margin:0 0 18px; line-height:1.2; letter-spacing:.2px; font-size:clamp(24px,4.6vw,34px);}
     .lead{color:var(--muted); text-align:center; max-width:60ch; margin:0 auto 24px}
 
@@ -61,67 +61,41 @@
     /* ---------- Tribu ---------- */
     .tribe-layout{display:grid; grid-template-columns:1.1fr .9fr; gap:16px; align-items:stretch;}
     .tribe-photo{background:var(--card); border:1px solid rgba(255,255,255,.06); border-radius:var(--radius); overflow:hidden; box-shadow:var(--shadow); display:flex;}
-    .tribe-photo img{width:100%; height:100%; aspect-ratio: 3 / 2; object-fit: cover; object-position: center;}
+    .tribe-photo img{width:100%; height:100%; aspect-ratio: 3 / 2; object-fit: cover;}
     .tribe-grid{display:grid; grid-template-columns:1fr; gap:14px;}
     #tribu .card{background:var(--card); border:1px solid rgba(255,255,255,.06); border-radius:var(--radius); padding:18px; box-shadow:var(--shadow); height:100%;}
     @media (max-width:900px){.tribe-layout{ grid-template-columns:1fr; } .tribe-photo img{ aspect-ratio: 16 / 9; }}
 
-    /* --- Ajuste para Maldivas: eliminar hueco vacío mantendo pareo --- */
-#maldivas .gallery-card {
-  /* Sigue igualando altura con la card de texto */
-  min-height: clamp(340px, 34vw, 520px);
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  padding: 0;             /* elimina padding para que la galería ocupe todo */
-}
-
-#maldivas .gallery {
-  /* Ahora la galería ocupa todo el contenedor y sus fotos se expande para llenar */
-  display: flex;
-  gap: 12px;
-  flex: 1;
-}
-
-#maldivas .gallery picture {
-  flex: 1;
-  aspect-ratio: 16/9;
-  margin: 0;
-  border-radius: var(--radius);
-  overflow: hidden;
-  box-shadow: var(--shadow);
-}
-
-#maldivas .gallery picture + picture {
-  /* separación horizontal */
-  margin-left: 12px;
-}
-
-#maldivas .gallery picture > img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  object-position: center;
-}
-
-/* Mobile: vuelven a apilarse si es necesario */
-@media (max-width:900px) {
-  #maldivas .gallery {
-    flex-direction: row;
-  }
-}
-@media (max-width:520px) {
-  #maldivas .gallery {
-    flex-direction: column;
-  }
-}
+    /* ---------- Maldivas ---------- */
+    #maldivas .grid{display:grid; grid-template-columns:1.1fr .9fr; gap:16px; align-items:stretch;}
+    #maldivas .gallery-card,
+    #maldivas .card{background:var(--card); border:1px solid rgba(255,255,255,.06); border-radius:var(--radius); box-shadow:var(--shadow); min-height:clamp(340px, 34vw, 520px);}
+    #maldivas .gallery-card{padding:12px; display:flex; flex-direction:column; justify-content:center;}
+    #maldivas .gallery{display:flex; gap:12px; flex:1;}
+    #maldivas .gallery picture{flex:1; aspect-ratio:16/9; border-radius:var(--radius); overflow:hidden; box-shadow:var(--shadow);}
+    #maldivas .gallery picture > img{width:100%; height:100%; object-fit:cover;}
+    /* --- Texto de la card Maldivas --- */
+    #maldivas .card{
+      padding:24px;
+      display:flex;
+      flex-direction:column;
+      justify-content:center;
+      align-items:center;
+      text-align:center;
+      gap:14px;
+    }
+    #maldivas .card h3{margin-top:0; font-size:18px; color:var(--accent);}
+    #maldivas .card ul{list-style:none; padding:0; margin:0;}
+    #maldivas .card ul li{margin:6px 0; color:var(--muted);}
+    @media (max-width:900px){#maldivas .grid{ grid-template-columns:1fr; gap:14px; } #maldivas .gallery{ flex-direction:row; } #maldivas .gallery-card, #maldivas .card{ min-height:0; }}
+    @media (max-width:520px){#maldivas .gallery{ flex-direction:column; }}
 
     /* ---------- Form ---------- */
     .form-wrap{max-width:760px; margin:0 auto; background:var(--card); border:1px solid rgba(255,255,255,.06); border-radius:var(--radius); padding:18px; box-shadow:var(--shadow);}
     form{display:grid; grid-template-columns:1fr 1fr; gap:12px}
     form .full{grid-column:1 / -1}
     label{font-size:13px; color:var(--muted)}
-    input, select, textarea{width:100%; padding:11px 12px; border-radius:10px; border:1px solid rgba(255,255,255,.1); background:#0f1417; color:#e9f1f3; outline:none;}
+    input, select, textarea{width:100%; padding:11px 12px; border-radius:10px; border:1px solid rgba(255,255,255,.1); background:#0f1417; color:#e9f1f3;}
     textarea{min-height:120px; resize:vertical}
     button[type="submit"]{justify-self:center; margin-top:6px}
     @media (max-width:640px){form{grid-template-columns:1fr}}
@@ -151,7 +125,7 @@
   </header>
 
   <!-- Hero -->
-  <section class="hero" aria-label="Portada">
+  <section class="hero">
     <img src="hero.jpg" alt="Grupo viajando por playas de aguas turquesas">
     <div class="overlay"></div>
     <h1>Viajes en grupo, pensados de verdad</h1>
@@ -178,15 +152,15 @@
   <section id="tribu">
     <div class="wrap">
       <h2>Conecta con tu tribu</h2>
-      <p class="lead">Gente afín, buen rollo y cero postureo: viajamos para vivirlo de verdad, no para coleccionar check-ins.</p>
+      <p class="lead">Gente afín, buen rollo y cero postureo: viajamos para vivirlo de verdad.</p>
       <div class="tribe-layout">
         <figure class="tribe-photo">
-          <img src="grupo.jpg?v=5" alt="Grupo de viajeros compartiendo experiencia" loading="lazy">
+          <img src="grupo.jpg" alt="Grupo de viajeros compartiendo experiencia" loading="lazy">
         </figure>
         <div class="tribe-grid">
           <article class="card"><h3>Afinidad real</h3><p>Grupos pequeños con perfiles compatibles. Charlas que fluyen y planes que apetece hacer juntos.</p></article>
-          <article class="card"><h3>Momentos que suman</h3><p>De un snorkel épico a un té al atardecer. Ritmo humano para que pasen cosas sin forzarlas.</p></article>
-          <article class="card"><h3>Comunidad que permanece</h3><p>Conexiones que siguen después del viaje. Lo mejor del destino, y de la gente que lo comparte contigo.</p></article>
+          <article class="card"><h3>Momentos que suman</h3><p>De un snorkel épico a un té al atardecer.</p></article>
+          <article class="card"><h3>Comunidad que permanece</h3><p>Conexiones que siguen después del viaje.</p></article>
         </div>
       </div>
     </div>
@@ -200,12 +174,12 @@
       <div class="grid">
         <div class="gallery-card">
           <div class="gallery">
-            <picture><img src="pareja.jpg?v=5" alt="Pareja disfrutando en Maldivas" loading="lazy"></picture>
-            <picture><img src="subm.jpg?v=5" alt="Snorkel en arrecife de Maldivas" loading="lazy"></picture>
+            <picture><img src="pareja.jpg" alt="Pareja en Maldivas" loading="lazy"></picture>
+            <picture><img src="subm.jpg" alt="Snorkel en Maldivas" loading="lazy"></picture>
           </div>
         </div>
         <div class="card">
-          <h3 style="margin-top:0">Qué vas a vivir</h3>
+          <h3>Qué vas a vivir</h3>
           <ul>
             <li>Islas locales y arena blanca real</li>
             <li>Snorkel con arrecifes de colores</li>
@@ -224,17 +198,13 @@
     </div>
   </section>
 
-  <!-- Preguntas frecuentes -->
+  <!-- FAQ -->
   <section id="faq">
     <div class="wrap">
       <h2>Preguntas frecuentes</h2>
-      <p class="lead">Lo más típico que nos preguntan antes de reservar plaza.</p>
       <div class="faq">
-        <details><summary>¿Cuántas personas viajan en cada grupo?</summary><p>Solemos movernos entre 8 y 14 personas. Suficiente para buen ambiente, sin perder cercanía.</p></details>
-        <details><summary>¿El viaje es 100% cerrado o hay tiempo libre?</summary><p>Hay una ruta curada con imprescindibles, pero dejamos huecos para que respires, explores y decidas.</p></details>
-        <details><summary>¿Puedo ir solo/a?</summary><p>¡Claro! La mayoría viene sin compañía. Nos encargamos de que encajes desde el primer día.</p></details>
-        <details><summary>¿Qué incluye y qué no incluye?</summary><p>Incluye coordinación, planning optimizado, selección de alojamientos/traslados y asesoría previa. Vuelos internacionales y algunos gastos en destino van aparte (te lo detallamos al escribirnos).</p></details>
-        <details><summary>¿Cómo reservo o bloqueo plaza?</summary><p>Déjanos tus datos en el formulario y te contactamos con fechas, precio cerrado y próximos pasos.</p></details>
+        <details><summary>¿Cuántas personas viajan?</summary><p>Entre 8 y 14 personas.</p></details>
+        <details><summary>¿Hay tiempo libre?</summary><p>Sí, dejamos huecos para explorar.</p></details>
       </div>
     </div>
   </section>
@@ -243,21 +213,13 @@
   <section id="apuntate">
     <div class="wrap">
       <h2>¿Te apuntas?</h2>
-      <p class="lead">Déjanos tus datos y te escribimos con fechas, plazas y próximos destinos.</p>
       <div class="form-wrap">
         <form id="form-savage" action="https://formspree.io/f/manbrrzl" method="POST">
-          <div class="full"><label>Nombre</label><input name="nombre" type="text" placeholder="Tu nombre" required></div>
-          <div><label>Email</label><input name="email" type="email" placeholder="tucorreo@email.com" required></div>
-          <div><label>Teléfono (opcional)</label><input name="phone" type="tel" placeholder="+34 6XX XXX XXX"></div>
-          <div class="full"><label>Destino de interés</label>
-            <select name="destino">
-              <option value="Maldivas">Maldivas</option>
-              <option value="Bali">Bali</option>
-              <option value="Tailandia">Tailandia</option>
-              <option value="Otro">Otro</option>
-            </select>
-          </div>
-          <div class="full"><label>Mensaje</label><textarea name="mensaje" placeholder="Cuéntanos un poco qué buscas"></textarea></div>
+          <div class="full"><label>Nombre</label><input name="nombre" required></div>
+          <div><label>Email</label><input name="email" type="email" required></div>
+          <div><label>Teléfono</label><input name="phone"></div>
+          <div class="full"><label>Destino</label><select name="destino"><option>Maldivas</option><option>Bali</option></select></div>
+          <div class="full"><label>Mensaje</label><textarea name="mensaje"></textarea></div>
           <input type="hidden" name="_redirect" value="gracias.html">
           <div class="full" style="text-align:center"><button type="submit" class="btn btn-cta">Enviar</button></div>
         </form>
@@ -265,7 +227,7 @@
     </div>
   </section>
 
-  <footer><div class="wrap"><small>© <span id="y"></span> Savage Nomads • Hecho con cariño y ganas de viajar</small></div></footer>
+  <footer><div class="wrap"><small>© <span id="y"></span> Savage Nomads</small></div></footer>
   <script>document.getElementById('y').textContent=new Date().getFullYear();</script>
 </body>
 </html>
