@@ -44,18 +44,10 @@
       --section-gap:56px;
       --section-gap-mobile:40px;
 
-      /* Vars header */
+      /* Header base */
       --nav-h:64px;
-      --nav-h-shrink:48px;
-      --brand-dot:10px;
-      --brand-dot-shrink:7px;
       --navlink-size:15.5px;
-      --navlink-size-shrink:14.5px;
       --navlink-gap:14px;
-      --navlink-gap-shrink:10px;
-
-      /* Progreso de encogido (0..1) – lo actualiza el JS sólo en móvil */
-      --shrink: 0;
     }
     *{box-sizing:border-box}
     html{scroll-behavior:smooth}
@@ -63,7 +55,7 @@
     a{color:inherit; text-decoration:none}
     img{max-width:100%; display:block}
 
-    /* Header */
+    /* Header (tamaño fijo, sin tirones) */
     header{
       position:sticky; top:0; z-index:50;
       backdrop-filter:saturate(140%) blur(6px);
@@ -74,19 +66,21 @@
     .wrap{max-width:1100px; margin:0 auto; padding:0 16px}
     .nav{
       display:flex; align-items:center; justify-content:space-between;
-      height:var(--nav-h); /* Desktop siempre fijo */
+      height:var(--nav-h); /* fijo siempre */
     }
     .brand{display:flex; gap:10px; align-items:center; font-weight:800; letter-spacing:.2px}
-    .brand .dot{width:var(--brand-dot); height:var(--brand-dot); border-radius:50%; background:var(--brand);}
+    .brand .dot{width:10px; height:10px; border-radius:50%; background:var(--brand);}
     .navlinks{display:flex; align-items:center; gap:var(--navlink-gap); font-size:var(--navlink-size);}
     .navlinks a{opacity:.85; transition:opacity .15s}
     .navlinks a:hover{opacity:1}
     .btn{display:inline-block; padding:10px 16px; border-radius:999px; font-weight:700; border:none; cursor:pointer; transition:transform .2s, box-shadow .2s;}
     .btn-cta{background:var(--brand); color:#0b0f10; box-shadow:0 8px 22px rgba(0,0,0,.18)}
     .btn-cta:hover{transform:translateY(-1px)}
-    header.shrink-bg{background:rgba(11,15,16,.9); box-shadow:0 6px 18px rgba(0,0,0,.35); border-bottom-color:rgba(255,255,255,.1)}
 
-    /* Hero */
+    /* Fondo opaco al scrollear (ligero) */
+    header.solid{background:rgba(11,15,16,.92); box-shadow:0 6px 18px rgba(0,0,0,.35); border-bottom-color:rgba(255,255,255,.1)}
+
+    /* Hero remaquetado centrado */
     .hero{position:relative}
     .hero img{width:100%; height:clamp(420px, 60vh, 560px); object-fit:cover; object-position:center;}
     .hero .overlay{position:absolute; inset:0; background:linear-gradient(180deg, rgba(0,0,0,.28), rgba(0,0,0,.18), transparent 55%)}
@@ -105,11 +99,6 @@
       font-size:clamp(15px,2.3vw,18px); text-shadow:0 4px 16px rgba(0,0,0,.45);
     }
 
-    /* En móvil, colocamos el texto un poco más abajo (mejor lectura sobre la foto) */
-    @media (max-width:700px){
-      .hero-content{justify-content:flex-end; padding-bottom:12vh;}
-    }
-
     /* Secciones */
     section{padding: clamp(var(--section-gap-mobile), 5vw, var(--section-gap)) 0}
     section[id]{scroll-margin-top:84px;}
@@ -121,7 +110,6 @@
 
     /* Qué ofrecemos */
     .features{display:grid; grid-template-columns:repeat(3,1fr); gap:14px}
-    .feat{background:var(--card); border:1px solid rgba(255,255,255,.06); border-radius:var(--radius); padding:18px; box-shadow:var(--shadow);}
     .feat h3{margin:0 0 6px; font-size:18px}
     .feat p{margin:0; color:var(--muted); font-size:15.5px}
     @media (max-width:900px){.features{grid-template-columns:1fr 1fr}}
@@ -133,9 +121,14 @@
     .tribe-photo img{width:100%; height:100%; aspect-ratio:3/2; object-fit:cover; object-position:center;}
     .tribe-grid{display:grid; grid-template-columns:1fr; gap:14px;}
     #tribu .card{height:100%;}
-    @media (max-width:900px){.tribe-layout{grid-template-columns:1fr;} .tribe-photo img{aspect-ratio:16/9;}}
+    @media (max-width:900px){
+      .tribe-layout{grid-template-columns:1fr; gap:18px;}
+      /* MÁS separación bajo la foto en móvil, para que no quede “pegada” */
+      .tribe-photo{margin-bottom: clamp(16px, 6vw, 28px);}
+      .tribe-photo img{aspect-ratio:16/9;}
+    }
 
-    /* Maldivas — fotos 3:2 */
+    /* Maldivas */
     .maldivas-layout{display:grid; grid-template-columns:1.1fr .9fr; gap:16px; align-items:center;}
     .photos-card{padding:12px;}
     .photos-grid{display:grid; grid-template-columns:1fr 1fr; gap:12px; align-items:center;}
@@ -172,7 +165,7 @@
     /* Footer */
     footer{padding:28px 0; color:var(--muted); text-align:center; border-top:1px solid rgba(255,255,255,.06)}
 
-    /* Desktop fijo en tamaño (sólo cambia fondo/sombra) */
+    /* Desktop (mantener tamaño fijo y solo sombra/fondo en scroll) */
     @media (min-width:901px){
       .tribe-layout, .maldivas-layout{ gap:18px; }
     }
@@ -180,37 +173,28 @@
     .navlinks a:hover{ opacity:1; text-decoration:underline; text-underline-offset:3px; }
     section[id]{ scroll-margin-top: 84px; }
 
-    /* Móvil/tablet: cabecera 2 filas + encogido PROGRESIVO */
+    /* ===== SOLO MÓVIL/TABLET ===== */
     @media (max-width: 900px) {
       .nav{flex-wrap:wrap; height:auto; padding:10px 0; gap:8px;}
       .brand{order:1;}
       .btn-cta{order:2;}
       .navlinks{
         order:3; width:100%; justify-content:center;
-        border-top:1px solid rgba(255,255,255,.06); padding-top:8px; flex-wrap:wrap;
+        gap:var(--navlink-gap); font-size:var(--navlink-size);
+        border-top:1px solid rgba(255,255,255,.06);
+        padding:10px 12px 8px;
+        flex-wrap:wrap;
+        /* Fondo para que NUNCA se solape con el contenido al pasar por encima */
+        background: rgba(11,15,16,.92);
+        border-radius:12px;
+        margin-top:8px;
       }
-
-      /* Transición contínua con --shrink (0..1) */
-      header{
-        /* Altura interpola entre nav-h y nav-h-shrink */
-        --h: calc( var(--nav-h) - (var(--nav-h) - var(--nav-h-shrink)) * var(--shrink) );
-      }
-      header .nav{height:var(--h);}
-      header .brand .dot{
-        width: calc( var(--brand-dot) - (var(--brand-dot) - var(--brand-dot-shrink)) * var(--shrink) );
-        height: calc( var(--brand-dot) - (var(--brand-dot) - var(--brand-dot-shrink)) * var(--shrink) );
-      }
-      header .navlinks{
-        gap: calc( var(--navlink-gap) - (var(--navlink-gap) - var(--navlink-gap-shrink)) * var(--shrink) );
-        font-size: calc( var(--navlink-size) - (var(--navlink-size) - var(--navlink-size-shrink)) * var(--shrink) );
-      }
-      header .btn-cta{
-        padding: calc(10px - 2px * var(--shrink)) calc(16px - 2px * var(--shrink));
-      }
+      /* El header en móvil arranca ya con fondo más fuerte para evitar solapes al inicio */
+      header{ background: rgba(11,15,16,.9); }
     }
   </style>
 
-  <!-- FIX iOS: no restaurar scroll y empezar arriba si no hay hash -->
+  <!-- iOS: no restaurar scroll y empezar arriba si no hay hash -->
   <script>
     (function () {
       try { if ('scrollRestoration' in history) { history.scrollRestoration = 'manual'; } } catch(e){}
@@ -261,12 +245,12 @@
       <h2>Qué ofrecemos</h2>
       <p class="lead">Selección honesta, logística afinada y detalles que marcan la diferencia. Sin humo.</p>
       <div class="features">
-        <div class="feat"><h3>Grupos pequeños</h3><p>Ambiente cercano y auténtico. Viajar con personas afines multiplica la experiencia.</p></div>
-        <div class="feat"><h3>Ruta curada</h3><p>Itinerarios probados para optimizar tiempo, ritmo y momentos memorables.</p></div>
-        <div class="feat"><h3>Comodidad bien pensada</h3><p>Alojamientos y traslados seleccionados para descansar y disfrutar sin complicaciones.</p></div>
-        <div class="feat"><h3>Coordinación real</h3><p>Equipo en el terreno. Resolvemos y anticipamos, para que tú solo vivas el viaje.</p></div>
-        <div class="feat"><h3>Extras con mimo</h3><p>Desde fotos pro hasta sorpresas en destino. Detalles que se notan.</p></div>
-        <div class="feat"><h3>Transparencia total</h3><p>Precio claro y lo que incluye, también. Sin letra pequeña.</p></div>
+        <div class="feat card"><h3>Grupos pequeños</h3><p>Ambiente cercano y auténtico. Viajar con personas afines multiplica la experiencia.</p></div>
+        <div class="feat card"><h3>Ruta curada</h3><p>Itinerarios probados para optimizar tiempo, ritmo y momentos memorables.</p></div>
+        <div class="feat card"><h3>Comodidad bien pensada</h3><p>Alojamientos y traslados seleccionados para descansar y disfrutar sin complicaciones.</p></div>
+        <div class="feat card"><h3>Coordinación real</h3><p>Equipo en el terreno. Resolvemos y anticipamos, para que tú solo vivas el viaje.</p></div>
+        <div class="feat card"><h3>Extras con mimo</h3><p>Desde fotos pro hasta sorpresas en destino. Detalles que se notan.</p></div>
+        <div class="feat card"><h3>Transparencia total</h3><p>Precio claro y lo que incluye, también. Sin letra pequeña.</p></div>
       </div>
     </div>
   </section>
@@ -386,36 +370,23 @@
     // Año dinámico
     document.getElementById('y').textContent = new Date().getFullYear();
 
-    // Encogido PROGRESIVO sólo en móvil/tablet (hasta 80px de scroll)
+    // Header: sólo cambio de fondo/sombra al bajar (barato => sin tirones)
     (function(){
       const header = document.getElementById('site-header');
       if(!header) return;
-      const isMobile = () => window.matchMedia('(max-width: 900px)').matches;
       let ticking = false;
-
-      function onScroll(){
-        if (ticking) return;
-        ticking = true;
-        requestAnimationFrame(() => {
-          const y = window.scrollY || 0;
-          // progreso de 0..1 en los primeros 80px
-          const s = Math.max(0, Math.min(1, y / 80));
-          if (isMobile()){
-            document.documentElement.style.setProperty('--shrink', s.toFixed(3));
-          } else {
-            document.documentElement.style.setProperty('--shrink', '0');
-          }
-          // Sólo cambia fondo/sombra (sin tamaño) para desktop
-          if (y > 8) header.classList.add('shrink-bg'); else header.classList.remove('shrink-bg');
-          ticking = false;
-        });
+      function apply(){
+        const y = window.scrollY || 0;
+        if(y > 8){ header.classList.add('solid'); } else { header.classList.remove('solid'); }
+        ticking = false;
       }
-      window.addEventListener('scroll', onScroll, { passive:true });
-      window.addEventListener('resize', onScroll);
-      onScroll();
+      window.addEventListener('scroll', function(){
+        if(!ticking){ ticking = true; requestAnimationFrame(apply); }
+      }, { passive:true });
+      apply();
     })();
 
-    // iOS/Safari: no restaurar scroll; empezar arriba si no hay hash
+    // iOS: evitar que arranque abajo si no hay hash
     (function () {
       try { if ('scrollRestoration' in history) { history.scrollRestoration = 'manual'; } } catch(e){}
       function topIfNoHash() {
@@ -430,8 +401,6 @@
       }
       window.addEventListener('pageshow', topIfNoHash, { once:true });
       window.addEventListener('load', topIfNoHash, { once:true });
-      // extra por si abre con teclado/zoom
-      if (!location.hash) { setTimeout(() => { window.scrollTo(0,0); }, 300); }
     })();
 
     // Formspree con redirección forzada
