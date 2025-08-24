@@ -235,9 +235,33 @@
   </section>
 
   <!-- Formulario -->
-  <section id="apuntate">
-    <div class="wrap">
-      <h2>¿Te apuntas?</h2>
-      <p class="lead">Déjanos tus datos y te escribimos con fechas, plazas y próximos destinos.</p>
-      <div class="form-wrap">
-        <form
+<section id="apuntate">
+  <div class="wrap">
+    <h2>¿Te apuntas?</h2>
+    <p class="lead">Déjanos tus datos y te escribimos con fechas, plazas y próximos destinos.</p>
+    <div class="form-wrap">
+      <form id="form-savage"
+            action="https://formspree.io/f/manbrrzl"
+            method="POST">
+        <!-- Redirección forzada -->
+        <input type="hidden" name="_redirect" value="https://leadradar.github.io/savage-nomads-landing/gracias.html">
+
+        <div class="full"><label>Nombre</label><input name="nombre" type="text" placeholder="Tu nombre" required></div>
+        <div><label>Email</label><input name="email" type="email" placeholder="tucorreo@email.com" required></div>
+        <div><label>Teléfono (opcional)</label><input name="phone" type="tel" placeholder="+34 6XX XXX XXX"></div>
+        <div class="full"><label>Destino de interés</label>
+          <select name="destino">
+            <option value="Maldivas">Maldivas</option>
+            <option value="Bali">Bali</option>
+            <option value="Tailandia">Tailandia</option>
+            <option value="Otro">Otro</option>
+          </select>
+        </div>
+        <div class="full"><label>Mensaje</label><textarea name="mensaje" placeholder="Cuéntanos un poco qué buscas"></textarea></div>
+        <div class="full" style="text-align:center">
+          <button type="submit" class="btn btn-cta">Enviar</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</section>
