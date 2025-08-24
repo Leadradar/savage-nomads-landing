@@ -2,19 +2,22 @@
 <html lang="es">
 <head>
   <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- 👇 Viewport mejorado: sin zoom/pinch en móvil -->
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
   <title>Savage Nomads — Viajes en grupo pensados de verdad</title>
 
   <!-- SEO básico -->
   <meta name="title" content="Savage Nomads — Viajes en grupo pensados de verdad">
   <meta name="description" content="Viajes en grupo seleccionados, con itinerarios cuidados y buena compañía. Únete a Savage Nomads.">
 
-  <!-- Open Graph / WhatsApp / Facebook -->
+  <!-- Open Graph -->
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://leadradar.github.io/savage-nomads-landing/">
   <meta property="og:title" content="Savage Nomads — Viajes en grupo pensados de verdad">
   <meta property="og:description" content="Viajes en grupo seleccionados, con itinerarios cuidados y buena compañía. Únete a Savage Nomads.">
   <meta property="og:image" content="https://leadradar.github.io/savage-nomads-landing/hero.jpg">
+  <!-- Si quieres quitar la advertencia del debugger:
+  <meta property="fb:app_id" content="1234567890"> -->
 
   <!-- Twitter -->
   <meta name="twitter:card" content="summary_large_image">
@@ -23,7 +26,7 @@
   <meta name="twitter:description" content="Viajes en grupo seleccionados, con itinerarios cuidados y buena compañía. Únete a Savage Nomads.">
   <meta name="twitter:image" content="https://leadradar.github.io/savage-nomads-landing/hero.jpg">
 
-  <!-- Favicons (deben existir en la raíz) -->
+  <!-- Favicons -->
   <link rel="icon" type="image/png" href="favicon.png">
   <link rel="icon" href="favicon.ico">
   <link rel="icon" type="image/svg+xml" href="favicon.svg">
@@ -131,13 +134,20 @@
     /* Footer */
     footer{padding:28px 0; color:var(--muted); text-align:center; border-top:1px solid rgba(255,255,255,.06)}
 
-    /* === AJUSTES FINALES === */
+    /* === AJUSTES FINALES (desktop y hover) === */
     @media (min-width:901px){
       .tribe-layout, .maldivas-layout{ gap:18px; }
     }
     .navlinks a{ transition: opacity .15s ease; }
     .navlinks a:hover{ opacity:1; text-decoration:underline; text-underline-offset:3px; }
     section[id]{ scroll-margin-top: 84px; }
+
+    /* === NUEVO: menú móvil con aire === */
+    @media (max-width: 640px) {
+      .nav { flex-wrap: wrap; height: auto; padding: 10px 0; }
+      .navlinks { flex-wrap: wrap; justify-content: center; gap: 10px; margin-top: 6px; }
+      .btn-cta { margin-top: 8px; }
+    }
   </style>
 </head>
 <body>
@@ -261,7 +271,7 @@
         <form id="form-savage"
               action="https://formspree.io/f/manbrrzl"
               method="POST">
-          <!-- También dejamos el _redirect en absoluto, aunque el JS ya fuerza -->
+          <!-- Dejamos _redirect absoluto por compatibilidad, aunque el JS fuerza -->
           <input type="hidden" name="_redirect" value="https://leadradar.github.io/savage-nomads-landing/gracias.html">
 
           <div class="full"><label>Nombre</label><input name="nombre" type="text" placeholder="Tu nombre" required></div>
@@ -295,7 +305,7 @@
     document.getElementById('y').textContent = new Date().getFullYear();
   </script>
 
-  <!-- Redirección forzada tras enviar form (no dependemos del thank-you de Formspree) -->
+  <!-- Redirección forzada tras enviar form -->
   <script>
     (function () {
       const form = document.getElementById('form-savage');
