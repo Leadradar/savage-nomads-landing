@@ -16,8 +16,7 @@
   <meta property="og:title" content="Savage Nomads — Viajes en grupo pensados de verdad">
   <meta property="og:description" content="Viajes en grupo seleccionados, con itinerarios cuidados y buena compañía. Únete a Savage Nomads.">
   <meta property="og:image" content="https://leadradar.github.io/savage-nomads-landing/hero.jpg">
-  <!-- Opcional para quitar la advertencia del debugger:
-  <meta property="fb:app_id" content="1234567890"> -->
+  <!-- <meta property="fb:app_id" content="1234567890"> -->
 
   <!-- Twitter -->
   <meta name="twitter:card" content="summary_large_image">
@@ -46,15 +45,15 @@
       --section-gap:56px;
       --section-gap-mobile:40px;
 
-      /* ===== Vars para SHRINK ===== */
+      /* Vars shrink */
       --nav-h:64px;
-      --nav-h-shrink:48px;
+      --nav-h-shrink:48px;     /* se usará SOLO en móvil/tablet */
       --brand-dot:10px;
-      --brand-dot-shrink:7px;
+      --brand-dot-shrink:7px;  /* SOLO en móvil/tablet */
       --navlink-size:15.5px;
-      --navlink-size-shrink:14.5px;
+      --navlink-size-shrink:14.5px; /* SOLO en móvil/tablet */
       --navlink-gap:14px;
-      --navlink-gap-shrink:10px;
+      --navlink-gap-shrink:10px;    /* SOLO en móvil/tablet */
     }
     *{box-sizing:border-box}
     html{scroll-behavior:smooth}
@@ -73,17 +72,18 @@
     .wrap{max-width:1100px; margin:0 auto; padding:0 16px}
     .nav{
       display:flex; align-items:center; justify-content:space-between;
-      height:var(--nav-h); transition:height .25s;
+      height:var(--nav-h);
+      /* OJO: sin transition de height para evitar efecto feo en desktop */
     }
     .brand{display:flex; gap:10px; align-items:center; font-weight:800; letter-spacing:.2px}
     .brand .dot{
       width:var(--brand-dot); height:var(--brand-dot);
       border-radius:50%; background:var(--brand);
-      transition:width .25s, height .25s;
+      /* sin transition en desktop; se activará solo en móvil */
     }
     .navlinks{
       display:flex; align-items:center;
-      gap:var(--navlink-gap); transition:gap .2s;
+      gap:var(--navlink-gap);
       font-size:var(--navlink-size);
     }
     .navlinks a{opacity:.85; transition:opacity .15s}
@@ -91,19 +91,15 @@
     .btn{
       display:inline-block; padding:10px 16px; border-radius:999px;
       font-weight:700; border:none; cursor:pointer;
-      transition:transform .2s, box-shadow .2s, padding .2s, font-size .2s;
+      transition:transform .2s, box-shadow .2s;
     }
     .btn-cta{background:var(--brand); color:#0b0f10; box-shadow:0 8px 22px rgba(0,0,0,.18)}
     .btn-cta:hover{transform:translateY(-1px)}
 
-    /* ===== Estado SHRINK ===== */
+    /* Estado SHRINK: en desktop SOLO fondo/sombra (tamaño fijo) */
     header.shrink{background:rgba(11,15,16,.9); box-shadow:0 6px 18px rgba(0,0,0,.35); border-bottom-color:rgba(255,255,255,.1)}
-    header.shrink .nav{height:var(--nav-h-shrink)}
-    header.shrink .brand .dot{width:var(--brand-dot-shrink); height:var(--brand-dot-shrink)}
-    header.shrink .btn-cta{padding:8px 14px; font-size:.92em}
-    header.shrink .navlinks{gap:var(--navlink-gap-shrink); font-size:var(--navlink-size-shrink)}
 
-    /* Hero */
+    /* ---- Hero ---- */
     .hero{position:relative}
     .hero img{width:100%; height:clamp(380px, 58vh, 520px); object-fit:cover;}
     .hero .overlay{position:absolute; inset:0; background:linear-gradient(180deg, rgba(0,0,0,.28), rgba(0,0,0,.18), transparent 55%)}
@@ -144,7 +140,7 @@
     #tribu .card{height:100%;}
     @media (max-width:900px){.tribe-layout{grid-template-columns:1fr;} .tribe-photo img{aspect-ratio:16/9;}}
 
-    /* Maldivas — fotos horizontales 3:2, cards gemelas coherentes con Tribu */
+    /* Maldivas */
     .maldivas-layout{display:grid; grid-template-columns:1.1fr .9fr; gap:16px; align-items:center;}
     .photos-card{padding:12px;}
     .photos-grid{display:grid; grid-template-columns:1fr 1fr; gap:12px; align-items:center;}
@@ -181,36 +177,39 @@
     /* Footer */
     footer{padding:28px 0; color:var(--muted); text-align:center; border-top:1px solid rgba(255,255,255,.06)}
 
-    /* Desktop & hover (se mantiene EXACTO el layout de escritorio) */
+    /* Desktop & hover */
     @media (min-width:901px){
       .tribe-layout, .maldivas-layout{ gap:18px; }
+      /* En desktop NO encogemos tamaños al hacer scroll */
+      header.shrink .nav{height:var(--nav-h)}
+      header.shrink .brand .dot{width:var(--brand-dot); height:var(--brand-dot)}
+      header.shrink .navlinks{gap:var(--navlink-gap); font-size:var(--navlink-size)}
     }
     .navlinks a{ transition: opacity .15s ease; }
     .navlinks a:hover{ opacity:1; text-decoration:underline; text-underline-offset:3px; }
     section[id]{ scroll-margin-top: 84px; }
 
-    /* SOLO MÓVIL: misma cabecera, pero en dos filas sin tocar desktop */
-    @media (max-width: 700px) {
+    /* SOLO MÓVIL/TABLET: cabecera dos filas + shrink suave */
+    @media (max-width: 900px) {
       .nav{flex-wrap:wrap; height:auto; padding:10px 0; gap:8px;}
       .brand{order:1;}
       .btn-cta{order:2;}
       .navlinks{
-        order:3;
-        width:100%;
-        justify-content:center;
-        gap:14px;
-        border-top:1px solid rgba(255,255,255,.06);
-        padding-top:8px;
-        flex-wrap:wrap;
+        order:3; width:100%; justify-content:center; gap:var(--navlink-gap);
+        border-top:1px solid rgba(255,255,255,.06); padding-top:8px; flex-wrap:wrap;
+        transition:gap .2s, font-size .2s;
       }
-      /* En móvil, el efecto shrink solo ajusta la separación vertical levemente */
-      header.shrink .nav{ row-gap:4px; }
+      /* Aquí SÍ encogemos suavemente */
+      header.shrink .nav{height:var(--nav-h-shrink)}
+      header.shrink .brand .dot{width:var(--brand-dot-shrink); height:var(--brand-dot-shrink)}
+      header.shrink .navlinks{gap:var(--navlink-gap-shrink); font-size:var(--navlink-size-shrink)}
+      header.shrink .btn-cta{transform:none; padding:9px 14px}
     }
   </style>
 </head>
 <body>
 
-  <!-- Header (HTML de escritorio intacto) -->
+  <!-- Header -->
   <header id="site-header">
     <div class="wrap nav">
       <a href="#" class="brand"><span class="dot"></span> <span>Savage Nomads</span></a>
@@ -360,7 +359,20 @@
 
   <!-- Scripts -->
   <script>
+    // Año dinámico
     document.getElementById('y').textContent = new Date().getFullYear();
+
+    // Fix #1 móvil: forzar estar arriba solo si NO hay hash
+    (function(){
+      if (!location.hash) {
+        const html = document.documentElement;
+        const prev = html.style.scrollBehavior;
+        html.style.scrollBehavior = 'auto'; // evita rebote suave
+        window.scrollTo(0,0);
+        // restaura comportamiento suave inmediatamente
+        setTimeout(() => { html.style.scrollBehavior = prev || 'smooth'; }, 0);
+      }
+    })();
   </script>
 
   <!-- Redirección forzada tras enviar form -->
