@@ -5,55 +5,36 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
   <title>¡Gracias! — Savage Nomads</title>
   <meta name="description" content="Gracias por apuntarte a Savage Nomads. Muy pronto nos pondremos en contacto contigo.">
-
-  <!-- Favicons -->
   <link rel="icon" type="image/png" sizes="32x32" href="img/logo-favicon.png">
   <link rel="icon" type="image/x-icon" href="img/favicon.ico">
   <link rel="apple-touch-icon" sizes="180x180" href="img/apple-touch-icon.png">
   <link rel="icon" type="image/png" sizes="512x512" href="img/favicon-512.png">
   <meta name="theme-color" content="#00C2A8">
-
-  <!-- Fuente -->
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;800&display=swap" rel="stylesheet">
-
   <style>
-    :root{
-      --brand:#00C2A8;
-      --accent:#FFC94D;
-      --bg:#f7fbfc;
-      --fg:#0E1416;
-      --muted:#50656C;
-      --border:#E6EEF1;
-      --radius:14px;
-    }
+    :root{--brand:#00C2A8;--accent:#FFC94D;--bg:#f7fbfc;--fg:#0E1416;--muted:#50656C;--border:#E6EEF1}
     *{box-sizing:border-box}
-    body{margin:0;font-family:'Poppins',sans-serif;background:var(--bg);color:var(--fg);min-height:100vh;display:flex;flex-direction:column}
+    body{margin:0;font-family:'Poppins',sans-serif;background:var(--bg);color:var(--fg);min-height:100vh;display:flex;flex-direction:column;text-align:center}
     .wrap{max-width:900px;margin:0 auto;padding:0 16px}
-    main{flex:1;display:flex;align-items:center;justify-content:center;text-align:center;padding:40px 0}
-    .card{background:#fff;border:1px solid var(--border);border-radius:var(--radius);padding:28px 22px;box-shadow:0 12px 28px rgba(16,24,40,.10)}
-    .hero-mini-logo{width:90px;height:auto;margin:0 auto 14px;opacity:.95}
-    h1{color:var(--accent);font-size:clamp(28px,5vw,48px);margin:0 0 10px}
-    p{color:var(--fg);font-size:18px;line-height:1.6;max-width:60ch;margin:0 auto 18px}
+    .thankyou{padding:64px 0}
+    .hero-mini-logo{width:180px;height:auto;opacity:.98;margin:0 auto 12px;filter:drop-shadow(0 6px 14px rgba(0,0,0,.15))}
+    @media(max-width:700px){.hero-mini-logo{width:110px}}
+    h1{color:var(--accent);font-size:clamp(28px,5vw,48px);margin:8px 0 6px}
+    p.lead{max-width:60ch;margin:0 auto 16px;font-size:18px;line-height:1.6}
     .btn{display:inline-block;background:var(--brand);color:#fff;padding:12px 22px;border-radius:999px;font-weight:700;text-decoration:none}
     .btn:hover{opacity:.9}
-
-    footer{padding:22px 0;border-top:1px solid var(--border);text-align:center;color:var(--muted)}
+    footer{margin-top:auto;padding:22px 0;border-top:1px solid var(--border);color:#50656C}
     .footerbar{display:inline-flex;align-items:center;gap:8px}
     .footer-logo{width:20px;height:20px}
   </style>
 </head>
 <body>
-
-  <main>
-    <div class="wrap">
-      <div class="card">
-        <img class="hero-mini-logo" src="img/logo-hero.png" alt="Logo Savage Nomads">
-        <h1>¡Gracias por apuntarte!</h1>
-        <p>Muy pronto nos pondremos en contacto contigo con más detalles sobre próximos viajes y experiencias.  
-        Mientras tanto, puedes volver a la página principal y seguir explorando.</p>
-        <a class="btn" href="index.html">Volver al inicio</a>
-      </div>
-    </div>
+  <main class="thankyou wrap">
+    <img class="hero-mini-logo" src="img/logo-hero.png" alt="Logo Savage Nomads">
+    <h1>¡Gracias por apuntarte!</h1>
+    <p class="lead">En breve te escribimos con fechas, plazas y próximos destinos.  
+      Mientras tanto, vuelve a la portada para seguir explorando.</p>
+    <a class="btn" href="index.html">Volver al inicio</a>
   </main>
 
   <footer>
@@ -64,9 +45,6 @@
       </span>
     </div>
   </footer>
-
-  <script>
-    document.getElementById('y').textContent = new Date().getFullYear();
-  </script>
+  <script>document.getElementById('y').textContent=(new Date()).getFullYear();</script>
 </body>
 </html>
