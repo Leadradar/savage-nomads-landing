@@ -23,6 +23,7 @@
   <link rel="apple-touch-icon" sizes="180x180" href="img/apple-touch-icon.png">
   <link rel="icon" type="image/png" sizes="512x512" href="img/favicon-512.png">
   <meta name="theme-color" content="#00C2A8">
+  <link rel="manifest" href="manifest.json">
 
   <!-- Twitter -->
   <meta name="twitter:card" content="summary_large_image">
@@ -86,9 +87,9 @@
     :root.dark p, :root.dark .lead { color:#fff; }
     section.strip{ background: var(--surface); }
 
-    /* Header (arreglos + móvil) */
+    /* Header */
     header{
-      position:sticky; top:0; z-index:100; /* SUBIMOS Z-INDEX */
+      position:sticky; top:0; z-index:100;
       backdrop-filter:saturate(140%) blur(8px);
       background:rgba(255,255,255,.75);
       border-bottom:1px solid var(--border);
@@ -98,7 +99,7 @@
     .wrap{max-width:1100px; margin:0 auto; padding:0 16px}
     .nav{display:flex; align-items:center; justify-content:space-between; height:var(--nav-h);}
     .brand{display:flex; gap:10px; align-items:center; font-weight:800; letter-spacing:.2px}
-    .brand img{width:26px; height:26px; border-radius:0; display:block} /* CUADRADO */
+    /* Sin logo en el header → solo texto */
     .brand span{font-weight:800}
     .navlinks{display:flex; align-items:center; gap:var(--navlink-gap); font-size:var(--navlink-size);}
     .navlinks a{opacity:.85; transition:opacity .15s}
@@ -118,15 +119,16 @@
     .hero img{width:100%; height:clamp(420px, 60vh, 560px); object-fit:cover; object-position:center; will-change:transform; transform:translateY(0); transition:transform .08s linear;}
     .hero .overlay{position:absolute; inset:0; background:linear-gradient(180deg, rgba(0,0,0,.22), rgba(0,0,0,.14), rgba(0,0,0,.30));}
     :root.dark .hero .overlay{background:linear-gradient(180deg, rgba(0,0,0,.32), rgba(0,0,0,.18), rgba(0,0,0,.42));}
-    .hero-content{position:absolute; inset:0; display:flex; flex-direction:column; align-items:center; justify-content:center; gap:12px; padding:0 16px; text-align:center; pointer-events:none;}
+    .hero-content{position:absolute; inset:0; display:flex; flex-direction:column; align-items:center; justify-content:center; gap:10px; padding:0 16px; text-align:center; pointer-events:none;}
     .hero h1{margin:0; font-weight:800; font-size:clamp(30px, 5.5vw, 52px); line-height:1.1; text-shadow:0 10px 30px rgba(0,0,0,.4); max-width:20ch; color:var(--accent);}
     .hero .sub{margin:0; opacity:.98; max-width:48ch; font-weight:400; font-size:clamp(16px,2.4vw,20px); color:#000; text-shadow:0 6px 18px rgba(255,255,255,.65);}
-    .hero-logo{
-      position:absolute; left:20px; bottom:20px; width:120px; max-width:22vw;
-      opacity:.92; filter:drop-shadow(0 8px 18px rgba(0,0,0,.25));
-      pointer-events:none; z-index:1; /* por debajo del header */
+    /* Logo mini en B/N debajo del subtítulo */
+    .hero-mini-logo{
+      width:60px; height:auto; margin-top:6px; opacity:.92; pointer-events:none; filter: drop-shadow(0 6px 14px rgba(0,0,0,.25));
     }
-    @media (max-width:900px){ .hero-logo{ display:none; } } /* oculto en móvil */
+    @media (max-width:700px){
+      .hero-mini-logo{ width:40px; margin-top:4px; }
+    }
 
     /* Secciones */
     section{padding: clamp(var(--section-gap-mobile), 5vw, var(--section-gap)) 0}
@@ -235,7 +237,7 @@
     .navlinks a:hover{ opacity:1; text-decoration:underline; text-underline-offset:3px; }
     section[id]{ scroll-margin-top: 84px; }
 
-    /* SOLO MÓVIL: misma cabecera en dos filas + fondo en links */
+    /* SOLO MÓVIL: cabecera en dos filas + fondo en links */
     @media (max-width: 900px) {
       .nav{flex-wrap:wrap; height:auto; padding:10px 0; gap:8px;}
       .brand{order:1;}
@@ -312,7 +314,7 @@
       .whatsapp-fab{ transition:none; }
     }
 
-    /* Footer compacto (arreglo 1) */
+    /* Footer compacto: logo a la IZQUIERDA del texto */
     footer{ padding:22px 0; border-top:1px solid var(--border); }
     :root.dark footer{ border-top-color:rgba(255,255,255,.10); }
     .footerbar{
@@ -344,11 +346,10 @@
 </head>
 <body>
 
-  <!-- Header -->
+  <!-- Header (sin logo, solo texto) -->
   <header id="site-header">
     <div class="wrap nav">
       <a href="#" class="brand">
-        <img src="img/logo-favicon.png" alt="Savage Nomads">
         <span>Savage Nomads</span>
       </a>
       <nav class="navlinks">
@@ -375,15 +376,15 @@
     </svg>
   </a>
 
-  <!-- Hero (logo decorativo bajo header) -->
+  <!-- Hero (logo mini en B/N debajo del subtítulo) -->
   <section class="hero reveal" aria-label="Portada">
     <img id="hero-img" src="hero.jpg" alt="Grupo viajando por playas de aguas turquesas">
     <div class="overlay"></div>
     <div class="hero-content">
       <h1>Explora el mundo, conecta de verdad</h1>
       <p class="sub">Viajar con tu tribu, descubrir lugares únicos y vivir momentos que no se olvidan.</p>
+      <img class="hero-mini-logo" src="img/logo-mark-black.png" alt="Logo Savage Nomads" loading="lazy" decoding="async">
     </div>
-    <img class="hero-logo" src="img/logo-full.png" alt="" aria-hidden="true" loading="lazy" decoding="async">
   </section>
 
   <!-- Qué ofrecemos -->
@@ -601,12 +602,12 @@
     </div>
   </section>
 
-  <!-- Footer compacto con logo alineado -->
+  <!-- Footer (logo a la IZQUIERDA para no chocar con el botón de modo) -->
   <footer>
     <div class="wrap" style="text-align:center;">
       <span class="footerbar">
-        <small>© <span id="y"></span> Savage Nomads • Hecho con cariño y ganas de viajar</small>
         <img class="footer-logo" src="img/logo-favicon.png" alt="Logo Savage Nomads">
+        <small>© <span id="y"></span> Savage Nomads • Hecho con cariño y ganas de viajar</small>
       </span>
     </div>
   </footer>
