@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
   <title>Savage Nomads — Explora el mundo, conecta de verdad</title>
 
-  <!-- SEO -->
+  <!-- SEO / Social -->
   <meta name="description" content="Viajes en grupo seleccionados, con itinerarios cuidados y buena compañía. Únete a Savage Nomads.">
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://leadradar.github.io/savage-nomads-landing/">
@@ -13,19 +13,15 @@
   <meta property="og:description" content="Viajes en grupo seleccionados, con itinerarios cuidados y buena compañía. Únete a Savage Nomads.">
   <meta property="og:image" content="https://leadradar.github.io/savage-nomads-landing/hero.jpg">
   <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:url" content="https://leadradar.github.io/savage-nomads-landing/">
-  <meta name="twitter:title" content="Savage Nomads — Explora el mundo, conecta de verdad">
-  <meta name="twitter:description" content="Viajes en grupo seleccionados, con itinerarios cuidados y buena compañía. Únete a Savage Nomads.">
-  <meta name="twitter:image" content="https://leadradar.github.io/savage-nomads-landing/hero.jpg">
+  <meta name="theme-color" content="#00C2A8">
 
   <!-- Favicons -->
   <link rel="icon" type="image/png" sizes="32x32" href="img/logo-favicon.png">
   <link rel="icon" type="image/x-icon" href="img/favicon.ico">
   <link rel="apple-touch-icon" sizes="180x180" href="img/apple-touch-icon.png">
   <link rel="icon" type="image/png" sizes="512x512" href="img/favicon-512.png">
-  <meta name="theme-color" content="#00C2A8">
 
-  <!-- Fonts -->
+  <!-- Fuente -->
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700;800&display=swap" rel="stylesheet">
 
   <style>
@@ -51,10 +47,10 @@
     img{max-width:100%;display:block}
     .wrap{max-width:var(--wrap);margin:0 auto;padding:0 16px}
 
-    /* HEADER limpio */
+    /* Header */
     header{
-      position:sticky;top:0;z-index:50;
-      background:rgba(255,255,255,.9);
+      position:sticky; top:0; z-index:50;
+      background:rgba(255,255,255,.92);
       border-bottom:1px solid var(--border);
       backdrop-filter:saturate(140%) blur(8px);
     }
@@ -71,26 +67,30 @@
       .navlinks{order:3;width:100%;justify-content:center;flex-wrap:wrap;border-top:1px solid var(--border);padding-top:8px}
     }
 
-    /* HERO */
+    /* Hero */
     .hero{position:relative;overflow:hidden;text-align:center}
-    .hero img.bg{width:100%;height:clamp(420px,60vh,560px);object-fit:cover}
+    .hero .bg{width:100%;height:clamp(420px,60vh,560px);object-fit:cover}
     .hero .overlay{position:absolute;inset:0;background:linear-gradient(180deg,rgba(0,0,0,.25),rgba(0,0,0,.15),rgba(0,0,0,.35))}
     .hero .content{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:0 16px;gap:10px}
     .hero h1{color:var(--accent);font-weight:800;font-size:clamp(30px,5.5vw,56px);text-shadow:0 8px 24px rgba(0,0,0,.45)}
     .hero .sub{color:#fff;font-size:clamp(16px,2.4vw,20px);text-shadow:0 6px 18px rgba(0,0,0,.45)}
-    .hero-mini-logo{width:60px;height:auto;margin-top:8px;opacity:.92;filter:drop-shadow(0 6px 14px rgba(0,0,0,.25))}
-    @media (max-width:700px){.hero-mini-logo{width:40px}}
+    .hero-mini-logo{width:90px;height:auto;margin-top:12px;opacity:.95;filter:drop-shadow(0 6px 14px rgba(0,0,0,.25))}
+    @media (max-width:700px){.hero-mini-logo{width:60px;margin-top:10px}}
 
-    /* SECCIONES */
+    /* Secciones */
     section{padding: clamp(40px, 5vw, 56px) 0}
     section[id]{scroll-margin-top:84px;}
     section > .wrap > h2{text-align:center;margin:0 0 18px;font-size:clamp(24px,4.6vw,34px);color:var(--brand)}
     .lead{text-align:center;max-width:60ch;margin:0 auto 24px;color:var(--fg)}
 
-    /* Cards */
+    /* Cards base */
     .card{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:18px;box-shadow:var(--shadow)}
+    @media (min-width:901px){
+      .card{transition:transform .22s ease, box-shadow .22s ease}
+      .card:hover{transform:translateY(-4px);box-shadow:var(--shadow-strong)}
+    }
 
-    /* Qué ofrecemos */
+    /* Ofrecemos */
     .features{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
     .feat h3{margin:0 0 6px;font-size:18px;color:var(--brand)}
     .feat p{margin:0;color:var(--muted)}
@@ -145,7 +145,7 @@
     .faq details[open] summary::after{transform:rotate(180deg)}
     .faq p{color:var(--muted);margin:10px 0 0}
 
-    /* FORMULARIO */
+    /* Formulario */
     .form-wrap{max-width:760px;margin:0 auto;background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:18px;box-shadow:var(--shadow)}
     form{display:grid;grid-template-columns:1fr 1fr;gap:12px}
     form .full{grid-column:1 / -1}
@@ -155,21 +155,15 @@
     button[type="submit"]{justify-self:center;margin-top:6px}
     @media (max-width:640px){form{grid-template-columns:1fr}}
 
-    /* FOOTER (logo a la izquierda) */
+    /* Footer */
     footer{padding:22px 0;border-top:1px solid var(--border);text-align:center;color:var(--muted)}
     .footerbar{display:inline-flex;align-items:center;gap:8px}
     .footer-logo{width:20px;height:20px;border-radius:0}
-
-    /* Pequeños efectos */
-    @media (min-width:901px){
-      .card,.step,.faq details{transition:transform .22s ease, box-shadow .22s ease}
-      .card:hover,.step:hover,.faq details:hover{transform:translateY(-4px);box-shadow:var(--shadow-strong)}
-    }
   </style>
 </head>
 <body>
 
-  <!-- HEADER -->
+  <!-- Header -->
   <header>
     <div class="wrap nav">
       <div class="brand">Savage Nomads</div>
@@ -181,22 +175,22 @@
         <a href="#testimonios">Opiniones</a>
         <a href="#faq">FAQ</a>
       </nav>
-      <a href="#form-savage" class="btn btn-cta">Apúntate</a>
+      <a href="#form-savage" class="btn-cta">Apúntate</a>
     </div>
   </header>
 
-  <!-- HERO -->
+  <!-- Hero -->
   <section class="hero" aria-label="Portada">
     <img class="bg" src="hero.jpg" alt="Playa de aguas turquesas">
     <div class="overlay"></div>
     <div class="content">
       <h1>Explora el mundo, conecta de verdad</h1>
       <p class="sub">Viajar con tu tribu, descubrir lugares únicos y vivir momentos que no se olvidan.</p>
-      <img class="hero-mini-logo" src="img/logo-mark-black.png" alt="Logo Savage Nomads">
+      <img class="hero-mini-logo" src="img/logo-hero.png" alt="Logo Savage Nomads">
     </div>
   </section>
 
-  <!-- OFRECEMOS -->
+  <!-- Qué ofrecemos -->
   <section id="ofrecemos">
     <div class="wrap">
       <h2>Qué ofrecemos</h2>
@@ -212,7 +206,7 @@
     </div>
   </section>
 
-  <!-- TRIBU -->
+  <!-- Tribu -->
   <section id="tribu">
     <div class="wrap">
       <h2>Conecta con tu tribu</h2>
@@ -230,7 +224,7 @@
     </div>
   </section>
 
-  <!-- MINI ITINERARIO -->
+  <!-- Mini Itinerario -->
   <section aria-label="Itinerario ejemplo">
     <div class="wrap">
       <h2>Un ritmo que se disfruta</h2>
@@ -243,7 +237,7 @@
     </div>
   </section>
 
-  <!-- MALDIVAS -->
+  <!-- Maldivas -->
   <section id="maldivas">
     <div class="wrap">
       <h2>Maldivas Aventureras</h2>
@@ -275,7 +269,7 @@
     </div>
   </section>
 
-  <!-- GALERÍA -->
+  <!-- Galería -->
   <section id="galeria" aria-label="Galería inspiración destinos">
     <div class="wrap">
       <h2>Imagina el viaje con tu tribu</h2>
@@ -319,7 +313,7 @@
     </div>
   </section>
 
-  <!-- TESTIMONIOS -->
+  <!-- Testimonios -->
   <section id="testimonios">
     <div class="wrap">
       <h2>Lo que dicen de nosotros</h2>
@@ -347,7 +341,7 @@
     </div>
   </section>
 
-  <!-- FORMULARIO -->
+  <!-- Formulario -->
   <section id="apuntate">
     <div class="wrap">
       <h2>¿Te apuntas?</h2>
@@ -372,7 +366,7 @@
     </div>
   </section>
 
-  <!-- FOOTER -->
+  <!-- Footer -->
   <footer>
     <div class="wrap">
       <span class="footerbar">
@@ -387,11 +381,11 @@
     // Año dinámico
     document.getElementById('y').textContent = new Date().getFullYear();
 
-    // Forzar top al cargar si no hay hash (por el bug de iOS)
+    // Fix iOS: arriba al cargar si no hay hash
     (function(){ try{ if('scrollRestoration' in history){ history.scrollRestoration='manual'; } }catch(e){} })();
     window.addEventListener('load', ()=>{ if(!location.hash) { window.scrollTo(0,0); } }, {once:true});
 
-    // Formspree con redirección
+    // Formspree + redirección
     (function () {
       const form = document.getElementById('form-savage');
       if (!form) return;
