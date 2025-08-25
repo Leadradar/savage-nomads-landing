@@ -24,10 +24,10 @@
   <meta name="twitter:description" content="Viajes en grupo seleccionados, con itinerarios cuidados y buena compañía. Únete a Savage Nomads.">
   <meta name="twitter:image" content="https://leadradar.github.io/savage-nomads-landing/hero.jpg">
 
-  <!-- Favicons -->
-  <link rel="icon" type="image/png" href="favicon.png">
-  <link rel="icon" href="favicon.ico">
-  <link rel="icon" type="image/svg+xml" href="favicon.svg">
+  <!-- Favicons (usa tu icono tipi simplificado) -->
+  <link rel="icon" type="image/png" href="img/logo-favicon.png">
+  <link rel="apple-touch-icon" href="img/logo-favicon.png">
+  <meta name="theme-color" content="#00C2A8">
 
   <!-- Google Fonts -->
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -97,7 +97,8 @@
     .wrap{max-width:1100px; margin:0 auto; padding:0 16px}
     .nav{display:flex; align-items:center; justify-content:space-between; height:var(--nav-h);}
     .brand{display:flex; gap:10px; align-items:center; font-weight:800; letter-spacing:.2px}
-    .brand .dot{width:10px; height:10px; border-radius:50%; background:var(--brand);}
+    .brand img{width:26px; height:26px; border-radius:6px; display:block}
+    .brand span{font-weight:800}
     .navlinks{display:flex; align-items:center; gap:var(--navlink-gap); font-size:var(--navlink-size);}
     .navlinks a{opacity:.85; transition:opacity .15s}
     .navlinks a:hover{opacity:1}
@@ -119,7 +120,7 @@
     .hero-content{position:absolute; inset:0; display:flex; flex-direction:column; align-items:center; justify-content:center; gap:12px; padding:0 16px; text-align:center; pointer-events:none;}
     .hero h1{margin:0; font-weight:800; font-size:clamp(30px, 5.5vw, 52px); line-height:1.1; text-shadow:0 10px 30px rgba(0,0,0,.4); max-width:20ch; color:var(--accent);}
     .hero .sub{margin:0; opacity:.98; max-width:48ch; font-weight:400; font-size:clamp(16px,2.4vw,20px); color:#000; text-shadow:0 6px 18px rgba(255,255,255,.65);}
-    :root.dark .hero .sub{ color:#000; }
+    .hero-logo{ position:absolute; left:24px; bottom:18px; width:min(160px, 20vw); opacity:.92; filter:drop-shadow(0 8px 18px rgba(0,0,0,.25)); pointer-events:none; }
 
     /* Secciones */
     section{padding: clamp(var(--section-gap-mobile), 5vw, var(--section-gap)) 0}
@@ -263,7 +264,7 @@
     .gallery[data-filter="maldivas"] figure[data-destino="grecia"]{ display:none; }
     .gallery[data-filter="grecia"]  figure[data-destino="maldivas"]{ display:none; }
 
-    /* ===== Efecto Blur de carga (todas las imágenes) ===== */
+    /* ===== Efecto Blur de carga ===== */
     .gallery figure img,
     .hero img,
     .photos-grid img,
@@ -304,6 +305,9 @@
       .whatsapp-pulse{ display:none; }
       .whatsapp-fab{ transition:none; }
     }
+
+    /* Logo decorativo en footer */
+    .footer-logo{width:34px; height:34px; vertical-align:middle; border-radius:6px; margin-left:6px}
   </style>
 
   <!-- iOS: arriba al cargar -->
@@ -330,7 +334,10 @@
   <!-- Header -->
   <header id="site-header">
     <div class="wrap nav">
-      <a href="#" class="brand"><span class="dot"></span> <span>Savage Nomads</span></a>
+      <a href="#" class="brand">
+        <img src="img/logo-favicon.png" alt="Savage Nomads">
+        <span>Savage Nomads</span>
+      </a>
       <nav class="navlinks">
         <a href="#ofrecemos">Qué ofrecemos</a>
         <a href="#tribu">Tribu</a>
@@ -349,14 +356,13 @@
   <!-- FAB WhatsApp -->
   <a id="whatsapp-fab" class="whatsapp-fab" href="#" target="_blank" rel="noopener" aria-label="Escríbenos por WhatsApp">
     <span class="whatsapp-pulse" aria-hidden="true"></span>
-    <!-- Ícono WhatsApp (SVG) -->
     <svg viewBox="0 0 32 32" fill="none" aria-hidden="true">
       <path d="M16.02 3C9.94 3 5 7.94 5 14.02c0 2.43.72 4.68 1.97 6.55L6 29l8.62-1.82c1.77 1.09 3.85 1.72 6.09 1.72 6.08 0 11.02-4.94 11.02-11.02C31.73 7.94 26.8 3 20.72 3h-4.7z" fill="#25D366"/>
       <path d="M24.7 18.9c-.13-.22-.47-.35-.98-.61-.5-.26-2.97-1.47-3.43-1.64-.46-.17-.8-.26-1.13.26-.33.52-1.29 1.64-1.58 1.97-.29.33-.58.37-1.08.11-.5-.26-2.11-.77-4.01-2.47-1.48-1.32-2.48-2.95-2.77-3.45-.29-.5-.03-.77.22-1.02.22-.22.5-.58.74-.87.25-.29.33-.5.5-.84.17-.33.08-.64-.04-.9-.13-.26-1.13-2.73-1.55-3.74-.41-1-.84-.86-1.13-.88-.29-.02-.62-.02-.95-.02-.33 0-.87.12-1.33.64-.46.52-1.76 1.72-1.76 4.2 0 2.47 1.8 4.86 2.05 5.19.25.33 3.54 5.4 8.58 7.57 5.04 2.17 5.04 1.45 5.95 1.41.91-.04 2.97-1.21 3.39-2.38.42-1.17.42-2.17.29-2.39z" fill="#fff"/>
     </svg>
   </a>
 
-  <!-- Hero -->
+  <!-- Hero (con logo decorativo en esquina) -->
   <section class="hero reveal" aria-label="Portada">
     <img id="hero-img" src="hero.jpg" alt="Grupo viajando por playas de aguas turquesas">
     <div class="overlay"></div>
@@ -364,6 +370,8 @@
       <h1>Explora el mundo, conecta de verdad</h1>
       <p class="sub">Viajar con tu tribu, descubrir lugares únicos y vivir momentos que no se olvidan.</p>
     </div>
+    <!-- Logo decorativo: usa tu versión de logo completo -->
+    <img class="hero-logo" src="img/logo-full.png" alt="" aria-hidden="true" loading="lazy" decoding="async">
   </section>
 
   <!-- Qué ofrecemos -->
@@ -462,7 +470,7 @@
     </div>
   </section>
 
-  <!-- Galería Masonry (Maldivas / Grecia) -->
+  <!-- Galería Masonry -->
   <section id="galeria" class="reveal strip" aria-label="Galería inspiración destinos">
     <div class="wrap">
       <h2>Imagina el viaje con tu tribu</h2>
@@ -582,8 +590,10 @@
   </section>
 
   <footer>
-    <div class="wrap">
+    <div class="wrap" style="text-align:center; color:var(--muted);">
       <small>© <span id="y"></span> Savage Nomads • Hecho con cariño y ganas de viajar</small>
+      <!-- Mini logo en el footer -->
+      <img class="footer-logo" src="img/logo-favicon.png" alt="Logo Savage Nomads">
     </div>
   </footer>
 
@@ -741,8 +751,7 @@
 
     // ====== WhatsApp FAB: configura tu número y mensaje ======
     (function(){
-      // ⚠️ REEMPLAZA por tu número en formato internacional sin '+', p.ej. 34600000000
-      const WHATSAPP_NUMBER = '34664549465';
+      const WHATSAPP_NUMBER = '34600000000'; // <- pon tu número sin +
       const DEFAULT_MSG = 'Hola! Vengo de la web de Savage Nomads. Me interesa unirme a un viaje en grupo 🙂';
       const url = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(DEFAULT_MSG)}`;
       const fab = document.getElementById('whatsapp-fab');
