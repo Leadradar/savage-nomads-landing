@@ -2,82 +2,71 @@
 <html lang="es">
 <head>
   <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
   <title>¡Gracias! — Savage Nomads</title>
-  <meta name="description" content="Gracias por tu interés en Savage Nomads. Pronto nos pondremos en contacto contigo.">
-  
-  <!-- Favicon -->
-  <link rel="icon" type="image/png" href="favicon.png">
-  <link rel="icon" href="favicon.ico">
-  <link rel="icon" type="image/svg+xml" href="favicon.svg">
+  <meta name="description" content="Gracias por apuntarte a Savage Nomads. Muy pronto nos pondremos en contacto contigo.">
+
+  <!-- Favicons -->
+  <link rel="icon" type="image/png" sizes="32x32" href="img/logo-favicon.png">
+  <link rel="icon" type="image/x-icon" href="img/favicon.ico">
+  <link rel="apple-touch-icon" sizes="180x180" href="img/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="512x512" href="img/favicon-512.png">
+  <meta name="theme-color" content="#00C2A8">
+
+  <!-- Fuente -->
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;800&display=swap" rel="stylesheet">
 
   <style>
     :root{
-      --bg:#0b0f10;
-      --fg:#e9f1f3;
-      --muted:#a9b6ba;
       --brand:#00C2A8;
-      --accent:#ffd36b;
-      --card:#11171a;
+      --accent:#FFC94D;
+      --bg:#f7fbfc;
+      --fg:#0E1416;
+      --muted:#50656C;
+      --border:#E6EEF1;
       --radius:14px;
-      --shadow:0 10px 30px rgba(0,0,0,.12);
     }
     *{box-sizing:border-box}
-    body{margin:0; font-family:system-ui,-apple-system,Segoe UI,Roboto,Inter,Ubuntu,Arial,sans-serif; background:var(--bg); color:var(--fg); display:flex; align-items:center; justify-content:center; height:100vh; text-align:center; padding:20px;}
-    .box{background:var(--card); border:1px solid rgba(255,255,255,.06); border-radius:var(--radius); box-shadow:var(--shadow); padding:40px 30px; max-width:500px;}
-    h1{margin:20px 0 12px; font-size:clamp(24px,5vw,32px); color:var(--accent);}
-    p{margin:0 0 24px; color:var(--muted);}
-    a.btn{display:inline-block; padding:12px 22px; border-radius:999px; font-weight:700; background:var(--brand); color:#0b0f10; box-shadow:0 8px 22px rgba(0,0,0,.18); transition:.15s transform;}
-    a.btn:hover{transform:translateY(-1px);}
+    body{margin:0;font-family:'Poppins',sans-serif;background:var(--bg);color:var(--fg);min-height:100vh;display:flex;flex-direction:column}
+    .wrap{max-width:900px;margin:0 auto;padding:0 16px}
+    main{flex:1;display:flex;align-items:center;justify-content:center;text-align:center;padding:40px 0}
+    .card{background:#fff;border:1px solid var(--border);border-radius:var(--radius);padding:28px 22px;box-shadow:0 12px 28px rgba(16,24,40,.10)}
+    .hero-mini-logo{width:90px;height:auto;margin:0 auto 14px;opacity:.95}
+    h1{color:var(--accent);font-size:clamp(28px,5vw,48px);margin:0 0 10px}
+    p{color:var(--fg);font-size:18px;line-height:1.6;max-width:60ch;margin:0 auto 18px}
+    .btn{display:inline-block;background:var(--brand);color:#fff;padding:12px 22px;border-radius:999px;font-weight:700;text-decoration:none}
+    .btn:hover{opacity:.9}
 
-    /* Animación del check */
-    .checkmark {
-      width: 72px;
-      height: 72px;
-      border-radius: 50%;
-      display: inline-block;
-      stroke-width: 2;
-      stroke: var(--brand);
-      stroke-miterlimit: 10;
-      box-shadow: inset 0 0 0 var(--brand);
-      animation: scale .3s ease-in-out .9s both;
-      margin-bottom: 20px;
-    }
-    .checkmark__circle {
-      stroke-dasharray: 166;
-      stroke-dashoffset: 166;
-      stroke-width: 2;
-      stroke-miterlimit: 10;
-      stroke: var(--brand);
-      fill: none;
-      animation: stroke 0.6s cubic-bezier(0.65, 0, 0.45, 1) forwards;
-    }
-    .checkmark__check {
-      transform-origin: 50% 50%;
-      stroke-dasharray: 48;
-      stroke-dashoffset: 48;
-      animation: stroke 0.3s cubic-bezier(0.65, 0, 0.45, 1) 0.6s forwards;
-    }
-    @keyframes stroke {
-      100% { stroke-dashoffset: 0; }
-    }
-    @keyframes scale {
-      0%, 100% { transform: none; }
-      50% { transform: scale3d(1.1, 1.1, 1); }
-    }
+    footer{padding:22px 0;border-top:1px solid var(--border);text-align:center;color:var(--muted)}
+    .footerbar{display:inline-flex;align-items:center;gap:8px}
+    .footer-logo{width:20px;height:20px}
   </style>
 </head>
 <body>
-  <div class="box">
-    <!-- Check animado -->
-    <svg class="checkmark" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 52 52">
-      <circle class="checkmark__circle" cx="26" cy="26" r="25" fill="none"/>
-      <path class="checkmark__check" fill="none" stroke="var(--brand)" stroke-width="4" d="M14 27l7 7 16-16"/>
-    </svg>
 
-    <h1>¡Gracias por apuntarte!</h1>
-    <p>Hemos recibido tu mensaje. En breve nos pondremos en contacto contigo con toda la info del viaje.</p>
-    <a href="index.html" class="btn">Volver al inicio</a>
-  </div>
+  <main>
+    <div class="wrap">
+      <div class="card">
+        <img class="hero-mini-logo" src="img/logo-hero.png" alt="Logo Savage Nomads">
+        <h1>¡Gracias por apuntarte!</h1>
+        <p>Muy pronto nos pondremos en contacto contigo con más detalles sobre próximos viajes y experiencias.  
+        Mientras tanto, puedes volver a la página principal y seguir explorando.</p>
+        <a class="btn" href="index.html">Volver al inicio</a>
+      </div>
+    </div>
+  </main>
+
+  <footer>
+    <div class="wrap">
+      <span class="footerbar">
+        <img class="footer-logo" src="img/logo-favicon.png" alt="Logo">
+        © <span id="y"></span> Savage Nomads • Hecho con cariño y ganas de viajar
+      </span>
+    </div>
+  </footer>
+
+  <script>
+    document.getElementById('y').textContent = new Date().getFullYear();
+  </script>
 </body>
 </html>
