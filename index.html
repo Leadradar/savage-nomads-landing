@@ -5,6 +5,9 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
   <title>Savage Nomads — Explora el mundo, conecta de verdad</title>
 
+  <!-- Canonical -->
+  <link rel="canonical" href="https://leadradar.github.io/savage-nomads-landing/">
+
   <!-- SEO / Social -->
   <meta name="description" content="Viajes en grupo seleccionados, con itinerarios cuidados y buena compañía. Únete a Savage Nomads.">
   <meta property="og:type" content="website">
@@ -12,6 +15,7 @@
   <meta property="og:title" content="Savage Nomads — Explora el mundo, conecta de verdad">
   <meta property="og:description" content="Viajes en grupo seleccionados, con itinerarios cuidados y buena compañía. Únete a Savage Nomads.">
   <meta property="og:image" content="https://leadradar.github.io/savage-nomads-landing/hero.jpg">
+  <meta property="og:locale" content="es_ES">
   <meta name="twitter:card" content="summary_large_image">
 
   <!-- Favicons -->
@@ -21,8 +25,13 @@
   <link rel="icon" type="image/png" sizes="512x512" href="img/favicon-512.png">
   <meta name="theme-color" content="#00C2A8">
 
-  <!-- Fuente -->
+  <!-- Fonts (perf) -->
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700;800&display=swap" rel="stylesheet">
+
+  <!-- Preload hero for faster Largest Contentful Paint -->
+  <link rel="preload" as="image" href="hero.jpg" imagesrcset="hero.jpg" imagesizes="100vw">
 
   <style>
     :root{
@@ -44,8 +53,13 @@
     body{margin:0;font-family:'Poppins',system-ui,-apple-system,Segoe UI,Roboto,Inter,Ubuntu,Arial,sans-serif;background:var(--bg);color:var(--fg);line-height:1.55}
     h1,h2,h3{margin:0}
     a{color:inherit;text-decoration:none}
-    img{max-width:100%;display:block}
+    img{max-width:100%;display:block;height:auto}
     .wrap{max-width:var(--wrap);margin:0 auto;padding:0 16px}
+
+    /* Reduce motion for users who prefer it */
+    @media (prefers-reduced-motion: reduce) {
+      *{animation:none!important;transition:none!important;scroll-behavior:auto!important}
+    }
 
     /* HEADER (igual que antes) */
     header{
@@ -159,14 +173,25 @@
     .footerbar{display:inline-flex;align-items:center;gap:8px}
     .footer-logo{width:20px;height:20px;border-radius:0}
   </style>
+
+  <!-- JSON-LD básico de organización -->
+  <script type="application/ld+json">
+  {
+    "@context":"https://schema.org",
+    "@type":"Organization",
+    "name":"Savage Nomads",
+    "url":"https://leadradar.github.io/savage-nomads-landing/",
+    "logo":"https://leadradar.github.io/savage-nomads-landing/img/logo-favicon.png"
+  }
+  </script>
 </head>
 <body>
 
   <!-- HEADER -->
-  <header>
+  <header role="banner">
     <div class="wrap nav">
       <div class="brand">Savage Nomads</div>
-      <nav class="navlinks">
+      <nav class="navlinks" aria-label="Navegación principal">
         <a href="#ofrecemos">Qué ofrecemos</a>
         <a href="#tribu">Tribu</a>
         <a href="#maldivas">Maldivas</a>
@@ -174,18 +199,18 @@
         <a href="#testimonios">Opiniones</a>
         <a href="#faq">FAQ</a>
       </nav>
-      <a href="#form-savage" class="btn btn-cta">Apúntate</a>
+      <a href="#form-savage" class="btn btn-cta" aria-label="Ir al formulario Apúntate">Apúntate</a>
     </div>
   </header>
 
   <!-- HERO -->
   <section class="hero" aria-label="Portada">
     <img class="bg" src="hero.jpg" alt="Playa de aguas turquesas">
-    <div class="overlay"></div>
+    <div class="overlay" aria-hidden="true"></div>
     <div class="content">
       <h1>Explora el mundo, conecta de verdad</h1>
       <p class="sub">Viajar con tu tribu, descubrir lugares únicos y vivir momentos que no se olvidan.</p>
-      <img class="hero-mini-logo" src="img/logo-hero.png" alt="Logo Savage Nomads">
+      <img class="hero-mini-logo" src="img/logo-hero.png" alt="Logo Savage Nomads" decoding="async">
     </div>
   </section>
 
@@ -212,7 +237,7 @@
       <p class="lead">Gente afín, buen rollo y cero postureo: viajamos para vivirlo de verdad, no para coleccionar check-ins.</p>
       <div class="tribe-layout">
         <figure class="card tribe-photo">
-          <img src="grupo.jpg?v=5" alt="Grupo de viajeros compartiendo experiencia">
+          <img src="grupo.jpg?v=5" alt="Grupo de viajeros compartiendo experiencia" loading="lazy" decoding="async">
         </figure>
         <div class="tribe-grid">
           <article class="card"><h3>Afinidad real</h3><p>Grupos pequeños con perfiles compatibles. Charlas que fluyen y planes que apetece hacer juntos.</p></article>
@@ -244,8 +269,8 @@
       <div class="maldivas-layout">
         <div class="card photos-card">
           <div class="photos-grid">
-            <figure><img src="pareja.jpg?v=8" alt="Pareja disfrutando en Maldivas"></figure>
-            <figure><img src="subm.jpg?v=8" alt="Snorkel en arrecife de Maldivas"></figure>
+            <figure><img src="pareja.jpg?v=8" alt="Pareja disfrutando en Maldivas" loading="lazy" decoding="async"></figure>
+            <figure><img src="subm.jpg?v=8" alt="Snorkel en arrecife de Maldivas" loading="lazy" decoding="async"></figure>
           </div>
         </div>
         <div class="card text-card">
@@ -274,38 +299,38 @@
       <h2>Imagina el viaje con tu tribu</h2>
       <p class="lead">Aventura real, momentos compartidos y destinos que se sienten. Maldivas y Grecia, a nuestra manera.</p>
 
-      <div class="gallery-bar">
-        <button class="chip active" data-filter="todos">Todos</button>
-        <button class="chip" data-filter="maldivas">Maldivas</button>
-        <button class="chip" data-filter="grecia">Grecia</button>
+      <div class="gallery-bar" role="tablist" aria-label="Filtros de galería">
+        <button class="chip active" data-filter="todos" role="tab" aria-selected="true">Todos</button>
+        <button class="chip" data-filter="maldivas" role="tab" aria-selected="false">Maldivas</button>
+        <button class="chip" data-filter="grecia" role="tab" aria-selected="false">Grecia</button>
       </div>
 
       <div class="gallery card" id="gallery" data-filter="todos">
         <!-- MALDIVAS -->
         <figure data-destino="maldivas">
-          <img src="img/maldivas-tribu-barca.jpg?v=1" alt="Tribu en lengua de arena, aguas turquesas y aventura">
+          <img src="img/maldivas-tribu-barca.jpg?v=1" alt="Tribu en lengua de arena, aguas turquesas y aventura" loading="lazy" decoding="async">
           <figcaption>Maldivas · Aventura en equipo</figcaption>
         </figure>
         <figure data-destino="maldivas">
-          <img src="img/maldivas-snorkel-grupo.webp?v=1" alt="Grupo haciendo snorkel junto a arrecife de colores">
+          <img src="img/maldivas-snorkel-grupo.webp?v=1" alt="Grupo haciendo snorkel junto a arrecife de colores" loading="lazy" decoding="async">
           <figcaption>Maldivas · Arrecifes y risas</figcaption>
         </figure>
         <figure data-destino="maldivas">
-          <img src="img/maldivas-playa-atardecer.avif?v=1" alt="Caminata en grupo por la orilla al atardecer">
+          <img src="img/maldivas-playa-atardecer.avif?v=1" alt="Caminata en grupo por la orilla al atardecer" loading="lazy" decoding="async">
           <figcaption>Maldivas · Atardecer compartido</figcaption>
         </figure>
 
         <!-- GRECIA -->
         <figure data-destino="grecia">
-          <img src="img/grecia-mesa-compartir.jpg?v=1" alt="Cena en la playa con velas al anochecer">
+          <img src="img/grecia-mesa-compartir.jpg?v=1" alt="Cena en la playa con velas al anochecer" loading="lazy" decoding="async">
           <figcaption>Grecia · Mesa para compartir</figcaption>
         </figure>
         <figure data-destino="grecia">
-          <img src="img/grecia-navegar-islas.jpg?v=1" alt="Velero al atardecer navegando entre islas">
+          <img src="img/grecia-navegar-islas.jpg?v=1" alt="Velero al atardecer navegando entre islas" loading="lazy" decoding="async">
           <figcaption>Grecia · Navegar entre islas</figcaption>
         </figure>
         <figure data-destino="grecia">
-          <img src="img/grecia-sendero-vistas.jpg?v=1" alt="Caminata al faro con vistas">
+          <img src="img/grecia-sendero-vistas.jpg?v=1" alt="Caminata al faro con vistas" loading="lazy" decoding="async">
           <figcaption>Grecia · Sendero con vistas</figcaption>
         </figure>
       </div>
@@ -366,18 +391,21 @@
   </section>
 
   <!-- FOOTER -->
-  <footer>
+  <footer role="contentinfo">
     <div class="wrap">
       <span class="footerbar">
-        <img class="footer-logo" src="img/logo-favicon.png" alt="Logo">
+        <img class="footer-logo" src="img/logo-favicon.png" alt="Logo" decoding="async">
         © <span id="y"></span> Savage Nomads • Hecho con cariño y ganas de viajar
       </span>
     </div>
   </footer>
 
-  <script>
+  <script defer>
     // Año dinámico
-    document.getElementById('y').textContent = new Date().getFullYear();
+    document.addEventListener('DOMContentLoaded', function(){
+      var y = document.getElementById('y');
+      if (y) y.textContent = new Date().getFullYear();
+    });
 
     // iOS: forzar posición arriba al cargar si no hay hash
     (function(){ try{ if('scrollRestoration' in history){ history.scrollRestoration='manual'; } }catch(e){} })();
@@ -407,8 +435,12 @@
       bar.addEventListener('click', (e)=>{
         const btn = e.target.closest('.chip');
         if(!btn) return;
-        bar.querySelectorAll('.chip').forEach(c=>c.classList.remove('active'));
+        bar.querySelectorAll('.chip').forEach(c=>{
+          c.classList.remove('active');
+          c.setAttribute('aria-selected','false');
+        });
         btn.classList.add('active');
+        btn.setAttribute('aria-selected','true');
         grid.setAttribute('data-filter', btn.dataset.filter || 'todos');
       });
     })();
