@@ -5,6 +5,15 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
   <title>Savage Nomads — Explora el mundo, conecta de verdad</title>
 
+  <!-- Google Analytics 4 -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-Q8KFXRQGLW"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-Q8KFXRQGLW', { send_page_view: true });
+  </script>
+
   <!-- Canonical -->
   <link rel="canonical" href="https://leadradar.github.io/savage-nomads-landing/">
 
@@ -25,7 +34,7 @@
   <link rel="icon" type="image/png" sizes="512x512" href="img/favicon-512.png">
   <meta name="theme-color" content="#00C2A8">
 
-  <!-- Fonts (perf) -->
+  <!-- Fonts -->
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700;800&display=swap" rel="stylesheet">
@@ -70,7 +79,7 @@
 
     /* HEADER */
     header{
-      position:sticky;top:0;z-index:50;
+      position:sticky;top:0;z-index:60;
       background:rgba(255,255,255,.92);
       border-bottom:1px solid var(--border);
       backdrop-filter:saturate(140%) blur(8px);
@@ -89,13 +98,15 @@
     .btn{display:inline-block;padding:10px 16px;border-radius:999px;font-weight:700;border:none;cursor:pointer}
     .btn-cta{background:var(--brand);color:#0b0f10;box-shadow:0 8px 22px rgba(0,0,0,.18)}
     .btn-cta:hover{transform:translateY(-2px)}
-
     .icon-btn{display:inline-flex;align-items:center;justify-content:center;width:40px;height:40px;border-radius:999px;border:1px solid var(--border);background:var(--surface);cursor:pointer;font-size:18px;line-height:1}
     .icon-btn:hover{transform:translateY(-1px)}
     @media (max-width:700px){
       .nav{flex-wrap:wrap;height:auto;gap:8px;padding:10px 0}
       .navlinks{order:3;width:100%;justify-content:center;flex-wrap:wrap;border-top:1px solid var(--border);padding-top:8px}
     }
+
+    /* Barra de progreso de lectura */
+    .progress{position:fixed;top:0;left:0;height:3px;background:var(--brand);width:0%;z-index:80}
 
     /* HERO (sin márgenes) */
     .hero{position:relative;overflow:hidden;text-align:center;padding:0}
@@ -118,6 +129,10 @@
       .card,.step,.faq details{transition:transform .22s ease, box-shadow .22s ease}
       .card:hover,.step:hover,.faq details:hover{transform:translateY(-4px);box-shadow:var(--shadow-strong)}
     }
+
+    /* Reveal simple */
+    .reveal{opacity:0;transform:translateY(16px);transition:opacity .5s ease, transform .5s ease}
+    .reveal.show{opacity:1;transform:none}
 
     /* Qué ofrecemos */
     .features{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
@@ -191,7 +206,7 @@
 
     /* WhatsApp FAB */
     .whatsapp-fab{
-      position:fixed;right:16px;bottom:16px;z-index:60;
+      position:fixed;right:16px;bottom:16px;z-index:70;
       width:56px;height:56px;border-radius:999px;
       background:#25D366;color:#fff;display:flex;align-items:center;justify-content:center;
       box-shadow:0 10px 24px rgba(0,0,0,.25);font-weight:800;font-size:14px;letter-spacing:.4px
@@ -199,6 +214,18 @@
     .whatsapp-fab:hover{transform:translateY(-2px)}
     .whatsapp-fab span{display:none}
     @media (min-width:640px){.whatsapp-fab span{display:inline}}
+
+    /* CTA móvil pegajoso */
+    .bottom-cta{
+      position:fixed;left:0;right:0;bottom:-80px;z-index:65;
+      background:var(--surface);border-top:1px solid var(--border);
+      display:flex;gap:10px;align-items:center;justify-content:center;
+      padding:10px 12px;transition:transform .28s ease, bottom .28s ease;
+      box-shadow:0 -8px 18px rgba(0,0,0,.08)
+    }
+    .bottom-cta.show{bottom:0}
+    .bottom-cta .btn{padding:10px 18px}
+    @media (min-width:768px){.bottom-cta{display:none}}
   </style>
 
   <!-- JSON-LD -->
@@ -207,6 +234,9 @@
   </script>
 </head>
 <body>
+
+  <!-- Progreso lectura -->
+  <div class="progress" id="progress"></div>
 
   <!-- HEADER -->
   <header role="banner">
@@ -242,7 +272,7 @@
   </section>
 
   <!-- QUÉ OFRECEMOS -->
-  <section id="ofrecemos">
+  <section id="ofrecemos" class="reveal">
     <div class="wrap">
       <h2>Qué ofrecemos</h2>
       <p class="lead">Selección honesta, logística afinada y detalles que marcan la diferencia. Sin humo.</p>
@@ -258,7 +288,7 @@
   </section>
 
   <!-- TRIBU -->
-  <section id="tribu">
+  <section id="tribu" class="reveal">
     <div class="wrap">
       <h2>Conecta con tu tribu</h2>
       <p class="lead">Gente afín, buen rollo y cero postureo: viajamos para vivirlo de verdad, no para coleccionar check-ins.</p>
@@ -276,7 +306,7 @@
   </section>
 
   <!-- ITINERARIO -->
-  <section aria-label="Itinerario ejemplo">
+  <section aria-label="Itinerario ejemplo" class="reveal">
     <div class="wrap">
       <h2>Un ritmo que se disfruta</h2>
       <p class="lead">Así puede verse un inicio de viaje en Maldivas. Sin prisas, pero sin perderte nada.</p>
@@ -289,7 +319,7 @@
   </section>
 
   <!-- MALDIVAS -->
-  <section id="maldivas">
+  <section id="maldivas" class="reveal">
     <div class="wrap">
       <h2>Maldivas Aventureras</h2>
       <p class="lead">Playas de postal, vida marina y un ritmo pensado para exprimir cada día sin ir con la lengua fuera.</p>
@@ -321,7 +351,7 @@
   </section>
 
   <!-- GALERÍA -->
-  <section id="galeria" aria-label="Galería inspiración destinos">
+  <section id="galeria" aria-label="Galería inspiración destinos" class="reveal">
     <div class="wrap">
       <h2>Imagina el viaje con tu tribu</h2>
       <p class="lead">Aventura real, momentos compartidos y destinos que se sienten. Maldivas y Grecia, a nuestra manera.</p>
@@ -365,7 +395,7 @@
   </section>
 
   <!-- TESTIMONIOS -->
-  <section id="testimonios">
+  <section id="testimonios" class="reveal">
     <div class="wrap">
       <h2>Lo que dicen de nosotros</h2>
       <p class="lead">Gente real que viajó con su tribu. Esto es lo que cuentan.</p>
@@ -378,7 +408,7 @@
   </section>
 
   <!-- FAQ -->
-  <section id="faq">
+  <section id="faq" class="reveal">
     <div class="wrap">
       <h2>Preguntas frecuentes</h2>
       <p class="lead">Lo más típico que nos preguntan antes de reservar plaza.</p>
@@ -393,7 +423,7 @@
   </section>
 
   <!-- FORMULARIO -->
-  <section id="apuntate">
+  <section id="apuntate" class="reveal">
     <div class="wrap">
       <h2>¿Te apuntas?</h2>
       <p class="lead">Déjanos tus datos y te escribimos con fechas, plazas y próximos destinos.</p>
@@ -433,15 +463,38 @@
      💬<span>&nbsp;WhatsApp</span>
   </a>
 
+  <!-- CTA móvil pegajoso -->
+  <div class="bottom-cta" id="bottom-cta">
+    <a href="#form-savage" class="btn btn-cta">Reserva tu plaza</a>
+  </div>
+
   <script>
     // Año dinámico
     document.getElementById('y').textContent = new Date().getFullYear();
+
+    // Tema (oscuro/claro) con persistencia
+    (function(){
+      const root = document.documentElement;
+      const saved = localStorage.getItem('sn-theme');
+      if(saved){ root.classList.toggle('dark', saved === 'dark'); }
+      if(!saved && window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches){
+        root.classList.add('dark');
+      }
+      const btn = document.getElementById('theme-toggle');
+      const setIcon = ()=>{ btn.textContent = root.classList.contains('dark') ? '☀️' : '🌙'; }
+      setIcon();
+      btn.addEventListener('click', ()=>{
+        root.classList.toggle('dark');
+        localStorage.setItem('sn-theme', root.classList.contains('dark') ? 'dark' : 'light');
+        setIcon();
+      });
+    })();
 
     // iOS: forzar posición arriba al cargar si no hay hash
     (function(){ try{ if('scrollRestoration' in history){ history.scrollRestoration='manual'; } }catch(e){} })();
     window.addEventListener('load', ()=>{ if(!location.hash) window.scrollTo(0,0); }, {once:true});
 
-    // Formspree con redirección forzada
+    // Formspree con redirección forzada (por si acaso)
     (function () {
       const form = document.getElementById('form-savage');
       if (!form) return;
@@ -450,6 +503,7 @@
         const data = new FormData(form);
         try {
           await fetch(form.action, { method: 'POST', body: data, headers: { 'Accept': 'application/json' }});
+          gtag('event', 'generate_lead', { method: 'formspree' }); // evento antes de redirigir
           window.location.href = 'gracias.html';
         } catch (err) {
           window.location.href = 'gracias.html';
@@ -457,7 +511,7 @@
       });
     })();
 
-    // Filtro de galería (Maldivas / Grecia / Todos)
+    // Filtro de galería (Maldivas / Grecia / Todos) + evento GA4
     (function(){
       const bar = document.querySelector('.gallery-bar');
       const grid = document.getElementById('gallery');
@@ -471,27 +525,72 @@
         });
         btn.classList.add('active');
         btn.setAttribute('aria-selected','true');
-        grid.setAttribute('data-filter', btn.dataset.filter || 'todos');
+        const filter = btn.dataset.filter || 'todos';
+        grid.setAttribute('data-filter', filter);
+        gtag('event', 'gallery_filter', { filter });
       });
     })();
 
-    // Tema (oscuro/claro) con persistencia
+    // Barra de progreso de lectura
     (function(){
-      const root = document.documentElement;
-      const saved = localStorage.getItem('sn-theme');
-      if(saved){ root.classList.toggle('dark', saved === 'dark'); }
-      // respetar preferencia del sistema si no hay guardado
-      if(!saved && window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches){
-        root.classList.add('dark');
+      const el = document.getElementById('progress');
+      const onScroll = ()=>{
+        const h = document.documentElement;
+        const scrolled = (h.scrollTop) / (h.scrollHeight - h.clientHeight) * 100;
+        el.style.width = scrolled + '%';
+      };
+      onScroll();
+      window.addEventListener('scroll', onScroll, {passive:true});
+    })();
+
+    // CTA móvil al 50% de scroll
+    (function(){
+      const cta = document.getElementById('bottom-cta');
+      if(!cta) return;
+      const onScroll = ()=>{
+        const h = document.documentElement;
+        const scrolled = (h.scrollTop) / (h.scrollHeight - h.clientHeight);
+        cta.classList.toggle('show', scrolled > 0.5);
+      };
+      onScroll();
+      window.addEventListener('scroll', onScroll, {passive:true});
+    })();
+
+    // Reveal de secciones
+    (function(){
+      if(!('IntersectionObserver' in window)) {
+        document.querySelectorAll('.reveal').forEach(el=>el.classList.add('show'));
+        return;
       }
-      const btn = document.getElementById('theme-toggle');
-      const setIcon = ()=>{ btn.textContent = root.classList.contains('dark') ? '☀️' : '🌙'; }
-      setIcon();
-      btn.addEventListener('click', ()=>{
-        root.classList.toggle('dark');
-        localStorage.setItem('sn-theme', root.classList.contains('dark') ? 'dark' : 'light');
-        setIcon();
-      });
+      const io = new IntersectionObserver((entries)=>{
+        entries.forEach(e=>{ if(e.isIntersecting){ e.target.classList.add('show'); io.unobserve(e.target); } });
+      }, {threshold: 0.12});
+      document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+    })();
+
+    // Eventos GA4 adicionales
+    (function(){
+      // WhatsApp FAB
+      const wa = document.querySelector('.whatsapp-fab');
+      if(wa){
+        wa.addEventListener('click', function(){
+          gtag('event', 'click_whatsapp', { phone: '34664549465' });
+        });
+      }
+      // CTA header
+      const ctaHeader = document.querySelector('a.btn.btn-cta[href="#form-savage"]');
+      if(ctaHeader){
+        ctaHeader.addEventListener('click', function(){
+          gtag('event', 'click_cta', { location: 'header' });
+        });
+      }
+      // CTA móvil
+      const ctaBottom = document.querySelector('#bottom-cta a.btn-cta');
+      if(ctaBottom){
+        ctaBottom.addEventListener('click', function(){
+          gtag('event', 'click_cta', { location: 'bottom_mobile' });
+        });
+      }
     })();
   </script>
 </body>
