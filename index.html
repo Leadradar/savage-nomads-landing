@@ -30,9 +30,6 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700;800&display=swap" rel="stylesheet">
 
-  <!-- Preload hero for faster Largest Contentful Paint -->
-  <link rel="preload" as="image" href="hero.jpg" imagesrcset="hero.jpg" imagesizes="100vw">
-
   <style>
     :root{
       --bg:#F7FBFC;
@@ -47,6 +44,16 @@
       --shadow-strong:0 18px 42px rgba(16,24,40,.16);
       --wrap:1100px;
     }
+    /* Tema oscuro */
+    :root.dark{
+      --bg:#0B0F10;
+      --surface:#10171A;
+      --fg:#EAF2F4;
+      --muted:#9AB1B9;
+      --border:#1E2A30;
+      --shadow:0 10px 26px rgba(0,0,0,.35);
+      --shadow-strong:0 18px 42px rgba(0,0,0,.5);
+    }
 
     *{box-sizing:border-box}
     html{scroll-behavior:smooth}
@@ -56,40 +63,49 @@
     img{max-width:100%;display:block;height:auto}
     .wrap{max-width:var(--wrap);margin:0 auto;padding:0 16px}
 
-    /* Reduce motion for users who prefer it */
+    /* Reduce motion */
     @media (prefers-reduced-motion: reduce) {
       *{animation:none!important;transition:none!important;scroll-behavior:auto!important}
     }
 
-    /* HEADER (igual que antes) */
+    /* HEADER */
     header{
       position:sticky;top:0;z-index:50;
       background:rgba(255,255,255,.92);
       border-bottom:1px solid var(--border);
       backdrop-filter:saturate(140%) blur(8px);
     }
+    :root.dark header{background:rgba(16,23,26,.86)}
     .nav{display:flex;align-items:center;justify-content:space-between;height:64px}
-    .brand{font-weight:800;letter-spacing:.2px}
+    .brand{display:flex;align-items:center;gap:10px;font-weight:800;letter-spacing:.2px}
+    .brand-logo{width:auto;height:28px}
+    @media (max-width:700px){.brand-logo{height:24px}}
+
     .navlinks{display:flex;gap:16px;align-items:center}
     .navlinks a{opacity:.85}
     .navlinks a:hover{opacity:1;text-decoration:underline;text-underline-offset:3px}
+
+    .actions{display:flex;align-items:center;gap:8px}
     .btn{display:inline-block;padding:10px 16px;border-radius:999px;font-weight:700;border:none;cursor:pointer}
     .btn-cta{background:var(--brand);color:#0b0f10;box-shadow:0 8px 22px rgba(0,0,0,.18)}
     .btn-cta:hover{transform:translateY(-2px)}
+
+    .icon-btn{display:inline-flex;align-items:center;justify-content:center;width:40px;height:40px;border-radius:999px;border:1px solid var(--border);background:var(--surface);cursor:pointer;font-size:18px;line-height:1}
+    .icon-btn:hover{transform:translateY(-1px)}
     @media (max-width:700px){
       .nav{flex-wrap:wrap;height:auto;gap:8px;padding:10px 0}
       .navlinks{order:3;width:100%;justify-content:center;flex-wrap:wrap;border-top:1px solid var(--border);padding-top:8px}
     }
 
-    /* HERO (logo mini más grande) */
-    .hero{position:relative;overflow:hidden;text-align:center}
+    /* HERO (sin márgenes) */
+    .hero{position:relative;overflow:hidden;text-align:center;padding:0}
     .hero .bg{width:100%;height:clamp(420px,60vh,560px);object-fit:cover}
     .hero .overlay{position:absolute;inset:0;background:linear-gradient(180deg,rgba(0,0,0,.25),rgba(0,0,0,.15),rgba(0,0,0,.35))}
     .hero .content{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:12px;padding:0 16px}
     .hero h1{color:var(--accent);font-weight:800;font-size:clamp(30px,5.5vw,56px);text-shadow:0 8px 24px rgba(0,0,0,.45)}
     .hero .sub{color:#fff;font-size:clamp(16px,2.4vw,20px);text-shadow:0 6px 18px rgba(0,0,0,.45)}
-    .hero-mini-logo{width:180px;height:auto;margin-top:8px;opacity:.98;filter:drop-shadow(0 6px 14px rgba(0,0,0,.25))}
-    @media (max-width:700px){.hero-mini-logo{width:110px}}
+    .hero-mini-logo{width:210px;height:auto;margin-top:8px;opacity:.98;filter:drop-shadow(0 6px 14px rgba(0,0,0,.25))}
+    @media (max-width:700px){.hero-mini-logo{width:130px}}
 
     /* Secciones base */
     section{padding: clamp(40px, 5vw, 56px) 0}
@@ -149,7 +165,7 @@
     .gallery[data-filter="maldivas"] figure[data-destino="grecia"]{display:none}
     .gallery[data-filter="grecia"] figure[data-destino="maldivas"]{display:none}
 
-    /* FAQ (restaurado) */
+    /* FAQ */
     .faq{max-width:840px;margin:0 auto}
     .faq details{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:14px 16px;box-shadow:var(--shadow);margin:10px 0}
     .faq summary{cursor:pointer;font-weight:700;list-style:none;position:relative;padding-right:26px}
@@ -168,21 +184,26 @@
     button[type="submit"]{justify-self:center;margin-top:6px}
     @media (max-width:640px){form{grid-template-columns:1fr}}
 
-    /* Footer (logo a la izquierda) */
+    /* Footer */
     footer{padding:22px 0;border-top:1px solid var(--border);text-align:center;color:var(--muted)}
     .footerbar{display:inline-flex;align-items:center;gap:8px}
     .footer-logo{width:20px;height:20px;border-radius:0}
+
+    /* WhatsApp FAB */
+    .whatsapp-fab{
+      position:fixed;right:16px;bottom:16px;z-index:60;
+      width:56px;height:56px;border-radius:999px;
+      background:#25D366;color:#fff;display:flex;align-items:center;justify-content:center;
+      box-shadow:0 10px 24px rgba(0,0,0,.25);font-weight:800;font-size:14px;letter-spacing:.4px
+    }
+    .whatsapp-fab:hover{transform:translateY(-2px)}
+    .whatsapp-fab span{display:none}
+    @media (min-width:640px){.whatsapp-fab span{display:inline}}
   </style>
 
-  <!-- JSON-LD básico de organización -->
+  <!-- JSON-LD -->
   <script type="application/ld+json">
-  {
-    "@context":"https://schema.org",
-    "@type":"Organization",
-    "name":"Savage Nomads",
-    "url":"https://leadradar.github.io/savage-nomads-landing/",
-    "logo":"https://leadradar.github.io/savage-nomads-landing/img/logo-favicon.png"
-  }
+  {"@context":"https://schema.org","@type":"Organization","name":"Savage Nomads","url":"https://leadradar.github.io/savage-nomads-landing/","logo":"https://leadradar.github.io/savage-nomads-landing/img/logo-favicon.png"}
   </script>
 </head>
 <body>
@@ -190,7 +211,10 @@
   <!-- HEADER -->
   <header role="banner">
     <div class="wrap nav">
-      <div class="brand">Savage Nomads</div>
+      <div class="brand">
+        <img class="brand-logo" src="img/logo-hero.png" alt="" aria-hidden="true">
+        <span>Savage Nomads</span>
+      </div>
       <nav class="navlinks" aria-label="Navegación principal">
         <a href="#ofrecemos">Qué ofrecemos</a>
         <a href="#tribu">Tribu</a>
@@ -199,7 +223,10 @@
         <a href="#testimonios">Opiniones</a>
         <a href="#faq">FAQ</a>
       </nav>
-      <a href="#form-savage" class="btn btn-cta" aria-label="Ir al formulario Apúntate">Apúntate</a>
+      <div class="actions">
+        <button id="theme-toggle" class="icon-btn" aria-label="Cambiar tema" title="Modo noche/día">🌙</button>
+        <a href="#form-savage" class="btn btn-cta" aria-label="Ir al formulario Apúntate">Apúntate</a>
+      </div>
     </div>
   </header>
 
@@ -400,12 +427,15 @@
     </div>
   </footer>
 
-  <script defer>
+  <!-- WhatsApp FAB -->
+  <a class="whatsapp-fab" href="https://wa.me/34664549465?text=Hola%20Savage%20Nomads%2C%20quiero%20m%C3%A1s%20info%20✈️"
+     target="_blank" rel="noopener" aria-label="Escríbenos por WhatsApp" title="WhatsApp">
+     💬<span>&nbsp;WhatsApp</span>
+  </a>
+
+  <script>
     // Año dinámico
-    document.addEventListener('DOMContentLoaded', function(){
-      var y = document.getElementById('y');
-      if (y) y.textContent = new Date().getFullYear();
-    });
+    document.getElementById('y').textContent = new Date().getFullYear();
 
     // iOS: forzar posición arriba al cargar si no hay hash
     (function(){ try{ if('scrollRestoration' in history){ history.scrollRestoration='manual'; } }catch(e){} })();
@@ -442,6 +472,25 @@
         btn.classList.add('active');
         btn.setAttribute('aria-selected','true');
         grid.setAttribute('data-filter', btn.dataset.filter || 'todos');
+      });
+    })();
+
+    // Tema (oscuro/claro) con persistencia
+    (function(){
+      const root = document.documentElement;
+      const saved = localStorage.getItem('sn-theme');
+      if(saved){ root.classList.toggle('dark', saved === 'dark'); }
+      // respetar preferencia del sistema si no hay guardado
+      if(!saved && window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches){
+        root.classList.add('dark');
+      }
+      const btn = document.getElementById('theme-toggle');
+      const setIcon = ()=>{ btn.textContent = root.classList.contains('dark') ? '☀️' : '🌙'; }
+      setIcon();
+      btn.addEventListener('click', ()=>{
+        root.classList.toggle('dark');
+        localStorage.setItem('sn-theme', root.classList.contains('dark') ? 'dark' : 'light');
+        setIcon();
       });
     })();
   </script>
