@@ -14,6 +14,11 @@
     gtag('config', 'G-Q8KFXRQGLW', { send_page_view: true });
   </script>
 
+  <!-- Perf: preconnect & preload hero -->
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preload" as="image" href="hero.jpg" imagesrcset="hero.jpg" imagesizes="100vw" fetchpriority="high">
+
   <!-- Canonical -->
   <link rel="canonical" href="https://leadradar.github.io/savage-nomads-landing/">
 
@@ -34,9 +39,7 @@
   <link rel="icon" type="image/png" sizes="512x512" href="img/favicon-512.png">
   <meta name="theme-color" content="#00C2A8">
 
-  <!-- Fonts -->
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <!-- Fuente -->
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700;800&display=swap" rel="stylesheet">
 
   <style>
@@ -52,16 +55,11 @@
       --shadow:0 10px 26px rgba(16,24,40,.10);
       --shadow-strong:0 18px 42px rgba(16,24,40,.16);
       --wrap:1100px;
+      --active:#00C2A8;
     }
-    /* Tema oscuro */
     :root.dark{
-      --bg:#0B0F10;
-      --surface:#10171A;
-      --fg:#EAF2F4;
-      --muted:#9AB1B9;
-      --border:#1E2A30;
-      --shadow:0 10px 26px rgba(0,0,0,.35);
-      --shadow-strong:0 18px 42px rgba(0,0,0,.5);
+      --bg:#0B0F10; --surface:#10171A; --fg:#EAF2F4; --muted:#9AB1B9; --border:#1E2A30;
+      --shadow:0 10px 26px rgba(0,0,0,.35); --shadow-strong:0 18px 42px rgba(0,0,0,.5);
     }
 
     *{box-sizing:border-box}
@@ -72,10 +70,9 @@
     img{max-width:100%;display:block;height:auto}
     .wrap{max-width:var(--wrap);margin:0 auto;padding:0 16px}
 
-    /* Reduce motion */
-    @media (prefers-reduced-motion: reduce) {
-      *{animation:none!important;transition:none!important;scroll-behavior:auto!important}
-    }
+    /* Accesibilidad: saltar al contenido */
+    .skip{position:absolute;left:-9999px;top:auto;width:1px;height:1px;overflow:hidden}
+    .skip:focus{left:8px;top:8px;width:auto;height:auto;background:#000;color:#fff;padding:8px 12px;border-radius:8px;z-index:100}
 
     /* HEADER */
     header{
@@ -91,8 +88,20 @@
     @media (max-width:700px){.brand-logo{height:24px}}
 
     .navlinks{display:flex;gap:16px;align-items:center}
-    .navlinks a{opacity:.85}
+    .navlinks a{opacity:.85;position:relative}
     .navlinks a:hover{opacity:1;text-decoration:underline;text-underline-offset:3px}
+    /* Scrollspy activo */
+    .navlinks a.active{
+      opacity:1;
+      text-decoration:underline;
+      text-underline-offset:6px;
+      text-decoration-thickness:2px;
+    }
+    .navlinks a.active::after{
+      content:"";
+      position:absolute;left:50%;transform:translateX(-50%);
+      bottom:-10px;width:6px;height:6px;border-radius:999px;background:var(--active);
+    }
 
     .actions{display:flex;align-items:center;gap:8px}
     .btn{display:inline-block;padding:10px 16px;border-radius:999px;font-weight:700;border:none;cursor:pointer}
@@ -105,10 +114,10 @@
       .navlinks{order:3;width:100%;justify-content:center;flex-wrap:wrap;border-top:1px solid var(--border);padding-top:8px}
     }
 
-    /* Barra de progreso de lectura */
+    /* Progreso lectura */
     .progress{position:fixed;top:0;left:0;height:3px;background:var(--brand);width:0%;z-index:80}
 
-    /* HERO (sin márgenes) */
+    /* HERO */
     .hero{position:relative;overflow:hidden;text-align:center;padding:0}
     .hero .bg{width:100%;height:clamp(420px,60vh,560px);object-fit:cover}
     .hero .overlay{position:absolute;inset:0;background:linear-gradient(180deg,rgba(0,0,0,.25),rgba(0,0,0,.15),rgba(0,0,0,.35))}
@@ -130,11 +139,7 @@
       .card:hover,.step:hover,.faq details:hover{transform:translateY(-4px);box-shadow:var(--shadow-strong)}
     }
 
-    /* Reveal simple */
-    .reveal{opacity:0;transform:translateY(16px);transition:opacity .5s ease, transform .5s ease}
-    .reveal.show{opacity:1;transform:none}
-
-    /* Qué ofrecemos */
+    /* Grid features */
     .features{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
     .feat h3{margin:0 0 6px;font-size:18px;color:var(--brand)}
     .feat p{margin:0;color:var(--muted)}
@@ -204,16 +209,14 @@
     .footerbar{display:inline-flex;align-items:center;gap:8px}
     .footer-logo{width:20px;height:20px;border-radius:0}
 
-    /* WhatsApp FAB */
+    /* WhatsApp FAB (icon-only) */
     .whatsapp-fab{
       position:fixed;right:16px;bottom:16px;z-index:70;
       width:56px;height:56px;border-radius:999px;
       background:#25D366;color:#fff;display:flex;align-items:center;justify-content:center;
-      box-shadow:0 10px 24px rgba(0,0,0,.25);font-weight:800;font-size:14px;letter-spacing:.4px
+      box-shadow:0 10px 24px rgba(0,0,0,.25)
     }
-    .whatsapp-fab:hover{transform:translateY(-2px)}
-    .whatsapp-fab span{display:none}
-    @media (min-width:640px){.whatsapp-fab span{display:inline}}
+    .whatsapp-fab svg{width:28px;height:28px;display:block}
 
     /* CTA móvil pegajoso */
     .bottom-cta{
@@ -228,12 +231,12 @@
     @media (min-width:768px){.bottom-cta{display:none}}
   </style>
 
-  <!-- JSON-LD -->
   <script type="application/ld+json">
   {"@context":"https://schema.org","@type":"Organization","name":"Savage Nomads","url":"https://leadradar.github.io/savage-nomads-landing/","logo":"https://leadradar.github.io/savage-nomads-landing/img/logo-favicon.png"}
   </script>
 </head>
 <body>
+  <a class="skip" href="#main">Saltar al contenido</a>
 
   <!-- Progreso lectura -->
   <div class="progress" id="progress"></div>
@@ -242,16 +245,16 @@
   <header role="banner">
     <div class="wrap nav">
       <div class="brand">
-        <img class="brand-logo" src="img/logo-hero.png" alt="" aria-hidden="true">
+        <img class="brand-logo" src="img/logo-color.png" alt="Savage Nomads" onerror="this.onerror=null;this.src='img/logo-hero.png';">
         <span>Savage Nomads</span>
       </div>
-      <nav class="navlinks" aria-label="Navegación principal">
-        <a href="#ofrecemos">Qué ofrecemos</a>
-        <a href="#tribu">Tribu</a>
-        <a href="#maldivas">Maldivas</a>
-        <a href="#galeria">Galería</a>
-        <a href="#testimonios">Opiniones</a>
-        <a href="#faq">FAQ</a>
+      <nav class="navlinks" aria-label="Navegación principal" id="topnav">
+        <a href="#ofrecemos" data-section="ofrecemos">Qué ofrecemos</a>
+        <a href="#tribu" data-section="tribu">Tribu</a>
+        <a href="#maldivas" data-section="maldivas">Maldivas</a>
+        <a href="#galeria" data-section="galeria">Galería</a>
+        <a href="#testimonios" data-section="testimonios">Opiniones</a>
+        <a href="#faq" data-section="faq">FAQ</a>
       </nav>
       <div class="actions">
         <button id="theme-toggle" class="icon-btn" aria-label="Cambiar tema" title="Modo noche/día">🌙</button>
@@ -271,181 +274,183 @@
     </div>
   </section>
 
-  <!-- QUÉ OFRECEMOS -->
-  <section id="ofrecemos" class="reveal">
-    <div class="wrap">
-      <h2>Qué ofrecemos</h2>
-      <p class="lead">Selección honesta, logística afinada y detalles que marcan la diferencia. Sin humo.</p>
-      <div class="features">
-        <div class="feat card"><h3>Grupos pequeños</h3><p>Ambiente cercano y auténtico. Viajar con personas afines multiplica la experiencia.</p></div>
-        <div class="feat card"><h3>Ruta curada</h3><p>Itinerarios probados para optimizar tiempo, ritmo y momentos memorables.</p></div>
-        <div class="feat card"><h3>Comodidad bien pensada</h3><p>Alojamientos y traslados seleccionados para descansar y disfrutar sin complicaciones.</p></div>
-        <div class="feat card"><h3>Coordinación real</h3><p>Equipo en el terreno. Resolvemos y anticipamos, para que tú solo vivas el viaje.</p></div>
-        <div class="feat card"><h3>Extras con mimo</h3><p>Desde fotos pro hasta sorpresas en destino. Detalles que se notan.</p></div>
-        <div class="feat card"><h3>Transparencia total</h3><p>Precio claro y lo que incluye, también. Sin letra pequeña.</p></div>
-      </div>
-    </div>
-  </section>
-
-  <!-- TRIBU -->
-  <section id="tribu" class="reveal">
-    <div class="wrap">
-      <h2>Conecta con tu tribu</h2>
-      <p class="lead">Gente afín, buen rollo y cero postureo: viajamos para vivirlo de verdad, no para coleccionar check-ins.</p>
-      <div class="tribe-layout">
-        <figure class="card tribe-photo">
-          <img src="grupo.jpg?v=5" alt="Grupo de viajeros compartiendo experiencia" loading="lazy" decoding="async">
-        </figure>
-        <div class="tribe-grid">
-          <article class="card"><h3>Afinidad real</h3><p>Grupos pequeños con perfiles compatibles. Charlas que fluyen y planes que apetece hacer juntos.</p></article>
-          <article class="card"><h3>Momentos que suman</h3><p>De un snorkel épico a un té al atardecer. Ritmo humano para que pasen cosas sin forzarlas.</p></article>
-          <article class="card"><h3>Comunidad que permanece</h3><p>Conexiones que siguen después del viaje. Lo mejor del destino, y de la gente que lo comparte contigo.</p></article>
+  <main id="main">
+    <!-- QUÉ OFRECEMOS -->
+    <section id="ofrecemos">
+      <div class="wrap">
+        <h2>Qué ofrecemos</h2>
+        <p class="lead">Selección honesta, logística afinada y detalles que marcan la diferencia. Sin humo.</p>
+        <div class="features">
+          <div class="feat card"><h3>Grupos pequeños</h3><p>Ambiente cercano y auténtico. Viajar con personas afines multiplica la experiencia.</p></div>
+          <div class="feat card"><h3>Ruta curada</h3><p>Itinerarios probados para optimizar tiempo, ritmo y momentos memorables.</p></div>
+          <div class="feat card"><h3>Comodidad bien pensada</h3><p>Alojamientos y traslados seleccionados para descansar y disfrutar sin complicaciones.</p></div>
+          <div class="feat card"><h3>Coordinación real</h3><p>Equipo en el terreno. Resolvemos y anticipamos, para que tú solo vivas el viaje.</p></div>
+          <div class="feat card"><h3>Extras con mimo</h3><p>Desde fotos pro hasta sorpresas en destino. Detalles que se notan.</p></div>
+          <div class="feat card"><h3>Transparencia total</h3><p>Precio claro y lo que incluye, también. Sin letra pequeña.</p></div>
         </div>
       </div>
-    </div>
-  </section>
+    </section>
 
-  <!-- ITINERARIO -->
-  <section aria-label="Itinerario ejemplo" class="reveal">
-    <div class="wrap">
-      <h2>Un ritmo que se disfruta</h2>
-      <p class="lead">Así puede verse un inicio de viaje en Maldivas. Sin prisas, pero sin perderte nada.</p>
-      <div class="steps">
-        <div class="step"><h3>Día 1 · Llegada &amp; puesta a punto</h3><p>Check-in, paseo por la isla, primer baño y cena local. Ambientazo suave para arrancar.</p></div>
-        <div class="step"><h3>Día 2 · Arrecifes &amp; arena blanca</h3><p>Snorkel en aguas cristalinas, relax en playa y atardecer épico tomando algo.</p></div>
-        <div class="step"><h3>Día 3 · Vida local</h3><p>Mercado, cafecito y rincones que no salen en Instagram. Ritmo humano, recuerdos reales.</p></div>
-      </div>
-    </div>
-  </section>
-
-  <!-- MALDIVAS -->
-  <section id="maldivas" class="reveal">
-    <div class="wrap">
-      <h2>Maldivas Aventureras</h2>
-      <p class="lead">Playas de postal, vida marina y un ritmo pensado para exprimir cada día sin ir con la lengua fuera.</p>
-      <div class="maldivas-layout">
-        <div class="card photos-card">
-          <div class="photos-grid">
-            <figure><img src="pareja.jpg?v=8" alt="Pareja disfrutando en Maldivas" loading="lazy" decoding="async"></figure>
-            <figure><img src="subm.jpg?v=8" alt="Snorkel en arrecife de Maldivas" loading="lazy" decoding="async"></figure>
+    <!-- TRIBU -->
+    <section id="tribu">
+      <div class="wrap">
+        <h2>Conecta con tu tribu</h2>
+        <p class="lead">Gente afín, buen rollo y cero postureo: viajamos para vivirlo de verdad, no para coleccionar check-ins.</p>
+        <div class="tribe-layout">
+          <figure class="card tribe-photo">
+            <img src="grupo.jpg?v=5" alt="Grupo de viajeros compartiendo experiencia" loading="lazy" decoding="async">
+          </figure>
+          <div class="tribe-grid">
+            <article class="card"><h3>Afinidad real</h3><p>Grupos pequeños con perfiles compatibles. Charlas que fluyen y planes que apetece hacer juntos.</p></article>
+            <article class="card"><h3>Momentos que suman</h3><p>De un snorkel épico a un té al atardecer. Ritmo humano para que pasen cosas sin forzarlas.</p></article>
+            <article class="card"><h3>Comunidad que permanece</h3><p>Conexiones que siguen después del viaje. Lo mejor del destino, y de la gente que lo comparte contigo.</p></article>
           </div>
         </div>
-        <div class="card text-card">
-          <h3>Qué vas a vivir</h3>
-          <ul class="clean">
-            <li>Islas locales y arena blanca real</li>
-            <li>Snorkel con arrecifes de colores</li>
-            <li>Amaneceres tranquilos, atardeceres potentes</li>
-            <li>Comercios y comida local sin turistada</li>
-          </ul>
-          <h3>Incluye</h3>
-          <ul class="clean">
-            <li>Coordinación en destino</li>
-            <li>Itinerario optimizado día a día</li>
-            <li>Selección de alojamientos y traslados</li>
-            <li>Asesoría previa al viaje</li>
-          </ul>
+      </div>
+    </section>
+
+    <!-- ITINERARIO -->
+    <section aria-label="Itinerario ejemplo">
+      <div class="wrap">
+        <h2>Un ritmo que se disfruta</h2>
+        <p class="lead">Así puede verse un inicio de viaje en Maldivas. Sin prisas, pero sin perderte nada.</p>
+        <div class="steps">
+          <div class="step"><h3>Día 1 · Llegada &amp; puesta a punto</h3><p>Check-in, paseo por la isla, primer baño y cena local. Ambientazo suave para arrancar.</p></div>
+          <div class="step"><h3>Día 2 · Arrecifes &amp; arena blanca</h3><p>Snorkel en aguas cristalinas, relax en playa y atardecer épico tomando algo.</p></div>
+          <div class="step"><h3>Día 3 · Vida local</h3><p>Mercado, cafecito y rincones que no salen en Instagram. Ritmo humano, recuerdos reales.</p></div>
         </div>
       </div>
-    </div>
-  </section>
+    </section>
 
-  <!-- GALERÍA -->
-  <section id="galeria" aria-label="Galería inspiración destinos" class="reveal">
-    <div class="wrap">
-      <h2>Imagina el viaje con tu tribu</h2>
-      <p class="lead">Aventura real, momentos compartidos y destinos que se sienten. Maldivas y Grecia, a nuestra manera.</p>
-
-      <div class="gallery-bar" role="tablist" aria-label="Filtros de galería">
-        <button class="chip active" data-filter="todos" role="tab" aria-selected="true">Todos</button>
-        <button class="chip" data-filter="maldivas" role="tab" aria-selected="false">Maldivas</button>
-        <button class="chip" data-filter="grecia" role="tab" aria-selected="false">Grecia</button>
-      </div>
-
-      <div class="gallery card" id="gallery" data-filter="todos">
-        <!-- MALDIVAS -->
-        <figure data-destino="maldivas">
-          <img src="img/maldivas-tribu-barca.jpg?v=1" alt="Tribu en lengua de arena, aguas turquesas y aventura" loading="lazy" decoding="async">
-          <figcaption>Maldivas · Aventura en equipo</figcaption>
-        </figure>
-        <figure data-destino="maldivas">
-          <img src="img/maldivas-snorkel-grupo.webp?v=1" alt="Grupo haciendo snorkel junto a arrecife de colores" loading="lazy" decoding="async">
-          <figcaption>Maldivas · Arrecifes y risas</figcaption>
-        </figure>
-        <figure data-destino="maldivas">
-          <img src="img/maldivas-playa-atardecer.avif?v=1" alt="Caminata en grupo por la orilla al atardecer" loading="lazy" decoding="async">
-          <figcaption>Maldivas · Atardecer compartido</figcaption>
-        </figure>
-
-        <!-- GRECIA -->
-        <figure data-destino="grecia">
-          <img src="img/grecia-mesa-compartir.jpg?v=1" alt="Cena en la playa con velas al anochecer" loading="lazy" decoding="async">
-          <figcaption>Grecia · Mesa para compartir</figcaption>
-        </figure>
-        <figure data-destino="grecia">
-          <img src="img/grecia-navegar-islas.jpg?v=1" alt="Velero al atardecer navegando entre islas" loading="lazy" decoding="async">
-          <figcaption>Grecia · Navegar entre islas</figcaption>
-        </figure>
-        <figure data-destino="grecia">
-          <img src="img/grecia-sendero-vistas.jpg?v=1" alt="Caminata al faro con vistas" loading="lazy" decoding="async">
-          <figcaption>Grecia · Sendero con vistas</figcaption>
-        </figure>
-      </div>
-    </div>
-  </section>
-
-  <!-- TESTIMONIOS -->
-  <section id="testimonios" class="reveal">
-    <div class="wrap">
-      <h2>Lo que dicen de nosotros</h2>
-      <p class="lead">Gente real que viajó con su tribu. Esto es lo que cuentan.</p>
-      <div class="features">
-        <article class="card"><h3>Ana R. · Maldivas 2024</h3><p>“Fui sola y acabé con amigos. Ritmo perfecto y cero turistadas. Volvería mañana.”</p></article>
-        <article class="card"><h3>Javi M. · Tailandia 2023</h3><p>“Todo estaba pensado, pero sin agobios. La tribu fue lo mejor del viaje.”</p></article>
-        <article class="card"><h3>Lucía G. · Bali 2023</h3><p>“Detalles que suman y coordinadores que de verdad están. Muy top.”</p></article>
-      </div>
-    </div>
-  </section>
-
-  <!-- FAQ -->
-  <section id="faq" class="reveal">
-    <div class="wrap">
-      <h2>Preguntas frecuentes</h2>
-      <p class="lead">Lo más típico que nos preguntan antes de reservar plaza.</p>
-      <div class="faq">
-        <details><summary>¿Cuántas personas viajan en cada grupo?</summary><p>Solemos movernos entre 8 y 14 personas. Suficiente para buen ambiente, sin perder cercanía.</p></details>
-        <details><summary>¿El viaje es 100% cerrado o hay tiempo libre?</summary><p>Hay una ruta curada con imprescindibles, pero dejamos huecos para que respires, explores y decidas.</p></details>
-        <details><summary>¿Puedo ir solo/a?</summary><p>¡Claro! La mayoría viene sin compañía. Nos encargamos de que encajes desde el primer día.</p></details>
-        <details><summary>¿Qué incluye y qué no incluye?</summary><p>Incluye coordinación, planning optimizado, selección de alojamientos/traslados y asesoría previa. Vuelos internacionales y algunos gastos en destino van aparte (te lo detallamos al escribirnos).</p></details>
-        <details><summary>¿Cómo reservo o bloqueo plaza?</summary><p>Déjanos tus datos en el formulario y te contactamos con fechas, precio cerrado y próximos pasos.</p></details>
-      </div>
-    </div>
-  </section>
-
-  <!-- FORMULARIO -->
-  <section id="apuntate" class="reveal">
-    <div class="wrap">
-      <h2>¿Te apuntas?</h2>
-      <p class="lead">Déjanos tus datos y te escribimos con fechas, plazas y próximos destinos.</p>
-      <div class="form-wrap">
-        <form id="form-savage" action="https://formspree.io/f/manbrrzl" method="POST">
-          <input type="hidden" name="_redirect" value="https://leadradar.github.io/savage-nomads-landing/gracias.html">
-          <div class="full"><label>Nombre</label><input name="nombre" type="text" placeholder="Tu nombre" required></div>
-          <div><label>Email</label><input name="email" type="email" placeholder="tucorreo@email.com" required></div>
-          <div><label>Teléfono (opcional)</label><input name="phone" type="tel" placeholder="+34 6XX XXX XXX"></div>
-          <div class="full"><label>Destino de interés</label>
-            <select name="destino">
-              <option value="Maldivas">Maldivas</option>
-              <option value="Grecia">Grecia</option>
-              <option value="Otro">Otro</option>
-            </select>
+    <!-- MALDIVAS -->
+    <section id="maldivas">
+      <div class="wrap">
+        <h2>Maldivas Aventureras</h2>
+        <p class="lead">Playas de postal, vida marina y un ritmo pensado para exprimir cada día sin ir con la lengua fuera.</p>
+        <div class="maldivas-layout">
+          <div class="card photos-card">
+            <div class="photos-grid">
+              <figure><img src="pareja.jpg?v=8" alt="Pareja disfrutando en Maldivas" loading="lazy" decoding="async"></figure>
+              <figure><img src="subm.jpg?v=8" alt="Snorkel en arrecife de Maldivas" loading="lazy" decoding="async"></figure>
+            </div>
           </div>
-          <div class="full"><label>Mensaje</label><textarea name="mensaje" placeholder="Cuéntanos un poco qué buscas"></textarea></div>
-          <div class="full" style="text-align:center"><button type="submit" class="btn btn-cta">Enviar</button></div>
-        </form>
+          <div class="card text-card">
+            <h3>Qué vas a vivir</h3>
+            <ul class="clean">
+              <li>Islas locales y arena blanca real</li>
+              <li>Snorkel con arrecifes de colores</li>
+              <li>Amaneceres tranquilos, atardeceres potentes</li>
+              <li>Comercios y comida local sin turistada</li>
+            </ul>
+            <h3>Incluye</h3>
+            <ul class="clean">
+              <li>Coordinación en destino</li>
+              <li>Itinerario optimizado día a día</li>
+              <li>Selección de alojamientos y traslados</li>
+              <li>Asesoría previa al viaje</li>
+            </ul>
+          </div>
+        </div>
       </div>
-    </div>
-  </section>
+    </section>
+
+    <!-- GALERÍA -->
+    <section id="galeria" aria-label="Galería inspiración destinos">
+      <div class="wrap">
+        <h2>Imagina el viaje con tu tribu</h2>
+        <p class="lead">Aventura real, momentos compartidos y destinos que se sienten. Maldivas y Grecia, a nuestra manera.</p>
+
+        <div class="gallery-bar" role="tablist" aria-label="Filtros de galería">
+          <button class="chip active" data-filter="todos" role="tab" aria-selected="true">Todos</button>
+          <button class="chip" data-filter="maldivas" role="tab" aria-selected="false">Maldivas</button>
+          <button class="chip" data-filter="grecia" role="tab" aria-selected="false">Grecia</button>
+        </div>
+
+        <div class="gallery card" id="gallery" data-filter="todos">
+          <!-- MALDIVAS -->
+          <figure data-destino="maldivas">
+            <img src="img/maldivas-tribu-barca.jpg?v=1" alt="Tribu en lengua de arena, aguas turquesas y aventura" loading="lazy" decoding="async">
+            <figcaption>Maldivas · Aventura en equipo</figcaption>
+          </figure>
+          <figure data-destino="maldivas">
+            <img src="img/maldivas-snorkel-grupo.webp?v=1" alt="Grupo haciendo snorkel junto a arrecife de colores" loading="lazy" decoding="async">
+            <figcaption>Maldivas · Arrecifes y risas</figcaption>
+          </figure>
+          <figure data-destino="maldivas">
+            <img src="img/maldivas-playa-atardecer.avif?v=1" alt="Caminata en grupo por la orilla al atardecer" loading="lazy" decoding="async">
+            <figcaption>Maldivas · Atardecer compartido</figcaption>
+          </figure>
+
+          <!-- GRECIA -->
+          <figure data-destino="grecia">
+            <img src="img/grecia-mesa-compartir.jpg?v=1" alt="Cena en la playa con velas al anochecer" loading="lazy" decoding="async">
+            <figcaption>Grecia · Mesa para compartir</figcaption>
+          </figure>
+          <figure data-destino="grecia">
+            <img src="img/grecia-navegar-islas.jpg?v=1" alt="Velero al atardecer navegando entre islas" loading="lazy" decoding="async">
+            <figcaption>Grecia · Navegar entre islas</figcaption>
+          </figure>
+          <figure data-destino="grecia">
+            <img src="img/grecia-sendero-vistas.jpg?v=1" alt="Caminata al faro con vistas" loading="lazy" decoding="async">
+            <figcaption>Grecia · Sendero con vistas</figcaption>
+          </figure>
+        </div>
+      </div>
+    </section>
+
+    <!-- TESTIMONIOS -->
+    <section id="testimonios">
+      <div class="wrap">
+        <h2>Lo que dicen de nosotros</h2>
+        <p class="lead">Gente real que viajó con su tribu. Esto es lo que cuentan.</p>
+        <div class="features">
+          <article class="card"><h3>Ana R. · Maldivas 2024</h3><p>“Fui sola y acabé con amigos. Ritmo perfecto y cero turistadas. Volvería mañana.”</p></article>
+          <article class="card"><h3>Javi M. · Tailandia 2023</h3><p>“Todo estaba pensado, pero sin agobios. La tribu fue lo mejor del viaje.”</p></article>
+          <article class="card"><h3>Lucía G. · Bali 2023</h3><p>“Detalles que suman y coordinadores que de verdad están. Muy top.”</p></article>
+        </div>
+      </div>
+    </section>
+
+    <!-- FAQ -->
+    <section id="faq">
+      <div class="wrap">
+        <h2>Preguntas frecuentes</h2>
+        <p class="lead">Lo más típico que nos preguntan antes de reservar plaza.</p>
+        <div class="faq">
+          <details><summary>¿Cuántas personas viajan en cada grupo?</summary><p>Solemos movernos entre 8 y 14 personas. Suficiente para buen ambiente, sin perder cercanía.</p></details>
+          <details><summary>¿El viaje es 100% cerrado o hay tiempo libre?</summary><p>Hay una ruta curada con imprescindibles, pero dejamos huecos para que respires, explores y decidas.</p></details>
+          <details><summary>¿Puedo ir solo/a?</summary><p>¡Claro! La mayoría viene sin compañía. Nos encargamos de que encajes desde el primer día.</p></details>
+          <details><summary>¿Qué incluye y qué no incluye?</summary><p>Incluye coordinación, planning optimizado, selección de alojamientos/traslados y asesoría previa. Vuelos internacionales y algunos gastos en destino van aparte (te lo detallamos al escribirnos).</p></details>
+          <details><summary>¿Cómo reservo o bloqueo plaza?</summary><p>Déjanos tus datos en el formulario y te contactamos con fechas, precio cerrado y próximos pasos.</p></details>
+        </div>
+      </div>
+    </section>
+
+    <!-- FORMULARIO -->
+    <section id="apuntate">
+      <div class="wrap">
+        <h2>¿Te apuntas?</h2>
+        <p class="lead">Déjanos tus datos y te escribimos con fechas, plazas y próximos destinos.</p>
+        <div class="form-wrap">
+          <form id="form-savage" action="https://formspree.io/f/manbrrzl" method="POST">
+            <input type="hidden" name="_redirect" value="https://leadradar.github.io/savage-nomads-landing/gracias.html">
+            <div class="full"><label>Nombre</label><input name="nombre" type="text" placeholder="Tu nombre" required></div>
+            <div><label>Email</label><input name="email" type="email" placeholder="tucorreo@email.com" required></div>
+            <div><label>Teléfono (opcional)</label><input name="phone" type="tel" placeholder="+34 6XX XXX XXX"></div>
+            <div class="full"><label>Destino de interés</label>
+              <select name="destino">
+                <option value="Maldivas">Maldivas</option>
+                <option value="Grecia">Grecia</option>
+                <option value="Otro">Otro</option>
+              </select>
+            </div>
+            <div class="full"><label>Mensaje</label><textarea name="mensaje" placeholder="Cuéntanos un poco qué buscas"></textarea></div>
+            <div class="full" style="text-align:center"><button type="submit" class="btn btn-cta">Enviar</button></div>
+          </form>
+        </div>
+      </div>
+    </section>
+  </main>
 
   <!-- FOOTER -->
   <footer role="contentinfo">
@@ -457,10 +462,11 @@
     </div>
   </footer>
 
-  <!-- WhatsApp FAB -->
+  <!-- WhatsApp FAB (icon-only) -->
   <a class="whatsapp-fab" href="https://wa.me/34664549465?text=Hola%20Savage%20Nomads%2C%20quiero%20m%C3%A1s%20info%20✈️"
      target="_blank" rel="noopener" aria-label="Escríbenos por WhatsApp" title="WhatsApp">
-     💬<span>&nbsp;WhatsApp</span>
+     <!-- SVG WhatsApp -->
+     <svg viewBox="0 0 32 32" aria-hidden="true"><path fill="currentColor" d="M19.1 17.2c-.3-.1-1.7-.8-1.9-.9-.3-.1-.5-.1-.7.1s-.8.9-1 .9-.5 0-.8-.1c-.9-.4-1.7-.9-2.4-1.6-.3-.3-.6-.7-.8-1.1-.1-.2 0-.5.1-.7.1-.2.2-.3.3-.5.1-.2.1-.3.2-.5s0-.4-.1-.5c-.1-.1-.7-1.7-.9-2.2-.2-.5-.4-.4-.6-.4h-.5c-.2 0-.5.1-.7.3-.8.8-1.2 1.9-1.1 3 .1 1 .5 2 1.1 2.8 1.3 1.9 3.1 3.3 5.3 4 .6.2 1.2.3 1.8.4.6.1 1.2.1 1.8 0 .6-.1 1.8-.7 2.1-1.3.3-.6.3-1.3.2-1.5-.1-.1-.3-.2-.6-.3zM16 3C9.4 3 4 8.4 4 15c0 2.1.6 4.1 1.7 5.9L4 29l8.3-1.6C14 28 15 28.2 16 28.2 22.6 28.2 28 22.8 28 16.2 28 9.5 22.6 4 16 4zm0 22.7c-1 0-2-.2-3-.5l-.6-.2-4.9.9.9-4.8-.3-.6C7.5 19.1 7 17.1 7 15 7 9.8 11.3 5.5 16.5 5.5S26 9.8 26 15s-4.3 10.7-10 10.7z"/></svg>
   </a>
 
   <!-- CTA móvil pegajoso -->
@@ -494,7 +500,7 @@
     (function(){ try{ if('scrollRestoration' in history){ history.scrollRestoration='manual'; } }catch(e){} })();
     window.addEventListener('load', ()=>{ if(!location.hash) window.scrollTo(0,0); }, {once:true});
 
-    // Formspree con redirección forzada (por si acaso)
+    // Formspree con redirección + evento lead
     (function () {
       const form = document.getElementById('form-savage');
       if (!form) return;
@@ -503,7 +509,7 @@
         const data = new FormData(form);
         try {
           await fetch(form.action, { method: 'POST', body: data, headers: { 'Accept': 'application/json' }});
-          gtag('event', 'generate_lead', { method: 'formspree' }); // evento antes de redirigir
+          gtag('event', 'generate_lead', { method: 'formspree' });
           window.location.href = 'gracias.html';
         } catch (err) {
           window.location.href = 'gracias.html';
@@ -511,7 +517,7 @@
       });
     })();
 
-    // Filtro de galería (Maldivas / Grecia / Todos) + evento GA4
+    // Filtro de galería + evento GA4
     (function(){
       const bar = document.querySelector('.gallery-bar');
       const grid = document.getElementById('gallery');
@@ -531,7 +537,7 @@
       });
     })();
 
-    // Barra de progreso de lectura
+    // Barra de progreso lectura
     (function(){
       const el = document.getElementById('progress');
       const onScroll = ()=>{
@@ -556,41 +562,35 @@
       window.addEventListener('scroll', onScroll, {passive:true});
     })();
 
-    // Reveal de secciones
+    // Scrollspy (resalta sección activa en el menú)
     (function(){
-      if(!('IntersectionObserver' in window)) {
-        document.querySelectorAll('.reveal').forEach(el=>el.classList.add('show'));
-        return;
-      }
+      const links = document.querySelectorAll('#topnav a[data-section]');
+      const sections = Array.from(links).map(a => document.getElementById(a.dataset.section));
+      if(!('IntersectionObserver' in window)){ return; }
+      const clear = ()=>links.forEach(a=>a.classList.remove('active'));
       const io = new IntersectionObserver((entries)=>{
-        entries.forEach(e=>{ if(e.isIntersecting){ e.target.classList.add('show'); io.unobserve(e.target); } });
-      }, {threshold: 0.12});
-      document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+        entries.forEach(entry=>{
+          const id = entry.target.id;
+          const link = document.querySelector(`#topnav a[data-section="${id}"]`);
+          if(entry.isIntersecting){
+            clear();
+            if(link) link.classList.add('active');
+          }
+        });
+      }, { rootMargin: "-40% 0px -55% 0px", threshold: 0.01 });
+      sections.forEach(sec=>sec && io.observe(sec));
+      // Al hacer clic en un link, marcarlo (por si tarda el observer)
+      links.forEach(a=>a.addEventListener('click', ()=>{ clear(); a.classList.add('active'); }));
     })();
 
-    // Eventos GA4 adicionales
+    // GA4: clics en CTAs
     (function(){
-      // WhatsApp FAB
       const wa = document.querySelector('.whatsapp-fab');
-      if(wa){
-        wa.addEventListener('click', function(){
-          gtag('event', 'click_whatsapp', { phone: '34664549465' });
-        });
-      }
-      // CTA header
+      if(wa){ wa.addEventListener('click', ()=> gtag('event','click_whatsapp',{ phone:'34664549465' })); }
       const ctaHeader = document.querySelector('a.btn.btn-cta[href="#form-savage"]');
-      if(ctaHeader){
-        ctaHeader.addEventListener('click', function(){
-          gtag('event', 'click_cta', { location: 'header' });
-        });
-      }
-      // CTA móvil
+      if(ctaHeader){ ctaHeader.addEventListener('click', ()=> gtag('event','click_cta',{ location:'header' })); }
       const ctaBottom = document.querySelector('#bottom-cta a.btn-cta');
-      if(ctaBottom){
-        ctaBottom.addEventListener('click', function(){
-          gtag('event', 'click_cta', { location: 'bottom_mobile' });
-        });
-      }
+      if(ctaBottom){ ctaBottom.addEventListener('click', ()=> gtag('event','click_cta',{ location:'bottom_mobile' })); }
     })();
   </script>
 </body>
