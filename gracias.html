@@ -2,39 +2,94 @@
 <html lang="es">
 <head>
   <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>¡Gracias! — Savage Nomads</title>
-  <meta name="description" content="Gracias por apuntarte a Savage Nomads. Muy pronto nos pondremos en contacto contigo.">
+
+  <!-- Google Analytics 4 -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-Q8KFXRQGLW"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-Q8KFXRQGLW', { send_page_view: true });
+  </script>
+
+  <meta name="description" content="Gracias por escribirnos. En breve te contactamos con fechas, plazas y próximos pasos.">
   <link rel="icon" type="image/png" sizes="32x32" href="img/logo-favicon.png">
-  <link rel="icon" type="image/x-icon" href="img/favicon.ico">
-  <link rel="apple-touch-icon" sizes="180x180" href="img/apple-touch-icon.png">
-  <link rel="icon" type="image/png" sizes="512x512" href="img/favicon-512.png">
   <meta name="theme-color" content="#00C2A8">
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;800&display=swap" rel="stylesheet">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700;800&display=swap" rel="stylesheet">
+
   <style>
-    :root{--brand:#00C2A8;--accent:#FFC94D;--bg:#f7fbfc;--fg:#0E1416;--muted:#50656C;--border:#E6EEF1}
+    :root{
+      --bg:#F7FBFC;--surface:#FFFFFF;--fg:#0E1416;--muted:#50656C;
+      --brand:#00C2A8;--accent:#FFC94D;--border:#E6EEF1;--radius:14px;--shadow:0 10px 26px rgba(16,24,40,.10);
+    }
+    :root.dark{
+      --bg:#0B0F10;--surface:#10171A;--fg:#EAF2F4;--muted:#9AB1B9;--border:#1E2A30;--shadow:0 10px 26px rgba(0,0,0,.35);
+    }
     *{box-sizing:border-box}
-    body{margin:0;font-family:'Poppins',sans-serif;background:var(--bg);color:var(--fg);min-height:100vh;display:flex;flex-direction:column;text-align:center}
+    body{margin:0;background:var(--bg);color:var(--fg);font-family:'Poppins',system-ui,-apple-system,Segoe UI,Roboto,Inter,Ubuntu,Arial,sans-serif}
+    header{
+      position:sticky;top:0;z-index:10;background:rgba(255,255,255,.92);
+      border-bottom:1px solid var(--border);backdrop-filter:saturate(140%) blur(8px);
+    }
+    :root.dark header{background:rgba(16,23,26,.86)}
     .wrap{max-width:900px;margin:0 auto;padding:0 16px}
-    .thankyou{padding:64px 0}
-    .hero-mini-logo{width:180px;height:auto;opacity:.98;margin:0 auto 12px;filter:drop-shadow(0 6px 14px rgba(0,0,0,.15))}
-    @media(max-width:700px){.hero-mini-logo{width:110px}}
-    h1{color:var(--accent);font-size:clamp(28px,5vw,48px);margin:8px 0 6px}
-    p.lead{max-width:60ch;margin:0 auto 16px;font-size:18px;line-height:1.6}
-    .btn{display:inline-block;background:var(--brand);color:#fff;padding:12px 22px;border-radius:999px;font-weight:700;text-decoration:none}
-    .btn:hover{opacity:.9}
-    footer{margin-top:auto;padding:22px 0;border-top:1px solid var(--border);color:#50656C}
+    .nav{display:flex;align-items:center;justify-content:space-between;height:64px}
+    .brand{display:flex;align-items:center;gap:10px;font-weight:800}
+    .brand-logo{height:28px}
+    .icon-btn{display:inline-flex;align-items:center;justify-content:center;width:40px;height:40px;border-radius:999px;border:1px solid var(--border);background:var(--surface);cursor:pointer;font-size:18px}
+    main{min-height:70vh;display:grid;place-items:center;padding:36px 16px}
+    .card{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:24px;box-shadow:var(--shadow);text-align:center}
+    h1{font-size:clamp(24px,4.5vw,34px);color:var(--brand);margin:0 0 6px}
+    p{margin:0;color:var(--muted)}
+    .hero-mini-logo{width:120px;margin:14px auto 0;filter:drop-shadow(0 6px 14px rgba(0,0,0,.2))}
+    .row{display:flex;gap:10px;justify-content:center;margin-top:18px;flex-wrap:wrap}
+    .btn{display:inline-block;padding:10px 16px;border-radius:999px;font-weight:700;border:none;cursor:pointer}
+    .btn-cta{background:var(--brand);color:#0b0f10}
+    .btn-ghost{background:var(--surface);border:1px solid var(--border)}
+    footer{padding:22px 0;border-top:1px solid var(--border);text-align:center;color:var(--muted)}
     .footerbar{display:inline-flex;align-items:center;gap:8px}
     .footer-logo{width:20px;height:20px}
+
+    /* WhatsApp FAB */
+    .whatsapp-fab{
+      position:fixed;right:16px;bottom:16px;z-index:70;
+      width:56px;height:56px;border-radius:999px;
+      background:#25D366;color:#fff;display:flex;align-items:center;justify-content:center;
+      box-shadow:0 10px 24px rgba(0,0,0,.25);font-weight:800;font-size:14px;letter-spacing:.4px
+    }
+    .whatsapp-fab:hover{transform:translateY(-2px)}
+    .whatsapp-fab span{display:none}
+    @media (min-width:640px){.whatsapp-fab span{display:inline}}
   </style>
 </head>
 <body>
-  <main class="thankyou wrap">
-    <img class="hero-mini-logo" src="img/logo-hero.png" alt="Logo Savage Nomads">
-    <h1>¡Gracias por apuntarte!</h1>
-    <p class="lead">En breve te escribimos con fechas, plazas y próximos destinos.  
-      Mientras tanto, vuelve a la portada para seguir explorando.</p>
-    <a class="btn" href="index.html">Volver al inicio</a>
+  <!-- HEADER -->
+  <header>
+    <div class="wrap nav">
+      <div class="brand">
+        <img class="brand-logo" src="img/logo-hero.png" alt="" aria-hidden="true">
+        <span>Savage Nomads</span>
+      </div>
+      <div class="actions">
+        <button id="theme-toggle" class="icon-btn" aria-label="Cambiar tema" title="Modo noche/día">🌙</button>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <div class="card">
+      <h1>¡Gracias por escribirnos!</h1>
+      <p>Hemos recibido tu mensaje. Te contactaremos con fechas, plazas y próximos pasos.</p>
+      <img class="hero-mini-logo" src="img/logo-hero.png" alt="Logo Savage Nomads" decoding="async">
+      <div class="row">
+        <a class="btn btn-cta" href="./">Volver al inicio</a>
+        <a class="btn btn-ghost" href="https://wa.me/34664549465?text=Hola%20Savage%20Nomads%2C%20acabo%20de%20enviar%20el%20formulario%20y%20quiero%20resolver%20una%20duda%20rápida">Escribir por WhatsApp</a>
+      </div>
+    </div>
   </main>
 
   <footer>
@@ -45,6 +100,38 @@
       </span>
     </div>
   </footer>
-  <script>document.getElementById('y').textContent=(new Date()).getFullYear();</script>
+
+  <!-- WhatsApp FAB -->
+  <a class="whatsapp-fab" href="https://wa.me/34664549465?text=Hola%20Savage%20Nomads%2C%20acabo%20de%20enviar%20el%20formulario%20🙌"
+     target="_blank" rel="noopener" aria-label="Escríbenos por WhatsApp" title="WhatsApp">
+     💬<span>&nbsp;WhatsApp</span>
+  </a>
+
+  <script>
+    // Año dinámico
+    document.getElementById('y').textContent = new Date().getFullYear();
+
+    // Tema con persistencia
+    (function(){
+      const root = document.documentElement;
+      const saved = localStorage.getItem('sn-theme');
+      if(saved){ root.classList.toggle('dark', saved === 'dark'); }
+      if(!saved && window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches){
+        root.classList.add('dark');
+      }
+      const btn = document.getElementById('theme-toggle');
+      const setIcon = ()=>{ btn.textContent = root.classList.contains('dark') ? '☀️' : '🌙'; }
+      setIcon();
+      btn.addEventListener('click', ()=>{
+        root.classList.toggle('dark');
+        localStorage.setItem('sn-theme', root.classList.contains('dark') ? 'dark' : 'light');
+        setIcon();
+      });
+    })();
+
+    // Evento de conversión (por si el submit previo no se registró)
+    gtag('event', 'view_thank_you', { source: 'form_submission' });
+    gtag('event', 'generate_lead', { method: 'formspree', reliability: 'thank_you_page' });
+  </script>
 </body>
 </html>
