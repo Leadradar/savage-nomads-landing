@@ -14,45 +14,53 @@
     gtag('config', 'G-Q8KFXRQGLW', { send_page_view: true });
   </script>
 
-  <meta name="description" content="Gracias por escribirnos. En breve te contactamos con fechas, plazas y próximos pasos.">
-  <link rel="icon" type="image/png" sizes="32x32" href="img/logo-favicon.png">
+  <!-- Favicons -->
+  <link rel="icon" type="image/png" sizes="32x32" href="img/favicon.png">
+  <link rel="icon" type="image/png" sizes="192x192" href="img/favicon.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="img/favicon.png">
   <meta name="theme-color" content="#00C2A8">
+
+  <!-- Fuente -->
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700;800&display=swap" rel="stylesheet">
 
   <style>
     :root{
-      --bg:#F7FBFC;--surface:#FFFFFF;--fg:#0E1416;--muted:#50656C;
-      --brand:#00C2A8;--accent:#FFC94D;--border:#E6EEF1;--radius:14px;--shadow:0 10px 26px rgba(16,24,40,.10);
+      --bg:#F7FBFC; --surface:#FFFFFF; --fg:#0E1416; --muted:#50656C;
+      --brand:#00C2A8; --accent:#FFC94D; --border:#E6EEF1; --radius:14px;
+      --shadow:0 10px 26px rgba(16,24,40,.10); --wrap:900px;
     }
     :root.dark{
-      --bg:#0B0F10;--surface:#10171A;--fg:#EAF2F4;--muted:#9AB1B9;--border:#1E2A30;--shadow:0 10px 26px rgba(0,0,0,.35);
+      --bg:#0B0F10; --surface:#10171A; --fg:#EAF2F4; --muted:#9AB1B9; --border:#1E2A30;
+      --shadow:0 10px 26px rgba(0,0,0,.35);
     }
     *{box-sizing:border-box}
     body{margin:0;background:var(--bg);color:var(--fg);font-family:'Poppins',system-ui,-apple-system,Segoe UI,Roboto,Inter,Ubuntu,Arial,sans-serif}
-    header{
-      position:sticky;top:0;z-index:10;background:rgba(255,255,255,.92);
-      border-bottom:1px solid var(--border);backdrop-filter:saturate(140%) blur(8px);
-    }
+    .wrap{max-width:var(--wrap);margin:0 auto;padding:0 16px}
+
+    /* Header */
+    header{position:sticky;top:0;z-index:10;background:rgba(255,255,255,.92);border-bottom:1px solid var(--border);backdrop-filter:saturate(140%) blur(8px)}
     :root.dark header{background:rgba(16,23,26,.86)}
-    .wrap{max-width:900px;margin:0 auto;padding:0 16px}
     .nav{display:flex;align-items:center;justify-content:space-between;height:64px}
     .brand{display:flex;align-items:center;gap:10px;font-weight:800}
-    .brand-logo{height:28px}
+    .brand-logo{height:28px;width:auto}
     .icon-btn{display:inline-flex;align-items:center;justify-content:center;width:40px;height:40px;border-radius:999px;border:1px solid var(--border);background:var(--surface);cursor:pointer;font-size:18px}
 
+    /* Card */
     main{min-height:70vh;display:grid;place-items:center;padding:36px 16px}
-    .card{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:24px;box-shadow:var(--shadow);text-align:center}
+    .card{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:24px;box-shadow:var(--shadow);text-align:center;max-width:720px}
     h1{font-size:clamp(24px,4.5vw,34px);color:var(--brand);margin:0 0 6px}
     p{margin:0;color:var(--muted)}
     .hero-mini-logo{width:120px;margin:14px auto 0;filter:drop-shadow(0 6px 14px rgba(0,0,0,.2))}
     .row{display:flex;gap:10px;justify-content:center;margin-top:18px;flex-wrap:wrap}
 
-    .btn{display:inline-block;padding:10px 16px;border-radius:999px;font-weight:700;border:none;cursor:pointer}
-    .btn-cta{background:var(--brand);color:#0b0f10}
+    /* Botones: mismo estilo verde para ambos */
+    .btn{display:inline-block;padding:10px 16px;border-radius:999px;font-weight:700;border:none;cursor:pointer;text-decoration:none}
+    .btn-cta{background:var(--brand);color:#0b0f10;box-shadow:0 8px 22px rgba(0,0,0,.18)}
     .btn-cta:hover{transform:translateY(-2px)}
 
+    /* Footer */
     footer{padding:22px 0;border-top:1px solid var(--border);text-align:center;color:var(--muted)}
     .footerbar{display:inline-flex;align-items:center;gap:8px}
     .footer-logo{width:20px;height:20px}
@@ -73,7 +81,7 @@
   <header>
     <div class="wrap nav">
       <div class="brand">
-        <img class="brand-logo" src="img/logo-color.png" alt="Logo Savage Nomads" onerror="this.src='img/logo-hero.png'">
+        <img class="brand-logo" src="img/logo-tribu.png" alt="Savage Nomads">
         <span>Savage Nomads</span>
       </div>
       <div class="actions">
@@ -86,7 +94,7 @@
     <div class="card">
       <h1>¡Gracias por escribirnos!</h1>
       <p>Hemos recibido tu mensaje. Te contactaremos con fechas, plazas y próximos pasos.</p>
-      <img class="hero-mini-logo" src="img/logo-hero.png" alt="Logo Savage Nomads" decoding="async">
+      <img class="hero-mini-logo" src="img/logo-tribu.png" alt="Savage Nomads">
       <div class="row">
         <a class="btn btn-cta" href="./">Volver al inicio</a>
         <a class="btn btn-cta" href="https://wa.me/34664549465?text=Hola%20Savage%20Nomads%2C%20acabo%20de%20enviar%20el%20formulario%20y%20quiero%20resolver%20una%20duda%20r%C3%A1pida" target="_blank" rel="noopener">Escribir por WhatsApp</a>
@@ -97,13 +105,13 @@
   <footer>
     <div class="wrap">
       <span class="footerbar">
-        <img class="footer-logo" src="img/logo-favicon.png" alt="Logo">
+        <img class="footer-logo" src="img/logo-tribu.png" alt="Savage Nomads">
         © <span id="y"></span> Savage Nomads • Hecho con cariño y ganas de viajar
       </span>
     </div>
   </footer>
 
-  <!-- WhatsApp FAB -->
+  <!-- WhatsApp FAB (solo icono) -->
   <a class="whatsapp-fab" href="https://wa.me/34664549465?text=Hola%20Savage%20Nomads%2C%20acabo%20de%20enviar%20el%20formulario%20🙌"
      target="_blank" rel="noopener" aria-label="Escríbenos por WhatsApp" title="WhatsApp">
     <svg viewBox="0 0 32 32" aria-hidden="true" focusable="false">
@@ -133,7 +141,7 @@
       });
     })();
 
-    // Marca conversión (por si el evento del submit no entró)
+    // Marca conversión (respaldo por si el evento del submit no entró)
     gtag('event', 'view_thank_you', { source: 'form_submission' });
     gtag('event', 'generate_lead', { method: 'formspree', reliability: 'thank_you_page' });
   </script>
