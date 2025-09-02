@@ -28,9 +28,9 @@
   <meta name="twitter:card" content="summary_large_image">
 
   <!-- Favicons -->
-  <link rel="icon" type="image/png" sizes="32x32" href="img/favicon.png?v=2">
-  <link rel="icon" type="image/png" sizes="192x192" href="img/favicon.png?v=2">
-  <link rel="apple-touch-icon" sizes="180x180" href="img/favicon.png?v=2">
+  <link rel="icon" type="image/png" sizes="32x32" href="img/favicon.png?v=3">
+  <link rel="icon" type="image/png" sizes="192x192" href="img/favicon.png?v=3">
+  <link rel="apple-touch-icon" sizes="180x180" href="img/favicon.png?v=3">
   <meta name="theme-color" content="#00C2A8">
 
   <!-- Performance: Preload hero -->
@@ -197,13 +197,17 @@
 
     /* WhatsApp FAB (nítido y centrado) */
     .whatsapp-fab{
-      position:fixed;right:16px;bottom:16px;z-index:70;
+      position:fixed;right:16px;bottom:16px;z-index:100;
       width:56px;height:56px;border-radius:999px;
       background:#25D366;color:#fff;display:flex;align-items:center;justify-content:center;
       box-shadow:0 10px 24px rgba(0,0,0,.25); border:none; line-height:0;
+      -webkit-tap-highlight-color:transparent;
     }
     .whatsapp-fab:hover{transform:translateY(-2px)}
-    .whatsapp-fab svg{display:block;width:26px;height:26px;shape-rendering:geometricPrecision;transform:translateZ(0);}
+    .whatsapp-fab svg{
+      display:block;width:24px;height:24px;
+      shape-rendering:crispEdges;transform:translateZ(0);
+    }
 
     /* CTA móvil pegajoso */
     .bottom-cta{
@@ -458,8 +462,9 @@
   <a class="whatsapp-fab"
      href="https://wa.me/34664549465?text=Hola%20Savage%20Nomads%2C%20quiero%20m%C3%A1s%20info%20✈️"
      target="_blank" rel="noopener" aria-label="Escríbenos por WhatsApp" title="WhatsApp">
-    <svg viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-      <path fill="#fff" d="M19.7 17.4c-.3-.2-1.8-.9-2.1-1-.3-.1-.5-.2-.8.2-.2.3-.9 1-.9 1.2s-.3.3-.6.1c-.3-.2-1.2-.4-2.3-1.5-0.9-.9-1.5-2-1.7-2.3-.2-.3 0-.5.2-.7.2-.2.3-.6.5-.8.2-.3.1-.5 0-.7l-1-2.4c-.3-.7-.5-.6-.8-.6h-.7c-.2 0-.7.1-1 .5-.3.3-1.3 1.3-1.3 3.1s1.3 3.5 1.5 3.7c.2.2 2.6 4 6.3 5.5.9.4 1.6.6 2.1.7.9.3 1.7.3 2.3.2.7-.1 2.1-.9 2.4-1.8.3-.9.3-1.6.2-1.8-.1-.2-.3-.3-.6-.5zM16 4c6.6 0 12 5.3 12 12 0 6.6-5.4 12-12 12-2.1 0-4.1-.6-5.8-1.6L6 28l1.7-4.1C6.6 22.1 6 20.1 6 18 6 11.3 9.3 4 16 4zm0-2C8.3 2 4 9 4 18c0 2.3.6 4.4 1.6 6.3L4 30l5.8-1.5C11.7 29.4 13.8 30 16 30c8.8 0 16-7.2 16-16S24.8 2 16 2z"/>
+    <!-- Icono SVG nítido -->
+    <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+      <path fill="#fff" d="M20.52 3.48A11.94 11.94 0 0 0 12.06 0C5.51 0 .21 5.3.21 11.85c0 2.09.55 4.02 1.5 5.7L0 24l6.62-1.7a11.77 11.77 0 0 0 5.44 1.38h.01c6.55 0 11.85-5.3 11.85-11.85 0-3.17-1.24-6.16-3.4-8.35zM12.07 21.2c-1.86 0-3.69-.5-5.28-1.45l-.38-.22-3.93 1.01 1.05-3.83-.25-.39A9.65 9.65 0 0 1 2.42 11.9c0-5.34 4.34-9.68 9.68-9.68 2.58 0 5 1 6.83 2.83a9.59 9.59 0 0 1 2.84 6.85c0 5.34-4.34 9.68-9.7 9.68zm5.31-7.27c-.29-.15-1.7-.84-1.96-.94-.26-.1-.45-.15-.65.15s-.75.94-.92 1.14c-.17.2-.34.23-.63.08-.29-.15-1.22-.45-2.32-1.45-.86-.77-1.44-1.72-1.6-2.01-.17-.29-.02-.45.13-.6.13-.13.29-.34.43-.51.15-.17.2-.29.29-.48.1-.2.05-.37-.03-.52-.08-.15-.65-1.56-.89-2.13-.23-.56-.46-.49-.65-.5l-.55-.01c-.2 0-.52.07-.79.37-.27.29-1.04 1-1.04 2.45s1.06 2.84 1.21 3.03c.15.2 2.09 3.2 5.06 4.49.71.31 1.26.5 1.69.64.71.23 1.35.2 1.86.12.57-.08 1.7-.69 1.94-1.35.24-.66.24-1.22.17-1.34-.06-.12-.26-.2-.55-.35z"/>
     </svg>
   </a>
 
@@ -585,7 +590,6 @@
 
       map.forEach(({el})=>{ if(el) obs.observe(el); });
 
-      // Click inmediato
       nav.addEventListener('click', (e)=>{
         const a = e.target.closest('a[href^="#"]');
         if(!a) return;
