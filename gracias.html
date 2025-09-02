@@ -14,10 +14,13 @@
     gtag('config', 'G-Q8KFXRQGLW', { send_page_view: true });
   </script>
 
-  <!-- Favicons -->
+  <!-- Favicons (doble ruta por seguridad en GitHub Pages) -->
   <link rel="icon" type="image/png" sizes="32x32" href="img/favicon.png">
   <link rel="icon" type="image/png" sizes="192x192" href="img/favicon.png">
   <link rel="apple-touch-icon" sizes="180x180" href="img/favicon.png">
+  <!-- Si tu repo se sirve como /savage-nomads-landing/, añadimos rutas absolutas por si el navegador no resuelve las relativas -->
+  <link rel="icon" type="image/png" sizes="32x32" href="/savage-nomads-landing/img/favicon.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="/savage-nomads-landing/img/favicon.png">
   <meta name="theme-color" content="#00C2A8">
 
   <!-- Fuente -->
@@ -36,6 +39,7 @@
       --shadow:0 10px 26px rgba(0,0,0,.35);
     }
     *{box-sizing:border-box}
+    html{scroll-behavior:smooth}
     body{margin:0;background:var(--bg);color:var(--fg);font-family:'Poppins',system-ui,-apple-system,Segoe UI,Roboto,Inter,Ubuntu,Arial,sans-serif}
     .wrap{max-width:var(--wrap);margin:0 auto;padding:0 16px}
 
@@ -44,15 +48,20 @@
     :root.dark header{background:rgba(16,23,26,.86)}
     .nav{display:flex;align-items:center;justify-content:space-between;height:64px}
     .brand{display:flex;align-items:center;gap:10px;font-weight:800}
-    .brand-logo{height:28px;width:auto}
+    .brand-logo{height:28px;width:auto;display:block}
+
     .icon-btn{display:inline-flex;align-items:center;justify-content:center;width:40px;height:40px;border-radius:999px;border:1px solid var(--border);background:var(--surface);cursor:pointer;font-size:18px}
 
     /* Card */
     main{min-height:70vh;display:grid;place-items:center;padding:36px 16px}
-    .card{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:24px;box-shadow:var(--shadow);text-align:center;max-width:720px}
+    .card{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:24px;box-shadow:var(--shadow);text-align:center;max-width:720px;width:100%}
     h1{font-size:clamp(24px,4.5vw,34px);color:var(--brand);margin:0 0 6px}
     p{margin:0;color:var(--muted)}
-    .hero-mini-logo{width:120px;margin:14px auto 0;filter:drop-shadow(0 6px 14px rgba(0,0,0,.2))}
+    /* LOGO CENTRADO Y NÍTIDO */
+    .hero-mini-logo{
+      width:120px; height:auto; margin:18px auto 0; display:block;
+      image-rendering:auto; -ms-interpolation-mode:nearest-neighbor;
+    }
     .row{display:flex;gap:10px;justify-content:center;margin-top:18px;flex-wrap:wrap}
 
     /* Botones: mismo estilo verde para ambos */
@@ -63,17 +72,21 @@
     /* Footer */
     footer{padding:22px 0;border-top:1px solid var(--border);text-align:center;color:var(--muted)}
     .footerbar{display:inline-flex;align-items:center;gap:8px}
-    .footer-logo{width:20px;height:20px}
+    .footer-logo{width:20px;height:20px;display:block}
 
-    /* WhatsApp FAB (solo icono) */
+    /* WhatsApp FAB (nítido, centrado) */
     .whatsapp-fab{
       position:fixed;right:16px;bottom:16px;z-index:70;
       width:56px;height:56px;border-radius:999px;
       background:#25D366;color:#fff;display:flex;align-items:center;justify-content:center;
-      box-shadow:0 10px 24px rgba(0,0,0,.25)
+      box-shadow:0 10px 24px rgba(0,0,0,.25);
+      border:none;
     }
     .whatsapp-fab:hover{transform:translateY(-2px)}
-    .whatsapp-fab svg{width:26px;height:26px;display:block}
+    .whatsapp-fab svg{
+      width:26px;height:26px;display:block;shape-rendering:geometricPrecision;
+      transform: translateZ(0); /* evita blur por subpíxel */
+    }
   </style>
 </head>
 <body>
@@ -141,7 +154,7 @@
       });
     })();
 
-    // Marca conversión (respaldo por si el evento del submit no entró)
+    // Marca conversión (por si el evento del submit no entró)
     gtag('event', 'view_thank_you', { source: 'form_submission' });
     gtag('event', 'generate_lead', { method: 'formspree', reliability: 'thank_you_page' });
   </script>
