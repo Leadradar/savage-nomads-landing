@@ -27,11 +27,10 @@
   <meta property="og:locale" content="es_ES">
   <meta name="twitter:card" content="summary_large_image">
 
-  <!-- Favicons -->
-  <link rel="icon" type="image/png" sizes="32x32" href="img/logo-favicon.png">
-  <link rel="icon" type="image/x-icon" href="img/favicon.ico">
-  <link rel="apple-touch-icon" sizes="180x180" href="img/apple-touch-icon.png">
-  <link rel="icon" type="image/png" sizes="512x512" href="img/favicon-512.png">
+  <!-- Favicons (usa tu nuevo favicon) -->
+  <link rel="icon" type="image/png" sizes="32x32" href="img/favicon.png">
+  <link rel="icon" type="image/png" sizes="192x192" href="img/favicon.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="img/favicon.png">
   <meta name="theme-color" content="#00C2A8">
 
   <!-- Performance: Preload hero -->
@@ -48,7 +47,7 @@
       --brand:#00C2A8; --accent:#FFC94D; --border:#E6EEF1;
       --radius:14px; --shadow:0 10px 26px rgba(16,24,40,.10);
       --shadow-strong:0 18px 42px rgba(16,24,40,.16);
-      --wrap:1100px; --focus:#7C3AED; /* foco accesible */
+      --wrap:1100px; --focus:#7C3AED;
     }
     :root.dark{
       --bg:#0B0F10; --surface:#10171A; --fg:#EAF2F4; --muted:#9AB1B9;
@@ -63,13 +62,7 @@
     a{color:inherit;text-decoration:none}
     img{max-width:100%;display:block;height:auto}
     .wrap{max-width:var(--wrap);margin:0 auto;padding:0 16px}
-
-    /* Foco accesible */
     :focus-visible{outline:3px solid var(--focus);outline-offset:2px;border-radius:10px}
-
-    @media (prefers-reduced-motion: reduce) {
-      *{animation:none!important;transition:none!important;scroll-behavior:auto!important}
-    }
 
     /* HEADER */
     header{
@@ -81,8 +74,12 @@
     :root.dark header{background:rgba(16,23,26,.86)}
     .nav{display:flex;align-items:center;justify-content:space-between;height:64px}
     .brand{display:flex;align-items:center;gap:10px;font-weight:800;letter-spacing:.2px}
-    .brand-logo{width:auto;height:30px}
-    @media (max-width:700px){.brand-logo{height:26px}}
+    .brand-logo{width:auto;height:34px}
+    .brand-text{white-space:nowrap}
+    @media (max-width:700px){
+      .brand-logo{height:30px}
+      .brand-text{font-size:15px}
+    }
 
     .navlinks{display:flex;gap:16px;align-items:center}
     .navlinks a{opacity:.85}
@@ -90,19 +87,18 @@
     .navlinks a.active,[aria-current="true"]{
       text-decoration:underline; text-underline-offset:6px; text-decoration-thickness:2px; color:var(--brand);
     }
-
     .actions{display:flex;align-items:center;gap:8px}
     .btn{display:inline-block;padding:10px 16px;border-radius:999px;font-weight:700;border:none;cursor:pointer}
     .btn-cta{background:var(--brand);color:#0b0f10;box-shadow:0 8px 22px rgba(0,0,0,.18)}
     .btn-cta:hover{transform:translateY(-2px)}
-    .icon-btn{display:inline-flex;align-items:center;justify-content:center;width:40px;height:40px;border-radius:999px;border:1px solid var(--border);background:var(--surface);cursor:pointer;font-size:18px;line-height:1}
+    .icon-btn{display:inline-flex;align-items:center;justify-content:center;width:40px;height:40px;border-radius:999px;border:1px solid var(--border);background:var(--surface);cursor:pointer}
     .icon-btn:hover{transform:translateY(-1px)}
     @media (max-width:700px){
       .nav{flex-wrap:wrap;height:auto;gap:8px;padding:10px 0}
       .navlinks{order:3;width:100%;justify-content:center;flex-wrap:wrap;border-top:1px solid var(--border);padding-top:8px}
     }
 
-    /* Barra de progreso */
+    /* Progreso lectura */
     .progress{position:fixed;top:0;left:0;height:3px;background:var(--brand);width:0%;z-index:80}
 
     /* HERO */
@@ -163,8 +159,10 @@
 
     /* Galería masonry */
     .gallery-bar{display:flex;justify-content:center;gap:10px;flex-wrap:wrap;margin-bottom:16px}
-    .chip{border:1px solid var(--border);background:var(--surface);padding:8px 12px;border-radius:999px;font-weight:700;cursor:pointer}
+    .chip{border:1px solid var(--border);background:var(--surface);padding:8px 12px;border-radius:999px;font-weight:700;cursor:pointer;color:var(--fg)}
     .chip.active{outline:2px solid var(--brand);outline-offset:2px}
+    :root.dark .chip{background:#0f171a;border-color:#1f2a30;color:#EAF2F4}
+    :root.dark .chip.active{outline-color:var(--brand)}
     .gallery{column-width:280px;column-gap:14px}
     @media (max-width:900px){.gallery{column-width:220px}}
     @media (max-width:560px){.gallery{column-width:100%}}
@@ -188,7 +186,6 @@
     form .full{grid-column:1 / -1}
     label{font-size:13px;color:var(--muted)}
     input,select,textarea{width:100%;padding:11px 12px;border-radius:10px;border:1px solid var(--border);background:#fff;color:#0E1416}
-    input,select,textarea:focus{outline:2px solid var(--focus);outline-offset:2px}
     textarea{min-height:120px;resize:vertical}
     button[type="submit"]{justify-self:center;margin-top:6px}
     @media (max-width:640px){form{grid-template-columns:1fr}}
@@ -223,7 +220,7 @@
 
   <!-- JSON-LD -->
   <script type="application/ld+json">
-  {"@context":"https://schema.org","@type":"Organization","name":"Savage Nomads","url":"https://leadradar.github.io/savage-nomads-landing/","logo":"https://leadradar.github.io/savage-nomads-landing/img/logo-favicon.png"}
+  {"@context":"https://schema.org","@type":"Organization","name":"Savage Nomads","url":"https://leadradar.github.io/savage-nomads-landing/","logo":"https://leadradar.github.io/savage-nomads-landing/img/logo-tribu.png"}
   </script>
 </head>
 <body>
@@ -235,8 +232,8 @@
   <header role="banner">
     <div class="wrap nav">
       <div class="brand">
-        <img class="brand-logo" src="img/logo-color.png" alt="Logo Savage Nomads" width="140" height="34" onerror="this.src='img/logo-hero.png'">
-        <span>Savage Nomads</span>
+        <img class="brand-logo" src="img/logo-tribu.png" alt="Savage Nomads" width="34" height="34">
+        <span class="brand-text">Savage Nomads</span>
       </div>
       <nav class="navlinks" aria-label="Navegación principal" id="top-nav">
         <a href="#ofrecemos">Qué ofrecemos</a>
@@ -255,19 +252,12 @@
 
   <!-- HERO -->
   <section class="hero" aria-label="Portada">
-    <img class="bg" src="hero.jpg" alt="Playa de aguas turquesas" width="1600" height="900" fetchpriority="high">
+    <img class="bg" src="hero.jpg" alt="Playa de aguas turquesas">
     <div class="overlay" aria-hidden="true"></div>
     <div class="content">
       <h1>Explora el mundo, conecta de verdad</h1>
       <p class="sub">Viajar con tu tribu, descubrir lugares únicos y vivir momentos que no se olvidan.</p>
-      <img class="hero-mini-logo"
-           src="img/logo-hero.png"
-           alt="Logo Savage Nomads"
-           width="420" height="140"
-           decoding="async"
-           loading="eager"
-           srcset="img/logo-hero.png 420w, img/logo-hero@2x.png 840w"
-           sizes="(max-width:700px) 130px, 210px">
+      <img class="hero-mini-logo" src="img/logo-hero.png" alt="Logo Savage Nomads" decoding="async">
     </div>
   </section>
 
@@ -294,7 +284,7 @@
       <p class="lead">Gente afín, buen rollo y cero postureo: viajamos para vivirlo de verdad, no para coleccionar check-ins.</p>
       <div class="tribe-layout">
         <figure class="card tribe-photo">
-          <img src="grupo.jpg?v=5" alt="Grupo de viajeros compartiendo experiencia" width="1200" height="800" loading="lazy" decoding="async">
+          <img src="grupo.jpg?v=5" alt="Grupo de viajeros compartiendo experiencia">
         </figure>
         <div class="tribe-grid">
           <article class="card"><h3>Afinidad real</h3><p>Grupos pequeños con perfiles compatibles. Charlas que fluyen y planes que apetece hacer juntos.</p></article>
@@ -326,8 +316,8 @@
       <div class="maldivas-layout">
         <div class="card photos-card">
           <div class="photos-grid">
-            <figure><img src="pareja.jpg?v=8" alt="Pareja disfrutando en Maldivas" width="1200" height="800" loading="lazy" decoding="async"></figure>
-            <figure><img src="subm.jpg?v=8" alt="Snorkel en arrecife de Maldivas" width="1200" height="800" loading="lazy" decoding="async"></figure>
+            <figure><img src="pareja.jpg?v=8" alt="Pareja disfrutando en Maldivas"></figure>
+            <figure><img src="subm.jpg?v=8" alt="Snorkel en arrecife de Maldivas"></figure>
           </div>
         </div>
         <div class="card text-card">
@@ -365,29 +355,29 @@
       <div class="gallery card" id="gallery" data-filter="todos">
         <!-- MALDIVAS -->
         <figure data-destino="maldivas">
-          <img src="img/maldivas-tribu-barca.jpg?v=1" alt="Tribu en lengua de arena, aguas turquesas y aventura" width="1200" height="800" loading="lazy" decoding="async">
+          <img src="img/maldivas-tribu-barca.jpg?v=1" alt="Tribu en lengua de arena, aguas turquesas y aventura">
           <figcaption>Maldivas · Aventura en equipo</figcaption>
         </figure>
         <figure data-destino="maldivas">
-          <img src="img/maldivas-snorkel-grupo.webp?v=1" alt="Grupo haciendo snorkel junto a arrecife de colores" width="1200" height="800" loading="lazy" decoding="async">
+          <img src="img/maldivas-snorkel-grupo.webp?v=1" alt="Grupo haciendo snorkel junto a arrecife de colores">
           <figcaption>Maldivas · Arrecifes y risas</figcaption>
         </figure>
         <figure data-destino="maldivas">
-          <img src="img/maldivas-playa-atardecer.avif?v=1" alt="Caminata en grupo por la orilla al atardecer" width="1200" height="800" loading="lazy" decoding="async">
+          <img src="img/maldivas-playa-atardecer.avif?v=1" alt="Caminata en grupo por la orilla al atardecer">
           <figcaption>Maldivas · Atardecer compartido</figcaption>
         </figure>
 
         <!-- GRECIA -->
         <figure data-destino="grecia">
-          <img src="img/grecia-mesa-compartir.jpg?v=1" alt="Cena en la playa con velas al anochecer" width="1200" height="800" loading="lazy" decoding="async">
+          <img src="img/grecia-mesa-compartir.jpg?v=1" alt="Cena en la playa con velas al anochecer">
           <figcaption>Grecia · Mesa para compartir</figcaption>
         </figure>
         <figure data-destino="grecia">
-          <img src="img/grecia-navegar-islas.jpg?v=1" alt="Velero al atardecer navegando entre islas" width="1200" height="800" loading="lazy" decoding="async">
+          <img src="img/grecia-navegar-islas.jpg?v=1" alt="Velero al atardecer navegando entre islas">
           <figcaption>Grecia · Navegar entre islas</figcaption>
         </figure>
         <figure data-destino="grecia">
-          <img src="img/grecia-sendero-vistas.jpg?v=1" alt="Caminata al faro con vistas" width="1200" height="800" loading="lazy" decoding="async">
+          <img src="img/grecia-sendero-vistas.jpg?v=1" alt="Caminata al faro con vistas">
           <figcaption>Grecia · Sendero con vistas</figcaption>
         </figure>
       </div>
@@ -430,19 +420,17 @@
       <div class="form-wrap">
         <form id="form-savage" action="https://formspree.io/f/manbrrzl" method="POST" novalidate>
           <input type="hidden" name="_redirect" value="https://leadradar.github.io/savage-nomads-landing/gracias.html">
-          <!-- Honeypot anti-spam -->
-          <input type="text" name="_gotcha" tabindex="-1" autocomplete="off" style="position:absolute;left:-9999px;opacity:0">
-          <div class="full"><label for="f-nombre">Nombre</label><input id="f-nombre" name="nombre" type="text" placeholder="Tu nombre" required autocomplete="name"></div>
-          <div><label for="f-email">Email</label><input id="f-email" name="email" type="email" placeholder="tucorreo@email.com" required autocomplete="email"></div>
-          <div><label for="f-phone">Teléfono (opcional)</label><input id="f-phone" name="phone" type="tel" placeholder="+34 6XX XXX XXX" autocomplete="tel"></div>
-          <div class="full"><label for="f-destino">Destino de interés</label>
-            <select id="f-destino" name="destino" required>
+          <div class="full"><label>Nombre</label><input name="nombre" type="text" placeholder="Tu nombre" required autocomplete="name"></div>
+          <div><label>Email</label><input name="email" type="email" placeholder="tucorreo@email.com" required autocomplete="email"></div>
+          <div><label>Teléfono (opcional)</label><input name="phone" type="tel" placeholder="+34 6XX XXX XXX" autocomplete="tel"></div>
+          <div class="full"><label>Destino de interés</label>
+            <select name="destino" required>
               <option value="Maldivas">Maldivas</option>
               <option value="Grecia">Grecia</option>
               <option value="Otro">Otro</option>
             </select>
           </div>
-          <div class="full"><label for="f-msg">Mensaje</label><textarea id="f-msg" name="mensaje" placeholder="Cuéntanos un poco qué buscas" rows="5"></textarea></div>
+          <div class="full"><label>Mensaje</label><textarea name="mensaje" placeholder="Cuéntanos un poco qué buscas" rows="5"></textarea></div>
           <div class="full" style="text-align:center"><button id="submitBtn" type="submit" class="btn btn-cta">Enviar</button></div>
         </form>
       </div>
@@ -453,13 +441,13 @@
   <footer role="contentinfo">
     <div class="wrap">
       <span class="footerbar">
-        <img class="footer-logo" src="img/logo-favicon.png" alt="Logo" width="20" height="20" decoding="async">
+        <img class="footer-logo" src="img/logo-tribu.png" alt="Savage Nomads">
         © <span id="y"></span> Savage Nomads • Hecho con cariño y ganas de viajar
       </span>
     </div>
   </footer>
 
-  <!-- WhatsApp FAB -->
+  <!-- WhatsApp FAB (solo icono) -->
   <a class="whatsapp-fab"
      href="https://wa.me/34664549465?text=Hola%20Savage%20Nomads%2C%20quiero%20m%C3%A1s%20info%20✈️"
      target="_blank" rel="noopener" aria-label="Escríbenos por WhatsApp" title="WhatsApp">
@@ -499,17 +487,14 @@
     (function(){ try{ if('scrollRestoration' in history){ history.scrollRestoration='manual'; } }catch(e){} })();
     window.addEventListener('load', ()=>{ if(!location.hash) window.scrollTo(0,0); }, {once:true});
 
-    // Formspree: antispam, evitar doble envío, redirección + GA4
+    // Formspree con redirección y GA4
     (function () {
       const form = document.getElementById('form-savage');
       const submitBtn = document.getElementById('submitBtn');
       if (!form) return;
       form.addEventListener('submit', async (e) => {
         e.preventDefault();
-        // honeypot: si viene con texto, abortar
-        if(form.querySelector('input[name="_gotcha"]').value) return;
-        submitBtn.disabled = true;
-        submitBtn.textContent = 'Enviando...';
+        if(submitBtn){ submitBtn.disabled = true; submitBtn.textContent = 'Enviando...'; }
         const data = new FormData(form);
         try {
           await fetch(form.action, { method: 'POST', body: data, headers: { 'Accept': 'application/json' }});
@@ -593,7 +578,6 @@
 
       map.forEach(({el})=>{ if(el) obs.observe(el); });
 
-      // Al hacer click, marcar activo inmediatamente
       nav.addEventListener('click', (e)=>{
         const a = e.target.closest('a[href^="#"]');
         if(!a) return;
