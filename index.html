@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-  <title>Savage Nomads — Explora el mundo, conecta de verdad</title>
+  <title>Savage Nomads — Viajes en grupo con tribu</title>
 
   <!-- Google Analytics 4 -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-Q8KFXRQGLW"></script>
@@ -21,16 +21,16 @@
   <meta name="description" content="Viajes en grupo seleccionados, con itinerarios cuidados y buena compañía. Únete a Savage Nomads.">
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://leadradar.github.io/savage-nomads-landing/">
-  <meta property="og:title" content="Savage Nomads — Explora el mundo, conecta de verdad">
-  <meta property="og:description" content="Viajes en grupo seleccionados, con itinerarios cuidados y buena compañía. Únete a Savage Nomads.">
+  <meta property="og:title" content="Savage Nomads — Viajes que unen. Recuerdos que duran.">
+  <meta property="og:description" content="Nosotros ponemos la ruta, tú pones las ganas.">
   <meta property="og:image" content="https://leadradar.github.io/savage-nomads-landing/hero.jpg">
   <meta property="og:locale" content="es_ES">
   <meta name="twitter:card" content="summary_large_image">
 
   <!-- Favicons -->
-  <link rel="icon" type="image/png" sizes="32x32" href="img/favicon.png?v=4">
-  <link rel="icon" type="image/png" sizes="192x192" href="img/favicon.png?v=4">
-  <link rel="apple-touch-icon" sizes="180x180" href="img/apple-touch-icon.png?v=4">
+  <link rel="icon" type="image/png" sizes="32x32" href="img/favicon.png?v=5">
+  <link rel="icon" type="image/png" sizes="192x192" href="img/favicon.png?v=5">
+  <link rel="apple-touch-icon" sizes="180x180" href="img/apple-touch-icon.png?v=5">
   <meta name="theme-color" content="#00C2A8">
 
   <!-- Performance -->
@@ -39,7 +39,8 @@
   <!-- Fonts -->
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700;800&display=swap" rel="stylesheet">
+  <!-- Poppins (cuerpo) + League Spartan (H1 hero) -->
+  <link href="https://fonts.googleapis.com/css2?family=League+Spartan:wght@700;800;900&family=Poppins:wght@400;700;800&display=swap" rel="stylesheet">
 
   <style>
     :root{
@@ -74,7 +75,7 @@
     :root.dark header{background:rgba(16,23,26,.86)}
     .nav{display:flex;align-items:center;justify-content:space-between;height:68px}
     .brand{display:flex;align-items:center;gap:10px;font-weight:800;letter-spacing:.2px}
-    .brand-logo{width:auto;height:40px}              /* ↑ más grande */
+    .brand-logo{width:auto;height:40px}
     .brand-text{white-space:nowrap}
     @media (max-width:700px){
       .brand-logo{height:34px}
@@ -106,9 +107,23 @@
     .hero .bg{width:100%;height:clamp(420px,60vh,560px);object-fit:cover}
     .hero .overlay{position:absolute;inset:0;background:linear-gradient(180deg,rgba(0,0,0,.25),rgba(0,0,0,.15),rgba(0,0,0,.35))}
     .hero .content{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:12px;padding:0 16px}
-    .hero h1{color:var(--accent);font-weight:800;font-size:clamp(30px,5.5vw,56px);text-shadow:0 8px 24px rgba(0,0,0,.45)}
-    .hero .sub{color:#fff;font-size:clamp(16px,2.4vw,20px);text-shadow:0 6px 18px rgba(0,0,0,.45)}
-    .hero-mini-logo{width:210px;height:auto;margin-top:8px;opacity:.98;filter:drop-shadow(0 6px 14px rgba(0,0,0,.25))}
+    /* ——— Nuevo estilo de H1 (League Spartan) ——— */
+    .hero h1{
+      font-family:'League Spartan', system-ui, -apple-system, Segoe UI, Roboto, Inter, Ubuntu, Arial, sans-serif;
+      color:var(--accent);
+      font-weight:900;
+      font-size:clamp(36px,6.5vw,68px);
+      line-height:1.02;
+      letter-spacing:.4px;
+      text-shadow:0 10px 28px rgba(0,0,0,.45);
+    }
+    .hero .sub{
+      color:#fff;
+      font-size:clamp(16px,2.4vw,22px);
+      text-shadow:0 6px 18px rgba(0,0,0,.45);
+      opacity:.95;
+    }
+    .hero-mini-logo{width:210px;height:auto;margin-top:10px;opacity:.98;filter:drop-shadow(0 6px 14px rgba(0,0,0,.25))}
     @media (max-width:700px){.hero-mini-logo{width:130px}}
 
     /* Secciones */
@@ -193,7 +208,7 @@
     /* Footer */
     footer{padding:22px 0;border-top:1px solid var(--border);text-align:center;color:var(--muted)}
     .footerbar{display:inline-flex;align-items:center;gap:10px}
-    .footer-logo{height:28px;width:auto;display:block}   /* ↑ más grande y proporcional */
+    .footer-logo{height:28px;width:auto;display:block}
 
     /* WhatsApp FAB */
     .whatsapp-fab{
@@ -240,7 +255,7 @@
   <header role="banner">
     <div class="wrap nav">
       <div class="brand">
-        <!-- Cambia automático según tema -->
+        <!-- Cambia automático según tema (claro: negro | oscuro: turquesa) -->
         <img class="brand-logo theme-img"
              src="img/logo-hero.png"
              data-light-src="img/logo-hero.png"
@@ -268,8 +283,8 @@
     <img class="bg" src="hero.jpg" alt="Playa de aguas turquesas">
     <div class="overlay" aria-hidden="true"></div>
     <div class="content">
-      <h1>Explora el mundo, conecta de verdad</h1>
-      <p class="sub">Viajar con tu tribu, descubrir lugares únicos y vivir momentos que no se olvidan.</p>
+      <h1>Viajes que unen. Recuerdos que duran.</h1>
+      <p class="sub">Nosotros ponemos la ruta, tú pones las ganas.</p>
       <img class="hero-mini-logo" src="img/logo-hero.png" alt="Logo Savage Nomads" decoding="async">
     </div>
   </section>
@@ -483,7 +498,7 @@
     // Año dinámico
     document.getElementById('y').textContent = new Date().getFullYear();
 
-    // Helper: cambiar imágenes según tema
+    // Cambiar <img> según tema (claro/oscuro)
     function applyThemeAssets() {
       const dark = document.documentElement.classList.contains('dark');
       document.querySelectorAll('.theme-img').forEach(img => {
@@ -510,7 +525,6 @@
         setIcon();
         applyThemeAssets();
       });
-      // si el SO cambia el tema, lo reflejamos:
       if (window.matchMedia) {
         window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', e => {
           if (!localStorage.getItem('sn-theme')) {
