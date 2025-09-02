@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>¡Gracias! — Savage Nomads</title>
 
-  <!-- Google Analytics 4 -->
+  <!-- GA4 -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-Q8KFXRQGLW"></script>
   <script>
     window.dataLayer = window.dataLayer || [];
@@ -14,13 +14,12 @@
     gtag('config', 'G-Q8KFXRQGLW', { send_page_view: true });
   </script>
 
-  <!-- Favicons (doble ruta por seguridad en GitHub Pages) -->
-  <link rel="icon" type="image/png" sizes="32x32" href="img/favicon.png">
-  <link rel="icon" type="image/png" sizes="192x192" href="img/favicon.png">
-  <link rel="apple-touch-icon" sizes="180x180" href="img/favicon.png">
-  <!-- Si tu repo se sirve como /savage-nomads-landing/, añadimos rutas absolutas por si el navegador no resuelve las relativas -->
-  <link rel="icon" type="image/png" sizes="32x32" href="/savage-nomads-landing/img/favicon.png">
-  <link rel="apple-touch-icon" sizes="180x180" href="/savage-nomads-landing/img/favicon.png">
+  <!-- Favicons (con cache-busting y rutas relativa + absoluta para Pages) -->
+  <link rel="icon" type="image/png" sizes="32x32" href="img/favicon.png?v=2">
+  <link rel="icon" type="image/png" sizes="192x192" href="img/favicon.png?v=2">
+  <link rel="apple-touch-icon" sizes="180x180" href="img/favicon.png?v=2">
+  <link rel="icon" type="image/png" sizes="32x32" href="/savage-nomads-landing/img/favicon.png?v=2">
+  <link rel="apple-touch-icon" sizes="180x180" href="/savage-nomads-landing/img/favicon.png?v=2">
   <meta name="theme-color" content="#00C2A8">
 
   <!-- Fuente -->
@@ -52,19 +51,18 @@
 
     .icon-btn{display:inline-flex;align-items:center;justify-content:center;width:40px;height:40px;border-radius:999px;border:1px solid var(--border);background:var(--surface);cursor:pointer;font-size:18px}
 
-    /* Card */
+    /* Card centrada y logo centrado REAL */
     main{min-height:70vh;display:grid;place-items:center;padding:36px 16px}
     .card{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:24px;box-shadow:var(--shadow);text-align:center;max-width:720px;width:100%}
     h1{font-size:clamp(24px,4.5vw,34px);color:var(--brand);margin:0 0 6px}
     p{margin:0;color:var(--muted)}
-    /* LOGO CENTRADO Y NÍTIDO */
     .hero-mini-logo{
-      width:120px; height:auto; margin:18px auto 0; display:block;
-      image-rendering:auto; -ms-interpolation-mode:nearest-neighbor;
+      width:120px;height:auto;margin:18px auto 0 auto;display:block;
+      image-rendering:auto;transform:translateZ(0);
     }
     .row{display:flex;gap:10px;justify-content:center;margin-top:18px;flex-wrap:wrap}
 
-    /* Botones: mismo estilo verde para ambos */
+    /* Botones verdes iguales */
     .btn{display:inline-block;padding:10px 16px;border-radius:999px;font-weight:700;border:none;cursor:pointer;text-decoration:none}
     .btn-cta{background:var(--brand);color:#0b0f10;box-shadow:0 8px 22px rgba(0,0,0,.18)}
     .btn-cta:hover{transform:translateY(-2px)}
@@ -74,18 +72,16 @@
     .footerbar{display:inline-flex;align-items:center;gap:8px}
     .footer-logo{width:20px;height:20px;display:block}
 
-    /* WhatsApp FAB (nítido, centrado) */
+    /* WhatsApp FAB (nítido y centrado) */
     .whatsapp-fab{
       position:fixed;right:16px;bottom:16px;z-index:70;
       width:56px;height:56px;border-radius:999px;
       background:#25D366;color:#fff;display:flex;align-items:center;justify-content:center;
-      box-shadow:0 10px 24px rgba(0,0,0,.25);
-      border:none;
+      box-shadow:0 10px 24px rgba(0,0,0,.25); border:none; line-height:0;
     }
     .whatsapp-fab:hover{transform:translateY(-2px)}
     .whatsapp-fab svg{
-      width:26px;height:26px;display:block;shape-rendering:geometricPrecision;
-      transform: translateZ(0); /* evita blur por subpíxel */
+      display:block;width:26px;height:26px;shape-rendering:geometricPrecision;transform:translateZ(0);
     }
   </style>
 </head>
@@ -124,19 +120,19 @@
     </div>
   </footer>
 
-  <!-- WhatsApp FAB (solo icono) -->
+  <!-- WhatsApp FAB -->
   <a class="whatsapp-fab" href="https://wa.me/34664549465?text=Hola%20Savage%20Nomads%2C%20acabo%20de%20enviar%20el%20formulario%20🙌"
      target="_blank" rel="noopener" aria-label="Escríbenos por WhatsApp" title="WhatsApp">
-    <svg viewBox="0 0 32 32" aria-hidden="true" focusable="false">
+    <!-- SVG nítido -->
+    <svg viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
       <path fill="#fff" d="M19.7 17.4c-.3-.2-1.8-.9-2.1-1-.3-.1-.5-.2-.8.2-.2.3-.9 1-.9 1.2s-.3.3-.6.1c-.3-.2-1.2-.4-2.3-1.5-0.9-.9-1.5-2-1.7-2.3-.2-.3 0-.5.2-.7.2-.2.3-.6.5-.8.2-.3.1-.5 0-.7l-1-2.4c-.3-.7-.5-.6-.8-.6h-.7c-.2 0-.7.1-1 .5-.3.3-1.3 1.3-1.3 3.1s1.3 3.5 1.5 3.7c.2.2 2.6 4 6.3 5.5.9.4 1.6.6 2.1.7.9.3 1.7.3 2.3.2.7-.1 2.1-.9 2.4-1.8.3-.9.3-1.6.2-1.8-.1-.2-.3-.3-.6-.5zM16 4c6.6 0 12 5.3 12 12 0 6.6-5.4 12-12 12-2.1 0-4.1-.6-5.8-1.6L6 28l1.7-4.1C6.6 22.1 6 20.1 6 18 6 11.3 9.3 4 16 4zm0-2C8.3 2 4 9 4 18c0 2.3.6 4.4 1.6 6.3L4 30l5.8-1.5C11.7 29.4 13.8 30 16 30c8.8 0 16-7.2 16-16S24.8 2 16 2z"/>
     </svg>
   </a>
 
   <script>
-    // Año dinámico
     document.getElementById('y').textContent = new Date().getFullYear();
 
-    // Tema con persistencia
+    // Tema persistente
     (function(){
       const root = document.documentElement;
       const saved = localStorage.getItem('sn-theme');
@@ -154,7 +150,7 @@
       });
     })();
 
-    // Marca conversión (por si el evento del submit no entró)
+    // Métrica de respaldo
     gtag('event', 'view_thank_you', { source: 'form_submission' });
     gtag('event', 'generate_lead', { method: 'formspree', reliability: 'thank_you_page' });
   </script>
